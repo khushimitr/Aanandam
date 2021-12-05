@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/beige"
+    tools:context=".view.fragments.RoomDetailFragment">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/flImageRoom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/image_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpRoom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/image_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivFavoriteRoom"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/ic_favorite"
+                android:layout_gravity="end"
+                />
+
+            </FrameLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvDetailsCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:alpha="0.9"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_21sdp"
+                app:cardElevation="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="@id/flImageRoom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flImageRoom">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvCardName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/room"
+                        style="@style/DarkBrownTextBold32"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="@dimen/margin_12"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/tvCostAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cost"
+                        style="@style/DarkBrownTextBold32"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginRight="@dimen/margin_12"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MediumGreenTextRegular14"
+                        android:text="Lorem Ipsum, CA 94133"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCardName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="@dimen/margin_12"
+                        android:layout_marginTop="@dimen/margin_14"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAccomodation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="19dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/accomodations"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvDetailsCard" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRoomAccomodations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAccomodation" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginTop="31dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/details"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvRoomAccomodations" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="@dimen/_85sdp"
+                android:fontFamily="@font/open_sans"
+                android:justificationMode="inter_word"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@color/medium_green"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetails"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_160sdp"
+        android:background="@drawable/bottom_gradient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_marginHorizontal="@dimen/_22sdp"
+        android:layout_marginBottom="@dimen/margin_32"
+        android:background="@drawable/button_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/btnBookRoom"
+        app:layout_constraintRight_toRightOf="@id/btnBookRoom"
+        app:layout_constraintTop_toTopOf="@+id/btnBookRoom" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBookRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/margin_32"
+        android:backgroundTint="@color/light_brown"
+        android:fontFamily="@font/open_sans_bold"
+        android:padding="@dimen/_13sdp"
+        android:text="@string/book_the_room"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_18sdp"
+        app:cornerRadius="@dimen/_30sdp"
+        app:elevation="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

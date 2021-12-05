@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLoading"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/meditating_monkey"
+            app:lottie_url="REPLACE_JSON_URL" />
+
+        <TextView
+            android:id="@+id/tvloading"
+            style="@style/DarkBrownTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hang_on"
+            android:layout_marginTop="@dimen/margin_23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lavLoading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/svLOGIN"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".view.activities.LoginActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loginPAGE"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/image_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/cat_hot_air_balloon"
+                app:lottie_url="REPLACE_JSON_URL" />
+
+
+            <TextView
+                android:id="@+id/tvLogin"
+                style="@style/DarkGreenTextBold32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="@string/login"
+                app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                style="@style/DarkBrownTextRegular14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_23"
+                android:backgroundTint="@color/gray"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="@dimen/margin_12"
+                android:hint="@string/email_id"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_editText"
+                android:textColorHint="@color/light_brown"
+                app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/DarkBrownTextRegular14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_19"
+                android:backgroundTint="@color/gray"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="@dimen/margin_12"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/padding_editText"
+                android:textColorHint="@color/light_brown"
+                app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+            <TextView
+                android:id="@+id/tvForgot"
+                style="@style/DarkGreenTextBold16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/forgot"
+                app:layout_constraintBaseline_toBaselineOf="@+id/etPassword"
+                app:layout_constraintEnd_toEndOf="@+id/etPassword" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/margin_horizontal_outline"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/button_outline"
+                app:layout_constraintLeft_toLeftOf="@id/btnLogin"
+                app:layout_constraintRight_toRightOf="@id/btnLogin"
+                app:layout_constraintTop_toTopOf="@+id/btnLogin" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                style="@style/WhiteTextBold18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:backgroundTint="@color/light_brown"
+                android:fontFamily="@font/open_sans_bold"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/_30sdp"
+                app:elevation="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/MediumGreenTextRegular14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_23"
+                android:text="@string/or_login_with"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_23"
+                android:padding="@dimen/padding_outlined_btn"
+                android:text="@string/google"
+                android:textColor="@color/light_brown"
+                android:textSize="@dimen/_15sdp"
+                app:cornerRadius="@dimen/_10sdp"
+                app:icon="@drawable/ic_google"
+                app:iconGravity="textStart"
+                app:iconTint="@color/light_brown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:strokeColor="@color/light_brown" />
+
+            <TextView
+                android:id="@+id/tvEmployeeLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/margin_23"
+                android:layout_marginStart="@dimen/margin_horizontal"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/employee_login_here"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/font_16"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvNewHere"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvNewHere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/margin_23"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/new_here"
+                android:textColor="@color/medium_green"
+                android:textSize="@dimen/font_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvRegister"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_horizontal"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/register"
+                android:textColor="@color/dark_green"
+                android:textSize="@dimen/font_16"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvNewHere"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

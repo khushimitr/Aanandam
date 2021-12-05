@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.SignUpActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLoading"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/meditating_monkey"
+            app:lottie_url="REPLACE_JSON_URL" />
+
+        <TextView
+            android:id="@+id/tvloading"
+            style="@style/DarkBrownTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hang_on"
+            android:layout_marginTop="@dimen/margin_23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lavLoading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/svSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:visibility="visible"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/image_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/cat_hot_air_balloon"
+                app:lottie_url="REPLACE_JSON_URL" />
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/DarkGreenTextBold32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="@string/sign_up"
+                app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_14"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/google"
+                android:textColor="@color/light_brown"
+                android:textSize="@dimen/_15sdp"
+                app:cornerRadius="@dimen/_10sdp"
+                app:icon="@drawable/ic_google"
+                app:iconGravity="textStart"
+                app:iconTint="@color/light_brown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:strokeColor="@color/light_brown" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_23"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/or_register_with_email"
+                android:textColor="@color/light_brown"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_23"
+                android:backgroundTint="@color/gray"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="@dimen/margin_12"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:padding="@dimen/padding_editText"
+                android:textColor="@color/dark_brown"
+                android:textColorHint="@color/light_brown"
+                android:textSize="@dimen/font_14"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_19"
+                android:backgroundTint="@color/gray"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="@dimen/margin_12"
+                android:hint="@string/email_id"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/padding_editText"
+                android:textColor="@color/dark_brown"
+                android:textColorHint="@color/light_brown"
+                android:textSize="@dimen/font_14"
+                app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_19"
+                android:backgroundTint="@color/gray"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="@dimen/margin_12"
+                android:hint="@string/password"
+                android:inputType="textPersonName"
+                android:padding="@dimen/padding_editText"
+                android:textColor="@color/dark_brown"
+                android:textColorHint="@color/light_brown"
+                android:textSize="@dimen/font_14"
+                app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+            <EditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginTop="@dimen/margin_19"
+                android:backgroundTint="@color/gray"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="@dimen/margin_12"
+                android:hint="@string/confirm_password"
+                android:inputType="textVisiblePassword"
+                android:padding="@dimen/padding_editText"
+                android:textColor="@color/dark_brown"
+                android:textColorHint="@color/light_brown"
+                android:textSize="@dimen/font_14"
+                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:background="@drawable/button_outline"
+                app:layout_constraintLeft_toLeftOf="@id/btnRegister"
+                app:layout_constraintRight_toRightOf="@id/btnRegister"
+                app:layout_constraintTop_toTopOf="@+id/btnRegister" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
+                style="@style/WhiteTextBold18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginVertical="16dp"
+                android:backgroundTint="@color/light_brown"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/_30sdp"
+                app:elevation="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
