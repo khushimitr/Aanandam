@@ -2,6 +2,7 @@ package com.example.aanandam.view.activities
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -12,8 +13,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.aanandam.R
 import com.example.aanandam.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -34,9 +37,22 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomBar.setupWithNavController(navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController,null)
+    }
+
+    fun hideBottomNavigationView(){
+        binding.bottomBar.clearAnimation()
+        binding.bottomBar.animate().translationY(binding.bottomBar.height.toFloat()).duration = 300
+        binding.bottomBar.visibility = View.GONE
+    }
+
+    fun showBottomNavigationView(){
+        binding.bottomBar.clearAnimation()
+        binding.bottomBar.animate().translationY(0f).duration = 300
+        binding.bottomBar.visibility = View.VISIBLE
     }
 }

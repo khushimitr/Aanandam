@@ -11,6 +11,7 @@ interface AanandamRepository {
 
     suspend fun createUser(user : AanandamEntities.NewUser):Response<String>
     suspend fun loginUser(user : AanandamEntities.LoginUser):Response<String>
+    suspend fun loginEmployee(user : AanandamEntities.LoginUser) : Response<String>
     suspend fun getUser():Response<AanandamEntities.LoginUser>
     suspend fun logout(): Response<String>
 

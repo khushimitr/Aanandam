@@ -1,7 +1,6 @@
 package com.example.aanandam.utils
 
 object Constants {
-
     const val BASE_URL : String = "https://lit-caverns-66323.herokuapp.com/"
 
     const val REGISTER_ENDPOINT : String = "register"
@@ -14,4 +13,5 @@ object Constants {
 
     const val MIN_PASSWORD_LENGTH = 6
     const val MAX_PASSWORD_LENGTH = 12
+
 }

@@ -34,7 +34,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideAanandamAPI() : AanandamAPI{
+    fun provideAanandamAPI() : AanandamAPI {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -55,7 +55,7 @@ object AppModule {
     fun provideAanandamRepository(
         aanandamAPI: AanandamAPI,
         sessionManager: SessionManager
-    ): AanandamRepository{
+    ): AanandamRepository {
         return AanandamRepoImpl(
             aanandamAPI, sessionManager
         )

@@ -24,6 +24,9 @@ class UserViewModel @Inject constructor(
     private val _loginState = MutableSharedFlow<Response<String>>()
     val loginState : SharedFlow<Response<String>> = _loginState
 
+    private val _employeeLoginState = MutableSharedFlow<Response<String>>()
+    val employeeLoginState : SharedFlow<Response<String>> = _employeeLoginState
+
     private val _currentUserState = MutableSharedFlow<Response<AanandamEntities.LoginUser>>()
     val currentUserState : SharedFlow<Response<AanandamEntities.LoginUser>> = _currentUserState
 
@@ -91,6 +94,33 @@ class UserViewModel @Inject constructor(
         _loginState.emit(aanandamRepository.loginUser(user))
     }
 
+    fun loginEmployee(
+        email : String,
+        password : String
+    ) = viewModelScope.launch{
+        _employeeLoginState.emit(Response.Loading())
+
+        if(email.isEmpty() || password.isEmpty()){
+            _employeeLoginState.emit(Response.Error("Some fields are empty"))
+            return@launch
+        }
+
+        if(!isEmailVaild(email))
+        {
+            _employeeLoginState.emit(Response.Error("Email is not Vaild!"))
+            return@launch
+        }
+
+        if(!isPasswordValid(password))
+        {
+            _employeeLoginState.emit(Response.Error("Password should be between${Constants.MIN_PASSWORD_LENGTH} and ${Constants.MAX_PASSWORD_LENGTH}"))
+            return@launch
+        }
+
+        val user = AanandamEntities.LoginUser(email, password)
+        _employeeLoginState.emit(aanandamRepository.loginEmployee(user))
+    }
+
     fun getCurrentUser() = viewModelScope.launch {
         _currentUserState.emit(Response.Loading())
         _currentUserState.emit(aanandamRepository.getUser())
@@ -103,9 +133,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-
     private fun isEmailVaild(email : String) : Boolean{
-        var regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
+        val regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
         val pattern = Pattern.compile(regex)
         return (email.isNotEmpty() && pattern.matcher(email).matches())
     }

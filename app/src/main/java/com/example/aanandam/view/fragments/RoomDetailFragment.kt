@@ -11,6 +11,7 @@ import com.example.aanandam.R
 class RoomDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
     }
 

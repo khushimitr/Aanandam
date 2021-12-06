@@ -1,4 +1,4 @@
-package com.example.aanandam.viewmodel
+package com.example.aanandam.view.fragments
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

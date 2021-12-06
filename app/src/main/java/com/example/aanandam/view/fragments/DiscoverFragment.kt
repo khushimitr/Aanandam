@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.aanandam.databinding.FragmentDiscoverBinding
+import com.example.aanandam.view.activities.MainActivity
 
 class DiscoverFragment : Fragment() {
 
@@ -18,12 +19,19 @@ class DiscoverFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-
-
         _binding = FragmentDiscoverBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if(requireActivity() is MainActivity)
+        {
+            (activity as MainActivity?)?.showBottomNavigationView()
+        }
     }
 
     override fun onDestroyView() {

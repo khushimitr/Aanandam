@@ -3,27 +3,39 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/background_color_chip_state_list.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/bottom_gradient.xml" value="0.1569078947368421" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/btn_custom_bgcolor.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/card_gradient.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/circle_accomodation.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/ic_favorite.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/ic_home.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/ic_iarrow.xml" value="0.1569078947368421" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/ic_icon_awesome_address_book.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/ic_person.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/rounded_corners.xml" value="0.1569078947368421" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/text_color_chip_state_list.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/activity_employee_login.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/activity_login.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/activity_main.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/activity_splash_screen.xml" value="0.14671052631578949" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/activity_startup.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/chip_room_type.xml" value="0.264" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/edit_text_field.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_dashboard.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_discover.xml" value="0.176" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_favorite.xml" value="0.14671052631578949" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_login_employee.xml" value="0.14671052631578949" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_login_user.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_notifications.xml" value="0.14671052631578949" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_room_book.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_room_detail.xml" value="0.14671052631578949" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_service_book.xml" value="0.152" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_services.xml" value="0.152" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_sign_up.xml" value="0.14671052631578949" />
+        <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/fragment_startup.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/item_accomodation.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/item_card.xml" value="0.14671052631578949" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/layout/item_images.xml" value="0.2" />

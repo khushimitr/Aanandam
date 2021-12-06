@@ -11,9 +11,12 @@
 
     <dimen name="btn_text">@dimen/_18sdp</dimen>
 
-    <dimen name="image_size">@dimen/_317sdp</dimen>
+    <dimen name="image_size">@dimen/_300sdp</dimen>
     <dimen name="card_size">@dimen/_200sdp</dimen>
     <dimen name="margin_horizontal">@dimen/_28sdp</dimen>
+
+    <dimen name="margin_38">@dimen/_38sdp</dimen>
+
     <dimen name="margin_horizontal_outline">@dimen/_24sdp</dimen>
 
     <dimen name="margin_45">@dimen/_35sdp</dimen>

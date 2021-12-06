@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Aanandam</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Services</string>
     <string name="title_notifications">Notifications</string>
     <string name="accomodations">Accomodations</string>
     <string name="details">Details</string>
@@ -17,7 +17,7 @@
     <string name="or_login_with">or, Login with</string>
     <string name="new_here">New Here ?</string>
     <string name="register">Register</string>
-    <string name="forgot">Forgot ?</string>
+    <string name="forgot">Forgot Password?</string>
     <string name="sign_up">Sign Up</string>
     <string name="employee_login_here">Employee Login Here</string>
     <string name="employee_login">Employee Login</string>
@@ -26,7 +26,7 @@
     <string name="services">Services</string>
     <string name="favorite">Favorite</string>
     <string name="profile">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="person">Person</string>
     <string name="life_simple">Life Simple</string>
@@ -41,4 +41,18 @@
     <string name="room">Room</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="hang_on">Hang On!!</string>
+    <string name="don_t_have_an_account">Don\'t have an Account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_a_account">Already have a account?</string>
+    <string name="all_services">All Services</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="pick_up_address">Pick Up Address</string>
+    <string name="extra_description">Extra Description</string>
+    <string name="check_in">Check In</string>
+    <string name="check_out">Check Out</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="total">Total</string>
+    <string name="payment">Payment</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="book">Book</string>
 </resources>

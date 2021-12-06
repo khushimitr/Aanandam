@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_discover">
+    app:startDestination="@id/startupFragment">
 
     <fragment
         android:id="@+id/navigation_discover"
@@ -28,4 +28,69 @@
         android:name="com.example.aanandam.view.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/loginUserFragment"
+        android:name="com.example.aanandam.view.fragments.LoginUserFragment"
+        android:label="fragment_login_user"
+        tools:layout="@layout/fragment_login_user" >
+        <action
+            android:id="@+id/action_loginUserFragment_to_navigation_discover"
+            app:destination="@id/navigation_discover"
+            app:popUpTo="@id/navigation_discover" />
+        <action
+            android:id="@+id/action_loginUserFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.aanandam.view.fragments.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_navigation_discover"
+            app:destination="@id/navigation_discover"
+            app:popUpTo="@id/navigation_discover" />
+        <action
+            android:id="@+id/action_signUpFragment_to_loginUserFragment"
+            app:destination="@id/loginUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEmployeeFragment"
+        android:name="com.example.aanandam.view.fragments.LoginEmployeeFragment"
+        android:label="fragment_login_employee"
+        tools:layout="@layout/fragment_login_employee" >
+        <action
+            android:id="@+id/action_loginEmployeeFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:popUpTo="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/startupFragment"
+        android:name="com.example.aanandam.view.fragments.StartupFragment"
+        android:label="fragment_startup"
+        tools:layout="@layout/fragment_startup" >
+        <action
+            android:id="@+id/action_startupFragment_to_loginEmployeeFragment"
+            app:destination="@id/loginEmployeeFragment" />
+        <action
+            android:id="@+id/action_startupFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_startupFragment_to_loginUserFragment"
+            app:destination="@id/loginUserFragment" />
+        <action
+            android:id="@+id/action_startupFragment_to_navigation_discover"
+            app:destination="@id/navigation_discover"
+            app:popUpTo="@id/navigation_discover" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceBookFragment"
+        android:name="com.example.aanandam.ServiceBookFragment"
+        android:label="fragment_service_book"
+        tools:layout="@layout/fragment_service_book" />
+    <fragment
+        android:id="@+id/roomBookFragment"
+        android:name="com.example.aanandam.RoomBookFragment"
+        android:label="fragment_room_book"
+        tools:layout="@layout/fragment_room_book" />
 </navigation>

@@ -4,13 +4,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import com.example.aanandam.R
 import com.example.aanandam.databinding.ActivitySplashScreenBinding
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -39,7 +34,7 @@ class SplashScreenActivity : AppCompatActivity() {
         }
 
         if(!isDestroyed){
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this,MainActivity::class.java)
 
             val tmTask = timerTask {
                 if (!isDestroyed){

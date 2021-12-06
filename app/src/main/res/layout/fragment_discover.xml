@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardBookService"
             android:layout_width="match_parent"
@@ -52,6 +51,7 @@
                     android:text="@string/let_s_make_our"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_18"
+                    app:layout_constraintBottom_toTopOf="@id/tv2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.636"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -73,13 +73,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:layout_marginEnd="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv2">
 
                     <View
                         android:id="@+id/btn_outline"
-                        android:layout_width="@dimen/_102sdp"
-                        android:layout_height="@dimen/_36sdp"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_34sdp"
                         android:background="@drawable/button_outline" />
 
                     <com.google.android.material.button.MaterialButton
@@ -101,24 +102,97 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFilterType"
-            android:layout_marginTop="@dimen/margin_23"
+        <HorizontalScrollView
+            android:id="@+id/hslFilterSelection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/cardBookService" />
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/rvRoomCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBookService">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupAction"
+                style="@style/CustomChipChoice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_marginVertical="@dimen/margin_23"
+                app:chipSpacingHorizontal="@dimen/margin_12"
+                app:selectionRequired="true"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    style="@style/CustomChipChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All"
+                    android:elevation="@dimen/_4sdp"
+                    android:textColor="@color/light_brown"
+                    app:textEndPadding="@dimen/_15sdp"
+                    app:textStartPadding="@dimen/_15sdp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1BHK"
+                    style="@style/CustomChipChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 BHK"
+                    android:elevation="@dimen/_4sdp"
+                    android:textColor="@color/light_brown"
+                    app:textEndPadding="@dimen/_15sdp"
+                    app:textStartPadding="@dimen/_15sdp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2BHK"
+                    style="@style/CustomChipChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 BHK"
+                    android:elevation="@dimen/_4sdp"
+                    android:textColor="@color/light_brown"
+                    app:textEndPadding="@dimen/_15sdp"
+                    app:textStartPadding="@dimen/_15sdp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1Person"
+                    style="@style/CustomChipChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 Person"
+                    android:elevation="@dimen/_4sdp"
+                    android:textColor="@color/light_brown"
+                    app:textEndPadding="@dimen/_15sdp"
+                    app:textStartPadding="@dimen/_15sdp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2Person"
+                    style="@style/CustomChipChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 Person"
+                    android:elevation="@dimen/_4sdp"
+                    android:textColor="@color/light_brown"
+                    app:textEndPadding="@dimen/_15sdp"
+                    app:textStartPadding="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/margin_45"
+                    />
+            </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRoomCard"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_23"
-            app:layout_constraintTop_toBottomOf="@id/rvFilterType"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hslFilterSelection" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -54,6 +54,26 @@ class AanandamRepoImpl @Inject constructor(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun loginEmployee(user: AanandamEntities.LoginUser): Response<String> {
+        return try{
+            if(!isNetworkConnected(sessionManager.context)){
+                Response.Error<String>("No Internet Connection")
+            }
+
+            val result = aanandamAPI.employeeLogin(user)
+            if(result.success){
+                sessionManager.updateSession(result.accessToken, user.email)
+                Response.Success("Logged in Successfully")
+            }else{
+                Response.Error<String>("Error in Logging In.")
+            }
+        }catch (e : Exception){
+            e.printStackTrace()
+            Response.Error<String>(e.message ?: "Some Problem Occurred")
+        }
+    }
+
     override suspend fun getUser(): Response<AanandamEntities.LoginUser> {
         return try{
             val email = sessionManager.getCurrentUserEmail()

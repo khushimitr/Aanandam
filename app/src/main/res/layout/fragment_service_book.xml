@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:context=".ServiceBookFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardService"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:background="@color/white"
+            app:cardCornerRadius="@dimen/_23sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tilPhoneNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivCardService"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/service_image"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvTitleCardService"
+                    style="@style/LightBrownTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginRight="@dimen/margin_23"
+                    android:text="Hospital Service"
+                    app:layout_constraintBottom_toTopOf="@id/tvDescCardService"
+                    app:layout_constraintLeft_toRightOf="@id/ivCardService"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDescCardService"
+                    style="@style/MediumGreenTextBold12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:minLines="2"
+                    android:text="Relax with our helping hands and treatment"
+                    app:layout_constraintBottom_toTopOf="@id/tvAvailableCardService"
+                    app:layout_constraintLeft_toLeftOf="@id/tvTitleCardService"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleCardService" />
+
+                <TextView
+                    android:id="@+id/tvAvailableCardService"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:minLines="1"
+                    android:text="Service is Available"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/tvTitleCardService"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescCardService" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:hint="@string/phone_number"
+            android:textColorHint="@color/light_brown"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/tilPickUpAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardService">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhoneNumber"
+                style="@style/DarkGreenTextRegular16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_phone_24"
+                android:drawablePadding="@dimen/margin_12"
+                android:drawableTint="@color/light_brown"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPickUpAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:hint="@string/pick_up_address"
+            android:textColorHint="@color/light_brown"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/tilDestinationAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilPhoneNumber">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPickUpAddress"
+                style="@style/DarkGreenTextRegular16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_phone_24"
+                android:drawablePadding="@dimen/margin_12"
+                android:drawableTint="@color/light_brown"
+                android:inputType="textPostalAddress|textMultiLine"
+                android:maxLines="4"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDestinationAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:hint="Destination Address"
+            android:textColorHint="@color/light_brown"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/tilDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilPickUpAddress">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDestinationAddress"
+                style="@style/DarkGreenTextRegular16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_phone_24"
+                android:drawablePadding="@dimen/margin_12"
+                android:drawableTint="@color/light_brown"
+                android:inputType="textPostalAddress|textMultiLine"
+                android:maxLines="4"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:hint="@string/extra_description"
+            android:textColorHint="@color/light_brown"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilDestinationAddress">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                style="@style/DarkGreenTextRegular16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_phone_24"
+                android:drawablePadding="@dimen/margin_12"
+                android:drawableTint="@color/light_brown"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/tvCheckIn"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="@string/check_in"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvCheckOut"
+            app:layout_constraintEnd_toEndOf="@id/cardCheckIn"
+            app:layout_constraintStart_toStartOf="@id/cardCheckIn" />
+
+        <TextView
+            android:id="@+id/tvCheckOut"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/check_out"
+            app:layout_constraintBottom_toTopOf="@id/cardCheckOut"
+            app:layout_constraintEnd_toEndOf="@id/cardCheckOut"
+            app:layout_constraintStart_toStartOf="@id/cardCheckOut"
+            app:layout_constraintTop_toBottomOf="@id/tilDescription" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCheckIn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/margin_12"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:layout_constraintEnd_toStartOf="@+id/cardCheckOut"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCheckIn">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_19">
+
+                <ImageView
+                    android:id="@+id/iconCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_favorite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCheckInDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCheckInDate"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:text="24/12/2021"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iconCalender"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCheckOut"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/margin_12"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardCheckIn"
+            app:layout_constraintTop_toBottomOf="@id/tvCheckOut">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_19">
+
+                <ImageView
+                    android:id="@+id/iconOutCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_favorite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/tvCheckOutDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCheckOutDate"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:text="24/12/2021"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iconOutCalender"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/tvPaymentDetails"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:text="@string/payment_details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardCheckIn" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPaymentDetails" />
+
+        <TextView
+            android:id="@+id/tvTitleCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MediumGreenTextRegular12"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="Service Charge"
+            app:layout_constraintBottom_toTopOf="@id/tv2TitleCharge"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_19"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            />
+
+        <TextView
+            android:id="@+id/tvCharge"
+            style="@style/MediumGreenTextBold14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/tv2Charge"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="Rs. 500"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTitleCharge"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv2TitleCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MediumGreenTextRegular12"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="Service Charge"
+            app:layout_constraintBottom_toTopOf="@id/divider3"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/margin_12"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleCharge"
+            />
+
+        <TextView
+            android:id="@+id/tv2Charge"
+            style="@style/MediumGreenTextBold14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="Rs. 500"
+            android:layout_marginTop="@dimen/margin_12"
+            app:layout_constraintBottom_toTopOf="@id/divider3"
+            app:layout_constraintTop_toBottomOf="@id/tvCharge"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv2TitleCharge"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@color/dark_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvTotal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv2TitleCharge" />
+
+
+        <TextView
+            android:id="@+id/tvTotal"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:text="@string/total"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+        <TextView
+            android:id="@+id/tvTotalCharge"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="Rs. 1000"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTotal"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPayment"
+            style="@style/WhiteTextBold18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginVertical="@dimen/_18sdp"
+            android:backgroundTint="@color/light_brown"
+            android:fontFamily="@font/open_sans_bold"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/payment"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/_30sdp"
+            app:elevation="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/tvTotal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -24,12 +24,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.SignUpActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name"/>
