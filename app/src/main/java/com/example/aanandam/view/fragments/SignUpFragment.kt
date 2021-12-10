@@ -21,7 +21,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
 
-    private lateinit var binding: FragmentSignUpBinding
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
     private val userViewModel : UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentSignUpBinding.inflate(inflater,container,false)
+        _binding = FragmentSignUpBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -56,18 +57,22 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     private fun subscribeToRegisterEvents() = lifecycleScope.launch {
         userViewModel.registerState.collect { response->
             when(response){
                 is Response.Success ->{
-                    hideProgress()
-                    Toast.makeText(requireActivity(), response.data, Toast.LENGTH_SHORT).show()
+//                    hideProgress()
+                    Toast.makeText(requireActivity(), "User Created Successfully", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToNavigationDiscover())
-//                    findNavController().popBackStack()
                 }
                 is Response.Error ->{
                     hideProgress()
-                    Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "Error in Logging In..Email Id already Registered", Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading->{
                     showProgress()

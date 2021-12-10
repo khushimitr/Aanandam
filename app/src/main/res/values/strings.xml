@@ -55,4 +55,24 @@
     <string name="payment">Payment</string>
     <string name="subscribe">Subscribe</string>
     <string name="book">Book</string>
+    <string name="continue_with">Continue with...</string>
+    <string name="forgot_pass_desc">Enter your email address for the verification process. Check your email and process further.</string>
+    <string name="continue_btn">Continue</string>
+    <string name="forgot_npassword">Forgot \nPassword</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="title">Title</string>
+    <string name="submit">Submit</string>
+    <string name="apply_for_leave">Apply For Leave :</string>
+    <string name="joined">Joined</string>
+    <string name="back_btn">Back Btn</string>
+    <string name="_1_person">1 Person</string>
+    <string name="_2_person">2 Person</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="title_activity_payment">PaymentActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="book_the_service">Book the Service</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

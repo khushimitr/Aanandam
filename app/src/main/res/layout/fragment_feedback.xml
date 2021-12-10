@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".view.fragments.FeedbackFragment">
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/DarkGreenTextBold32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate your Experience"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/MediumGreenTextRegular16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:text="Are you Satisfied with the Service?"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/appCompatRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_19"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/light_brown"
+        android:rating="2"
+        android:stepSize="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/margin_12"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:background="@color/light_brown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatRatingBar" />
+
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/DarkGreenTextBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_19"
+        android:text="Tell us what can be Improved"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupFeedback"
+        style="@style/CustomChipChoice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        app:chipSpacingHorizontal="@dimen/margin_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+        <com.google.android.material.chip.Chip
+            style="@style/CustomChipChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OverAll Service"
+            android:textColor="@color/light_brown"
+            app:textEndPadding="@dimen/_15sdp"
+            app:textStartPadding="@dimen/_15sdp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/CustomChipChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer Support"
+            android:textColor="@color/light_brown"
+            app:textEndPadding="@dimen/_15sdp"
+            app:textStartPadding="@dimen/_15sdp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/CustomChipChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speed and Efficiency"
+            android:textColor="@color/light_brown"
+            app:textEndPadding="@dimen/_15sdp"
+            app:textStartPadding="@dimen/_15sdp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/CustomChipChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Services Provided"
+            android:textColor="@color/light_brown"
+            app:textEndPadding="@dimen/_15sdp"
+            app:textStartPadding="@dimen/_15sdp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/CustomChipChoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum"
+            android:textColor="@color/light_brown"
+            app:textEndPadding="@dimen/_15sdp"
+            app:textStartPadding="@dimen/_15sdp" />
+    </com.google.android.material.chip.ChipGroup>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/margin_12"
+        android:background="@color/white"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:hint="Tell us how can we improve..."
+        android:textColorHint="@color/light_brown"
+        app:layout_constraintBottom_toTopOf="@+id/btnEmployeeLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroupFeedback">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/DarkGreenTextRegular14"
+            android:gravity="top"
+            android:inputType="textLongMessage"
+            android:scrollbars="vertical"
+            android:maxLines="30"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEmployeeLogin"
+        style="@style/WhiteTextBold14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginVertical="@dimen/_18sdp"
+        android:backgroundTint="@color/light_brown"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/submit"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/_30sdp"
+        app:elevation="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

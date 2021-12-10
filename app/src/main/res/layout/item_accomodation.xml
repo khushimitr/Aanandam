@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:layout_marginEnd="@dimen/margin_19"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -12,11 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/circle_accomodation"
-        android:padding="10dp"
+        android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_home_black_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:id="@+id/tvAccomodation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12sdp"
+        android:textSize="@dimen/font_12"
         android:fontFamily="@font/open_sans"
         android:textColor="@color/light_brown"
         app:layout_constraintEnd_toEndOf="@+id/ivAccomodation"

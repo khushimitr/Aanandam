@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/phone/outline_phone_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/arrow_back/outline_arrow_back_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,8 +29,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_icon_material_description" />
-                            <entry key="sourceFile" value="D:\Designing\icons\aanandam_icons\Icon material-description.svg" />
+                            <entry key="outputName" value="ic_icon_feather_settings" />
+                            <entry key="sourceFile" value="D:\Designing\icons\aanandam_icons\Icon feather-settings.svg" />
                           </map>
                         </option>
                       </PersistentState>

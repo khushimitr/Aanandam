@@ -20,7 +20,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginUserFragment : Fragment() {
 
-    private lateinit var binding : FragmentLoginUserBinding
+    private var _binding : FragmentLoginUserBinding? = null
+    private val binding get() = _binding!!
     private val userViewModel : UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,7 @@ class LoginUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentLoginUserBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginUserBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,16 +54,22 @@ class LoginUserFragment : Fragment() {
         }
         
         binding.tvForgot.setOnClickListener {
-            Toast.makeText(requireActivity(), "Set a new Password", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireActivity(), "Set a new Password", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(LoginUserFragmentDirections.actionLoginUserFragmentToForgotPasswordFragment())
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun subscribeToLoginEvents() = lifecycleScope.launch {
         userViewModel.loginState.collect { response->
             when(response){
                 is Response.Success->{
-                    hideProgress()
-                    Toast.makeText(requireActivity(), response.data, Toast.LENGTH_SHORT).show()
+//                    hideProgress()
+                    Toast.makeText(requireActivity(), "User Logged In Successfully", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(LoginUserFragmentDirections.actionLoginUserFragmentToNavigationDiscover())
                 }
                 is Response.Error ->{

@@ -20,7 +20,8 @@ import com.example.aanandam.utils.*
 @AndroidEntryPoint
 class StartupFragment : Fragment() {
 
-    private lateinit var binding: FragmentStartupBinding
+    private var _binding: FragmentStartupBinding? = null
+    private val binding get() = _binding!!
     private val userViewModel : UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,7 @@ class StartupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentStartupBinding.inflate(inflater,container,false)
+        _binding = FragmentStartupBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -41,7 +42,6 @@ class StartupFragment : Fragment() {
         subscribeToCurrentUserEvents()
 
         binding.btnSignUp.setOnClickListener {
-            Toast.makeText(requireActivity(), "Sign Up", Toast.LENGTH_SHORT).show()
             findNavController().navigate(StartupFragmentDirections.actionStartupFragmentToSignUpFragment())
         }
 
@@ -59,11 +59,35 @@ class StartupFragment : Fragment() {
         userViewModel.getCurrentUser()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     private fun subscribeToCurrentUserEvents() = lifecycleScope.launch {
         userViewModel.currentUserState.collect { response->
             when(response){
                 is Response.Success->{
                     Toast.makeText(requireContext(), response.data?.email, Toast.LENGTH_SHORT).show()
+                    subscribeToPremiumUser()
+                    userViewModel.getCurrentUserStatus()
+                }
+                is Response.Error ->{
+                    hideProgress()
+                    userNotLoggedIn()
+                }
+                is Response.Loading->{
+                    showProgress()
+                }
+            }
+        }
+    }
+
+    private fun subscribeToPremiumUser() = lifecycleScope.launch {
+        userViewModel.currentUserStatusState.collect { response->
+            when(response){
+                is Response.Success->{
+                    GlobalVariables.isPremiumUser = (response.data!! == "true")
                     userLoggedIn()
                 }
                 is Response.Error ->{

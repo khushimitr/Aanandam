@@ -12,14 +12,16 @@ class SessionManager(val context : Context) {
 
     private val Context.dataStore : DataStore<Preferences> by preferencesDataStore("session_manager")
 
-    suspend fun updateSession(token : String, email : String){
+    suspend fun updateSession(token : String,premiumUser : Boolean, email : String, sessionCnt : Int){
         val jwtTokenKey = stringPreferencesKey(Constants.JWT_TOKEN_KEY)
-//        val nameKey = stringPreferencesKey(Constants.NAME_KEY)
+        val premiumUserKey = stringPreferencesKey(Constants.PREMIUM_USER_KEY)
         val emailKey = stringPreferencesKey(Constants.EMAIL_KEY)
+        val sessionAvailedKey = stringPreferencesKey(Constants.SERVICES_AVAILED)
         context.dataStore.edit {preferences->
             preferences[jwtTokenKey] = token
-//            preferences[nameKey] = name
+            preferences[premiumUserKey] = premiumUser.toString()
             preferences[emailKey] = email
+            preferences[sessionAvailedKey] = sessionCnt.toString()
         }
     }
 
@@ -30,12 +32,12 @@ class SessionManager(val context : Context) {
         return preferences[jwtTokenKey]
     }
 
-//    suspend fun getCurrentUserName() : String? {
-//        val nameKey = stringPreferencesKey(Constants.NAME_KEY)
-//        val preferences = context.dataStore.data.first()
-//
-//        return preferences[nameKey]
-//    }
+    suspend fun getCurrentUserType() : String? {
+        val premiumUserKey = stringPreferencesKey(Constants.PREMIUM_USER_KEY)
+        val preferences = context.dataStore.data.first()
+
+        return preferences[premiumUserKey]
+    }
 
     suspend fun getCurrentUserEmail() : String? {
         val emailKey = stringPreferencesKey(Constants.EMAIL_KEY)
@@ -44,11 +46,16 @@ class SessionManager(val context : Context) {
         return preferences[emailKey]
     }
 
+    suspend fun getAvailedServices() : String? {
+        val servicesAvailedKey = stringPreferencesKey(Constants.SERVICES_AVAILED)
+        val preferences = context.dataStore.data.first()
+
+        return preferences[servicesAvailedKey]
+    }
+
     suspend fun logout(){
         context.dataStore.edit {
             it.clear()
         }
     }
-
-
 }

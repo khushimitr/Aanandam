@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/_27sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvServiceName"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_19"
+            android:text="Hospital Visit"
+            app:layout_constraintBottom_toTopOf="@+id/tvCustomer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCustomer"
+            style="@style/MediumGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="Employee Alloted : "
+            app:layout_constraintStart_toStartOf="@+id/tvServiceName"
+            app:layout_constraintTop_toBottomOf="@+id/tvServiceName" />
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/MediumGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_19"
+            android:text="Ram Pal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvCustomer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvCustomer" />
+
+        <TextView
+            android:id="@+id/tvRoom"
+            style="@style/MediumGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="Room Number : "
+            app:layout_constraintStart_toStartOf="@+id/tvCustomer"
+            app:layout_constraintTop_toBottomOf="@+id/tvCustomer" />
+
+        <TextView
+            android:id="@+id/tvRoomNumber"
+            style="@style/MediumGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvRoom"
+            app:layout_constraintStart_toStartOf="@+id/tvName" />
+
+
+        <TextView
+            android:id="@+id/tvDateTitle"
+            style="@style/MediumGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_19"
+            android:text="Date : "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvRoom"
+            app:layout_constraintTop_toBottomOf="@+id/tvRoom" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/MediumGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_19"
+            android:text="DD/MM/YY"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvDateTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvRoomNumber" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

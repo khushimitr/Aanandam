@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,119 +9,105 @@
     android:scrollbars="none"
     tools:context=".view.fragments.DiscoverFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardBookService"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/card_size_small"
+        android:layout_marginHorizontal="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_horizontal"
+        app:cardBackgroundColor="@color/vlight_green"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardBookService"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/card_size"
-            android:layout_marginHorizontal="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_horizontal"
-            app:cardBackgroundColor="@color/vlight_green"
-            app:cardCornerRadius="@dimen/_15sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_122sdp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/service_image"
+                android:src="@drawable/ic_group_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="@dimen/_122sdp"
-                    android:layout_height="@dimen/_192sdp"
-                    android:contentDescription="@string/service_image"
-                    android:src="@drawable/ic_group_12"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.16"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.315" />
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/let_s_make_our"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18"
+                app:layout_constraintBottom_toTopOf="@id/tv2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.636"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/let_s_make_our"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_18"
-                    app:layout_constraintBottom_toTopOf="@id/tv2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.636"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/life_simple"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_18"
+                app:layout_constraintStart_toStartOf="@+id/tv1"
+                app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/life_simple"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_18"
-                    app:layout_constraintStart_toStartOf="@+id/tv1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv1" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBookService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_19"
+                android:layout_marginBottom="@dimen/margin_19"
+                android:backgroundTint="@color/light_brown"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/book_service"
+                android:textAllCaps="false"
+                android:textSize="@dimen/font_12"
+                app:cornerRadius="@dimen/_30sdp"
+                app:elevation="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="75dp"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv2">
+    </com.google.android.material.card.MaterialCardView>
 
-                    <View
-                        android:id="@+id/btn_outline"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="@dimen/_34sdp"
-                        android:background="@drawable/button_outline" />
+    <HorizontalScrollView
+        android:id="@+id/hslFilterSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardBookService">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnBookService"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/light_brown"
-                        android:fontFamily="@font/open_sans_bold"
-                        android:text="@string/book_service"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/font_12"
-                        app:cornerRadius="@dimen/_30sdp"
-                        app:elevation="@dimen/_10sdp" />
-
-                </FrameLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <HorizontalScrollView
-            android:id="@+id/hslFilterSelection"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scrollbars="none"
-            app:layout_constraintBottom_toTopOf="@id/rvRoomCard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardBookService">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupAction"
+                android:id="@+id/chipGroupRoom"
                 style="@style/CustomChipChoice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginHorizontal="@dimen/margin_horizontal"
-                android:layout_marginVertical="@dimen/margin_23"
                 app:chipSpacingHorizontal="@dimen/margin_12"
                 app:selectionRequired="true"
+                app:singleSelection="true"
                 app:singleLine="true">
 
                 <com.google.android.material.chip.Chip
@@ -129,8 +115,9 @@
                     style="@style/CustomChipChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All"
+                    android:layout_marginStart="@dimen/margin_10"
                     android:elevation="@dimen/_4sdp"
+                    android:text="All"
                     android:textColor="@color/light_brown"
                     app:textEndPadding="@dimen/_15sdp"
                     app:textStartPadding="@dimen/_15sdp" />
@@ -140,8 +127,8 @@
                     style="@style/CustomChipChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1 BHK"
                     android:elevation="@dimen/_4sdp"
+                    android:text="1BHK"
                     android:textColor="@color/light_brown"
                     app:textEndPadding="@dimen/_15sdp"
                     app:textStartPadding="@dimen/_15sdp" />
@@ -151,19 +138,30 @@
                     style="@style/CustomChipChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2 BHK"
                     android:elevation="@dimen/_4sdp"
+                    android:text="2BHK"
                     android:textColor="@color/light_brown"
                     app:textEndPadding="@dimen/_15sdp"
                     app:textStartPadding="@dimen/_15sdp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_12"
+                app:layout_constraintStart_toEndOf="@id/chipGroupRoom"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip1Person"
                     style="@style/CustomChipChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1 Person"
                     android:elevation="@dimen/_4sdp"
+                    android:text="1 Person"
                     android:textColor="@color/light_brown"
                     app:textEndPadding="@dimen/_15sdp"
                     app:textStartPadding="@dimen/_15sdp" />
@@ -173,26 +171,88 @@
                     style="@style/CustomChipChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2 Person"
+                    android:layout_marginEnd="@dimen/margin_45"
                     android:elevation="@dimen/_4sdp"
+                    android:text="2 Person"
                     android:textColor="@color/light_brown"
                     app:textEndPadding="@dimen/_15sdp"
-                    app:textStartPadding="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/margin_45"
-                    />
+                    app:textStartPadding="@dimen/_15sdp" />
+
             </com.google.android.material.chip.ChipGroup>
 
-        </HorizontalScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRoomCard"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin_23"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hslFilterSelection" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnApplyFilter"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_14"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/apply_filter"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/rvRoomCard"
+        android:textColor="@color/light_brown"
+        android:textSize="@dimen/_15sdp"
+        app:cornerRadius="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/hslFilterSelection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/light_brown" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavLoading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_size"
+        android:layout_marginHorizontal="@dimen/margin_12"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/tvloading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnApplyFilter"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/meditating_monkey"
+        app:lottie_url="REPLACE_JSON_URL" />
+
+    <TextView
+        android:id="@+id/tvloading"
+        style="@style/DarkBrownTextRegular14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_23"
+        android:text="@string/hang_on"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lavLoading" />
+
+    <TextView
+        android:id="@+id/tvNoRoomsAvailable"
+        style="@style/DarkBrownTextBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currently No Rooms are Available"
+        android:visibility="gone"
+        android:minLines="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hslFilterSelection" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRoomCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnApplyFilter" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

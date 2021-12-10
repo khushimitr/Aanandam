@@ -20,7 +20,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginEmployeeFragment : Fragment() {
 
-    private lateinit var binding: FragmentLoginEmployeeBinding
+    private var _binding: FragmentLoginEmployeeBinding? = null
+    private val binding get() = _binding!!
 
     private val userViewModel : UserViewModel by activityViewModels()
 
@@ -32,9 +33,9 @@ class LoginEmployeeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentLoginEmployeeBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginEmployeeBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -46,21 +47,25 @@ class LoginEmployeeFragment : Fragment() {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            userViewModel.loginEmployee(email,password)
+            userViewModel.loginEmployee(email.trim(),password.trim())
         }
 
         binding.tvForgot.setOnClickListener {
-            Toast.makeText(requireActivity(), "Set a new Password", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireActivity(), "Set a new Password", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToForgotPasswordFragment())
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun subscribeToEmployeeLoginEvents() = lifecycleScope.launch {
         userViewModel.employeeLoginState.collect { response->
             when(response){
                 is Response.Success->{
-                    hideProgress()
-                    Toast.makeText(requireActivity(), response.data, Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToNavigationProfile())
+                    findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToEmployeeeFragment())
                 }
                 is Response.Error ->{
                     hideProgress()

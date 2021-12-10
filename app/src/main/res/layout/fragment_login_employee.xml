@@ -149,23 +149,12 @@
             android:layout_marginTop="@dimen/margin_12"
             android:layout_marginVertical="@dimen/margin_12"
             android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:text="@string/forgot"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginHorizontal="@dimen/margin_horizontal_outline"
-            android:background="@drawable/button_outline"
-            app:layout_constraintLeft_toLeftOf="@id/btnLogin"
-            app:layout_constraintRight_toRightOf="@id/btnLogin"
-            app:layout_constraintTop_toTopOf="@+id/btnLogin" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"

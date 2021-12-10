@@ -51,44 +51,137 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-
-
-        <Button
-            android:id="@+id/btnSignUp"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/flBackground"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="112dp"
-            android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btnLogin"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/image_bg_size"
+                android:background="@drawable/ic_bg" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/start_img_size"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/welcome"
+                app:lottie_url="REPLACE_JSON_URL" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            style="@style/DarkGreenTextBold32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="232dp"
-            android:text="@string/login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="Welcome to"
+            app:layout_constraintBottom_toTopOf="@id/tvAppTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+            app:layout_constraintTop_toBottomOf="@id/flBackground" />
 
-        <Button
+        <TextView
+            android:id="@+id/tvAppTitle"
+            style="@style/MediumGreenTextLight32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
+            android:letterSpacing="0.15"
+            android:text="Aanandam"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@color/dark_green"
+            app:layout_constraintBottom_toTopOf="@id/tvContinue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAppTitle" />
+
+
+        <TextView
+            android:id="@+id/tvContinue"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="@string/continue_with"
+            app:layout_constraintBottom_toTopOf="@id/llBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3" />
+
+        <LinearLayout
+            android:id="@+id/llBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_23"
+            app:layout_constraintBottom_toTopOf="@id/btnEmployeeLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvContinue">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                style="@style/WhiteTextBold14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_brown"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/_30sdp"
+                app:elevation="@dimen/_8sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSignUp"
+                style="@style/WhiteTextBold14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_brown"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/sign_up"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/_30sdp"
+                app:elevation="@dimen/_8sdp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEmployeeLogin"
-            android:layout_width="wrap_content"
+            style="@style/WhiteTextBold14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Employee Login"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginVertical="@dimen/_18sdp"
+            android:backgroundTint="@color/light_brown"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/employee_login"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/_30sdp"
+            app:elevation="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+            app:layout_constraintTop_toBottomOf="@id/llBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

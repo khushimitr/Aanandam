@@ -151,23 +151,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_12"
             android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:text="@string/forgot"
             app:layout_constraintBottom_toTopOf="@id/tvSignUp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnLogin" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginHorizontal="@dimen/margin_horizontal_outline"
-            android:background="@drawable/button_outline"
-            app:layout_constraintLeft_toLeftOf="@id/btnLogin"
-            app:layout_constraintRight_toRightOf="@id/btnLogin"
-            app:layout_constraintTop_toTopOf="@+id/btnLogin" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
@@ -194,7 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_23"
-            android:layout_marginRight="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
             android:fontFamily="@font/open_sans"
             android:text="@string/don_t_have_an_account"
             android:textColor="@color/medium_green"
@@ -212,8 +200,6 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_23"
             android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:fontFamily="@font/open_sans_bold"
             android:text="@string/sign_up"
             android:textColor="@color/dark_green"

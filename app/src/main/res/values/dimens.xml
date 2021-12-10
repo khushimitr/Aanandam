@@ -12,8 +12,13 @@
     <dimen name="btn_text">@dimen/_18sdp</dimen>
 
     <dimen name="image_size">@dimen/_300sdp</dimen>
+    <dimen name="start_img_size">@dimen/_250sdp</dimen>
+    <dimen name="image_bg_size">@dimen/_300sdp</dimen>
     <dimen name="card_size">@dimen/_200sdp</dimen>
+    <dimen name="card_size_small">@dimen/_170sdp</dimen>
     <dimen name="margin_horizontal">@dimen/_28sdp</dimen>
+
+    <dimen name="room_card">@dimen/_150sdp</dimen>
 
     <dimen name="margin_38">@dimen/_38sdp</dimen>
 
@@ -22,6 +27,7 @@
     <dimen name="margin_45">@dimen/_35sdp</dimen>
     <dimen name="margin_35">@dimen/_27sdp</dimen>
     <dimen name="margin_12">@dimen/_9sdp</dimen>
+    <dimen name="margin_10">@dimen/_8sdp</dimen>
     <dimen name="margin_16">@dimen/_12sdp</dimen>
     <dimen name="margin_20">@dimen/_15sdp</dimen>
     <dimen name="margin_23">@dimen/_18sdp</dimen>
