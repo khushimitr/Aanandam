@@ -64,12 +64,20 @@ class EmployeeeFragment : Fragment() {
         val year = cal.get(Calendar.YEAR)
         val month = cal.get(Calendar.MONTH) + 1
 
-        var period = month - monthJoined.toString().toInt()
-        if (period > 11) {
-            period = year - yearJoined.toString().toInt()
-            binding.tvDate.text = "$period years Ago"
-        } else {
-            binding.tvDate.text = "$period months Ago"
+        var ans = 0
+        val yeardiff = year - yearJoined.toString().toInt()
+        if(yeardiff > 1){
+            binding.tvDate.text = "$yeardiff years Ago"
+        }
+        else
+        {
+            ans = month - monthJoined.toString().toInt()
+            if(ans == 0)
+            {
+                ans = 1
+            }
+
+            binding.tvDate.text = "$ans months Ago"
         }
         binding.tvSalary.text = args.employeeInfo.employee.salary.toString()
 

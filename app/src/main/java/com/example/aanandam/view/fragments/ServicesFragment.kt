@@ -2,6 +2,7 @@ package com.example.aanandam.view.fragments
 
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,9 @@ class ServicesFragment : Fragment() {
 
         servicesViewModel.getAllServices()
 
-        binding.tvNumberOfServices.text = GlobalVariables.servicesAvailed.toString()
+        Log.i("SERVICES", GlobalVariables.servicesAvailed)
+
+        binding.tvNumberOfServices.text = GlobalVariables.servicesAvailed
 
 //        subscribeToServicesUserEvent()
 //        userViewModel.getCurrentUserServicesAvailed()

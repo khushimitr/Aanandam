@@ -13,13 +13,15 @@
         android:title="@string/services" />
 
     <item
+        android:id="@+id/navigation_your_services"
+        android:icon="@drawable/ic_room_service"
+        android:title="Booked Services" />
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_user"
         android:title="@string/person" />
 
-    <item
-        android:id="@+id/navigation_your_services"
-        android:icon="@drawable/ic_user"
-        android:title="Booked Services" />
+
 
 </menu>

@@ -3,6 +3,8 @@ package com.example.aanandam.utils
 object Constants {
     const val BASE_URL : String = "https://lit-caverns-66323.herokuapp.com/"
 
+    const val BASE_URL_IMAGES : String = "https://avatars.dicebear.com/api/personas/"
+
     const val REGISTER_ENDPOINT : String = "register"
     const val LOGIN_ENDPOINT : String = "login"
     const val EMPLOYEE_LOGIN_ENDPOINT : String = "employee/login"
@@ -19,6 +21,8 @@ object Constants {
 
     const val ROOM_TYPE : String = "type"
     const val MAX_ROOM_SIZE : String = "maxperson"
+
+    const val MOUTH : String = "mouth"
 
     const val JWT_TOKEN_KEY = "JWT_TOKEN_KEY"
     const val PREMIUM_USER_KEY = "PREMIUM_USER_KEY"

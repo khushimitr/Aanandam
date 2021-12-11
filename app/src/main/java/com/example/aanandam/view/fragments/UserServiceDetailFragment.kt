@@ -15,6 +15,7 @@ import com.example.aanandam.model.entities.YourAllBookedServices
 import com.example.aanandam.model.entities.YourBookedServices
 import com.example.aanandam.utils.GlobalVariables
 import com.example.aanandam.utils.Response
+import com.example.aanandam.view.activities.MainActivity
 import com.example.aanandam.view.adapters.YourServicesAdapter
 import com.example.aanandam.viewmodel.ServicesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,6 +53,9 @@ class UserServiceDetailFragment : Fragment() {
         subscribeToYourServices()
         serviceViewModel.getYourServices(AanandamEntities.AccessToken(GlobalVariables.token))
 
+        if (requireActivity() is MainActivity) {
+            (activity as MainActivity?)?.showBottomNavigationView()
+        }
     }
 
     private fun subscribeToYourServices() = lifecycleScope.launch {

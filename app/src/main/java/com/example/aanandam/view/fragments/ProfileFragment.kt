@@ -224,21 +224,32 @@ class ProfileFragment : Fragment() {
     private fun inflateUserInfo(user: User) {
         binding.tvName.text = user.username.uppercase()
 
-        val dateJoined = user.dateJoined.dropLast(12)
+        val dateJoined = user.dateJoined.dropLast(14)
 
-        val yearJoined = dateJoined.subSequence(0, 3)
-        val monthJoined = dateJoined.subSequence(5, 6)
+
+        val yearJoined = dateJoined.subSequence(0, 4)
+        val monthJoined = dateJoined.subSequence(5, 7)
 
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
         val month = cal.get(Calendar.MONTH) + 1
 
-        var period = month - monthJoined.toString().toInt()
-        if (period > 11) {
-            period = year - yearJoined.toString().toInt()
-            binding.tvDate.text = "$period years Ago"
-        } else {
-            binding.tvDate.text = "$period months Ago"
+
+        var ans = 0
+        val yeardiff = year - yearJoined.toString().toInt()
+        if(yeardiff > 1){
+            binding.tvDate.text = "$yeardiff years Ago"
+        }
+        else
+        {
+            ans = month - monthJoined.toString().toInt()
+
+            if(ans == 0)
+            {
+                ans = 1
+            }
+
+            binding.tvDate.text = "$ans months Ago"
         }
 
         binding.tvServiceAvailed.text = user.availedServices.toString()
