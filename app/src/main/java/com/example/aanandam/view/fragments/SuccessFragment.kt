@@ -44,7 +44,7 @@ class SuccessFragment : Fragment() {
 
         if(GlobalVariables.roomBooked)
         {
-            GlobalVariables.isPremiumUser = true
+            GlobalVariables.isPremiumUser = "true"
             subscribeToPremiumUserEvents()
             roomViewModel.postRoomDetails(GlobalVariables.roomData!!)
         }

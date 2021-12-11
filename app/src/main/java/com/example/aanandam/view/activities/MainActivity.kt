@@ -71,9 +71,11 @@ class MainActivity : AppCompatActivity(), PaymentResultListener {
         {
             R.id.roomBookFragment ->{
                 GlobalVariables.roomBooked = true
+                GlobalVariables.serviceBooked = false
                 Log.i("TYPE","room")
             }
             R.id.serviceBookFragment->{
+                GlobalVariables.roomBooked = false
                 GlobalVariables.serviceBooked = true
                 Log.i("TYPE","service")
             }

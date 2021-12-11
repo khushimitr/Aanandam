@@ -1,5 +1,6 @@
 package com.example.aanandam.view.fragments
 
+import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,12 +34,21 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 @AndroidEntryPoint
 class RoomBookFragment : Fragment() {
 
     private var _binding: FragmentRoomBookBinding? = null
     private val binding get() = _binding!!
+
+    private var dayIn: Int = 0
+    private var yearIn: Int = 0
+    private var monthIn: Int = 0
+    private var dayOut: Int = 0
+    private var yearOut: Int = 0
+    private var monthOut: Int = 0
+
 
     private var currentSelectedDate: Long? = null
     private var checkInDateSelected: Boolean = false
@@ -68,7 +78,7 @@ class RoomBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        subscribeToTokenEvents()
+//        subscribeToTokenEvents()
 //        subscribeToUserEvents()
 //        userViewModel.getCurrentUserStatus()
 
@@ -136,22 +146,39 @@ class RoomBookFragment : Fragment() {
             if (teleNumber.isNullOrBlank() || address.isNullOrBlank() || !checkInDateSelected || !checkOutDateSelected) {
                 Toast.makeText(requireActivity(), "Some fields are empty", Toast.LENGTH_SHORT)
                     .show()
-            } else if (GlobalVariables.isPremiumUser) {
-                Toast.makeText(requireActivity(),
+            } else if (GlobalVariables.isPremiumUser == "true") {
+                Toast.makeText(
+                    requireActivity(),
                     "Some Room is already associated with this Id.",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 if (!isDateCorrect) {
-                    Toast.makeText(requireActivity(),
+                    Toast.makeText(
+                        requireActivity(),
                         "Gap of atleast a month in date is required",
-                        Toast.LENGTH_SHORT).show()
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     Checkout.preload(requireActivity().applicationContext)
                     val co = Checkout()
                     co.setKeyID("rzp_test_2ceXK9Gs4u9Pj9")
 
-                    userViewModel.getCurrentUserToken()
+//                    userViewModel.getCurrentUserToken()
+                    var isRental = false
+                    if (binding.chipSubscribe.isChecked) {
+                        isRental = true
+                    }
 
+                    GlobalVariables.roomData = AanandamEntities.BookRoom(
+                        GlobalVariables.token.toString(),
+                        binding.etPickUpAddress.text.toString().trim(),
+                        binding.tvCheckInDate.text.toString(),
+                        binding.tvCheckOutDate.text.toString(),
+                        isRental,
+                        args.roomInfo.roomId,
+                        binding.etPhoneNumber.text.toString().trim().toLong()
+                    )
                     var amount = binding.tvTotalCharge.text.toString().drop(3).toInt()
 
                     try {
@@ -171,9 +198,11 @@ class RoomBookFragment : Fragment() {
                         options.put("prefill", prefill)
                         co.open(requireActivity(), options)
                     } catch (e: Exception) {
-                        Toast.makeText(requireActivity(),
+                        Toast.makeText(
+                            requireActivity(),
                             "Error in payment: " + e.message,
-                            Toast.LENGTH_LONG).show()
+                            Toast.LENGTH_LONG
+                        ).show()
                         e.printStackTrace()
                     }
                 }
@@ -198,74 +227,107 @@ class RoomBookFragment : Fragment() {
 //        }
 //    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    private fun datePicker(view: View) {
+//        var today = MaterialDatePicker.thisMonthInUtcMilliseconds()
+//
+//
+//        val constraintsBuilder = CalendarConstraints.Builder()
+//            .setOpenAt(today)
+//            .setValidator(DateValidatorPointForward.now())
+//
+//        val datePicker = MaterialDatePicker.Builder.datePicker()
+//            .setTitleText("Select Appointment Date")
+//            .setCalendarConstraints(constraintsBuilder.build())
+//            .build()
+//
+//        datePicker.addOnPositiveButtonClickListener { dateInMillis ->
+//            onDateSelected(dateInMillis, view)
+//            when (view) {
+//                binding.tvCheckInDate -> {
+//                    checkInDateSelected = true
+//                }
+//                binding.tvCheckOutDate -> {
+//                    checkOutDateSelected = true
+//                }
+//            }
+//        }
+//
+//        val fragmentManager = (requireParentFragment().parentFragmentManager)
+//
+//        datePicker.show(fragmentManager, "DATE_PICKER_DIALOG")
+//    }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    private fun onDateSelected(dateInMillis: Long?, view: View) {
+//        currentSelectedDate = dateInMillis
+//        val dateTime: LocalDateTime = LocalDateTime.ofInstant(currentSelectedDate?.let {
+//            Instant.ofEpochMilli(
+//                it
+//            )
+//        }, ZoneId.systemDefault())
+//
+//        val dateAsFormattedText = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+//        Toast.makeText(requireActivity(), dateAsFormattedText, Toast.LENGTH_SHORT).show()
+//
+//        when (view) {
+//            binding.tvCheckInDate -> {
+//                binding.tvCheckInDate.text = dateAsFormattedText
+//                binding.tvCheckInDate.typeface = resources.getFont(R.font.open_sans_bold)
+//            }
+//            binding.tvCheckOutDate -> {
+//                binding.tvCheckOutDate.text = dateAsFormattedText
+//                binding.tvCheckOutDate.typeface = resources.getFont(R.font.open_sans_bold)
+//            }
+//        }
+//
+//        val checkInDate = binding.tvCheckInDate.text.toString()
+//        val checkOutDate = binding.tvCheckOutDate.text.toString()
+//
+//        val yearIn = checkInDate.subSequence(0, 3).toString().toInt()
+//        val monthIn = checkInDate.subSequence(5, 6).toString().toInt()
+//
+//        val yearOut = checkOutDate.subSequence(0, 3).toString().toInt()
+//        val monthOut = checkOutDate.subSequence(5, 6).toString().toInt()
+//
+//        if (monthOut - monthIn >= 1 || yearOut - yearIn >= 1) {
+//            isDateCorrect = true
+//        }
+//
+//        //yyyy-MM-dd
+//    }
+
     private fun datePicker(view: View) {
-        var today = MaterialDatePicker.thisMonthInUtcMilliseconds()
-
-
-        val constraintsBuilder = CalendarConstraints.Builder()
-            .setOpenAt(today)
-            .setValidator(DateValidatorPointForward.now())
-
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select Appointment Date")
-            .setCalendarConstraints(constraintsBuilder.build())
-            .build()
-
-        datePicker.addOnPositiveButtonClickListener { dateInMillis ->
-            onDateSelected(dateInMillis, view)
-            when (view) {
-                binding.tvCheckInDate -> {
-                    checkInDateSelected = true
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
+        val dialog = DatePickerDialog(
+            requireActivity(),
+            DatePickerDialog.OnDateSetListener { datePicker, y, m, d ->
+                when (view) {
+                    binding.tvCheckInDate -> {
+                        binding.tvCheckInDate.text = "$d/${m + 1}/$y"
+                        dayIn = d
+                        yearIn = y
+                        monthIn = m + 1
+                        checkInDateSelected = true
+                    }
+                    binding.tvCheckOutDate -> {
+                        binding.tvCheckOutDate.text = "$d/${m + 1}/$y"
+                        dayOut = d
+                        yearOut = y
+                        monthOut = m + 1
+                        checkOutDateSelected = true
+                    }
                 }
-                binding.tvCheckOutDate -> {
-                    checkOutDateSelected = true
-                }
-            }
-        }
-
-        val fragmentManager = (requireParentFragment().parentFragmentManager)
-
-        datePicker.show(fragmentManager, "DATE_PICKER_DIALOG")
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun onDateSelected(dateInMillis: Long?, view: View) {
-        currentSelectedDate = dateInMillis
-        val dateTime: LocalDateTime = LocalDateTime.ofInstant(currentSelectedDate?.let {
-            Instant.ofEpochMilli(
-                it
-            )
-        }, ZoneId.systemDefault())
-
-        val dateAsFormattedText = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        Toast.makeText(requireActivity(), dateAsFormattedText, Toast.LENGTH_SHORT).show()
-
-        when (view) {
-            binding.tvCheckInDate -> {
-                binding.tvCheckInDate.text = dateAsFormattedText
-                binding.tvCheckInDate.typeface = resources.getFont(R.font.open_sans_bold)
-            }
-            binding.tvCheckOutDate -> {
-                binding.tvCheckOutDate.text = dateAsFormattedText
-                binding.tvCheckOutDate.typeface = resources.getFont(R.font.open_sans_bold)
-            }
-        }
-
-        val checkInDate = binding.tvCheckInDate.text.toString()
-        val checkOutDate = binding.tvCheckOutDate.text.toString()
-
-        val yearIn = checkInDate.subSequence(0, 3).toString().toInt()
-        val monthIn = checkInDate.subSequence(5, 6).toString().toInt()
-
-        val yearOut = checkOutDate.subSequence(0, 3).toString().toInt()
-        val monthOut = checkOutDate.subSequence(5, 6).toString().toInt()
-
-        if (monthOut - monthIn >= 1 || yearOut - yearIn >= 1) {
-            isDateCorrect = true
-        }
-
-        //yyyy-MM-dd
+            },
+            year,
+            month,
+            day
+        )
+        dialog.datePicker.minDate = (cal.timeInMillis)
+        dialog.show()
     }
 
 
@@ -275,32 +337,32 @@ class RoomBookFragment : Fragment() {
     }
 
 
-    private fun subscribeToTokenEvents() = lifecycleScope.launch {
-        userViewModel.currentUserTokenState.collect { response ->
-            when (response) {
-                is Response.Success -> {
-
-                    var isRental = false
-                    if (binding.chipSubscribe.isChecked) {
-                        isRental = true
-                    }
-
-                    GlobalVariables.roomData = AanandamEntities.BookRoom(
-                        response.data.toString(),
-                        binding.etPickUpAddress.text.toString().trim(),
-                        binding.tvCheckInDate.text.toString(),
-                        binding.tvCheckOutDate.text.toString(),
-                        isRental,
-                        args.roomInfo.roomId,
-                        binding.etPhoneNumber.text.toString().trim().toLong()
-                    )
-                }
-                is Response.Error -> {
-                    Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
-                }
-                is Response.Loading -> {
-                }
-            }
-        }
-    }
+//    private fun subscribeToTokenEvents() = lifecycleScope.launch {
+//        userViewModel.currentUserTokenState.collect { response ->
+//            when (response) {
+//                is Response.Success -> {
+//
+//                    var isRental = false
+//                    if (binding.chipSubscribe.isChecked) {
+//                        isRental = true
+//                    }
+//
+//                    GlobalVariables.roomData = AanandamEntities.BookRoom(
+//                        response.data.toString(),
+//                        binding.etPickUpAddress.text.toString().trim(),
+//                        binding.tvCheckInDate.text.toString(),
+//                        binding.tvCheckOutDate.text.toString(),
+//                        isRental,
+//                        args.roomInfo.roomId,
+//                        binding.etPhoneNumber.text.toString().trim().toLong()
+//                    )
+//                }
+//                is Response.Error -> {
+//                    Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
+//                }
+//                is Response.Loading -> {
+//                }
+//            }
+//        }
+//    }
 }

@@ -139,20 +139,20 @@ class UserViewModel @Inject constructor(
         _currentUserState.emit(aanandamRepository.getUser())
     }
 
-    fun getCurrentUserToken() = viewModelScope.launch {
-        _currentUserTokenState.emit(Response.Loading())
-        _currentUserTokenState.emit(aanandamRepository.getToken())
-    }
-
-    fun getCurrentUserStatus() = viewModelScope.launch {
-        _currentUserStatusState.emit(Response.Loading())
-        _currentUserStatusState.emit(aanandamRepository.getStatus())
-    }
-
-    fun getCurrentUserServicesAvailed() = viewModelScope.launch {
-        _currentUserServicesAvailed.emit(Response.Loading())
-        _currentUserServicesAvailed.emit(aanandamRepository.getServicesAvailed())
-    }
+//    fun getCurrentUserToken() = viewModelScope.launch {
+//        _currentUserTokenState.emit(Response.Loading())
+//        _currentUserTokenState.emit(aanandamRepository.getToken())
+//    }
+//
+//    fun getCurrentUserStatus() = viewModelScope.launch {
+//        _currentUserStatusState.emit(Response.Loading())
+//        _currentUserStatusState.emit(aanandamRepository.getStatus())
+//    }
+//
+//    fun getCurrentUserServicesAvailed() = viewModelScope.launch {
+//        _currentUserServicesAvailed.emit(Response.Loading())
+//        _currentUserServicesAvailed.emit(aanandamRepository.getServicesAvailed())
+//    }
 
 
     fun logout() = viewModelScope.launch {

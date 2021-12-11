@@ -10,9 +10,9 @@ interface AanandamRepository {
     suspend fun loginEmployee(user : AanandamEntities.LoginUser) : Response<Employee>
 
     suspend fun getUser():Response<AanandamEntities.LoginUser>
-    suspend fun getToken():Response<String>
-    suspend fun getStatus():Response<String>
-    suspend fun getServicesAvailed() : Response<String>
+//    suspend fun getToken():Response<String>
+//    suspend fun getStatus():Response<String>
+//    suspend fun getServicesAvailed() : Response<String>
     suspend fun logout(): Response<String>
 
     suspend fun bookRoom(room : AanandamEntities.BookRoom) : Response<PremiumUser>

@@ -19,6 +19,7 @@ import com.example.aanandam.model.entities.AanandamEntities
 import com.example.aanandam.model.entities.EditProfile
 import com.example.aanandam.model.entities.PremiumUserX
 import com.example.aanandam.model.entities.User
+import com.example.aanandam.utils.GlobalVariables
 import com.example.aanandam.utils.Response
 import com.example.aanandam.view.activities.MainActivity
 import com.example.aanandam.viewmodel.UserViewModel
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
 
     private val userViewModel: UserViewModel by activityViewModels()
     private var userdata: EditProfile? = null
-    private var token : String = ""
+    private var token: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +69,11 @@ class ProfileFragment : Fragment() {
             popup.setOnMenuItemClickListener {
                 if (it.itemId == R.id.miEditProfile) {
                     Toast.makeText(requireActivity(), "Edit Profile", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment(
-                        userdata
-                    ))
+                    findNavController().navigate(
+                        ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment(
+                            userdata
+                        )
+                    )
                 }
                 if (it.itemId == R.id.miLogout) {
                     Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
@@ -85,8 +88,17 @@ class ProfileFragment : Fragment() {
 
         if (args.premiumUser == null) {
             //CHECK IF PREMIUM USER OR USER
-            subscribeToTokenEvents()
-            userViewModel.getCurrentUserToken()
+//            subscribeToTokenEvents()
+//            userViewModel.getCurrentUserToken()
+            if (GlobalVariables.isPremiumUser == "true") {
+                subscribeToPremiumProfile()
+                userViewModel.getPremiumUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
+            }
+            else{
+                binding.cardRoom.visibility = View.GONE
+                subscribeToUserProfile()
+                userViewModel.getUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
+            }
         }
 
         args.premiumUser?.let { premiumUser ->
@@ -98,33 +110,17 @@ class ProfileFragment : Fragment() {
         userViewModel.currentUserState.collect { response ->
             when (response) {
                 is Response.Success -> {
-                    Toast.makeText(requireActivity(), "Some problem occured.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "Some problem occured.", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is Response.Error -> {
-                    Toast.makeText(requireActivity(), "User Successfully Logged out", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireActivity(),
+                        "User Successfully Logged out",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStartupFragment())
                 }
-                is Response.Loading ->{
-
-                }
-            }
-        }
-    }
-
-    private fun subscribeToTokenEvents() = lifecycleScope.launch {
-        userViewModel.currentUserTokenState.collect { response ->
-            when (response) {
-                is Response.Success -> {
-                    token = response.data!!.toString()
-                    val tokenObject = AanandamEntities.AccessToken(token)
-                    subscribeToUserEvents(tokenObject)
-                    userViewModel.getCurrentUserStatus()
-                }
-                is Response.Error -> {
-                    Toast.makeText(requireActivity(), "User Not Logged In", Toast.LENGTH_SHORT)
-                        .show()
-                    findNavController().popBackStack()
-                }
                 is Response.Loading -> {
 
                 }
@@ -132,30 +128,51 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun subscribeToUserEvents(token : AanandamEntities.AccessToken) = lifecycleScope.launch {
-        userViewModel.currentUserStatusState.collect { response ->
-            when (response) {
-                is Response.Success -> {
-                    if (response.data!! == "true") {
-                        subscribeToPremiumProfile()
-                        userViewModel.getPremiumUserInfo(token)
-                    } else {
-                        binding.cardRoom.visibility = View.GONE
-                        subscribeToUserProfile()
-                        userViewModel.getUserInfo(token)
-                    }
-                }
-                is Response.Error -> {
-                    Toast.makeText(requireActivity(), "User Not Logged In", Toast.LENGTH_SHORT)
-                        .show()
-                    findNavController().popBackStack()
-                }
-                is Response.Loading -> {
+//    private fun subscribeToTokenEvents() = lifecycleScope.launch {
+//        userViewModel.currentUserTokenState.collect { response ->
+//            when (response) {
+//                is Response.Success -> {
+//                    token = response.data!!.toString()
+//                    val tokenObject = AanandamEntities.AccessToken(token)
+//                    subscribeToUserEvents(tokenObject)
+//                    userViewModel.getCurrentUserStatus()
+//                }
+//                is Response.Error -> {
+//                    Toast.makeText(requireActivity(), "User Not Logged In", Toast.LENGTH_SHORT)
+//                        .show()
+//                    findNavController().popBackStack()
+//                }
+//                is Response.Loading -> {
+//
+//                }
+//            }
+//        }
+//    }
 
-                }
-            }
-        }
-    }
+//    private fun subscribeToUserEvents(token : AanandamEntities.AccessToken) = lifecycleScope.launch {
+//        userViewModel.currentUserStatusState.collect { response ->
+//            when (response) {
+//                is Response.Success -> {
+//                    if (response.data!! == "true") {
+//                        subscribeToPremiumProfile()
+//                        userViewModel.getPremiumUserInfo(token)
+//                    } else {
+//                        binding.cardRoom.visibility = View.GONE
+//                        subscribeToUserProfile()
+//                        userViewModel.getUserInfo(token)
+//                    }
+//                }
+//                is Response.Error -> {
+//                    Toast.makeText(requireActivity(), "User Not Logged In", Toast.LENGTH_SHORT)
+//                        .show()
+//                    findNavController().popBackStack()
+//                }
+//                is Response.Loading -> {
+//
+//                }
+//            }
+//        }
+//    }
 
     private fun subscribeToUserProfile() = lifecycleScope.launch {
         userViewModel.userProfileStatus.collect { response ->
@@ -196,21 +213,18 @@ class ProfileFragment : Fragment() {
 
         val dateJoined = user.dateJoined.dropLast(12)
 
-        val yearJoined = dateJoined.subSequence(0,3)
-        val monthJoined = dateJoined.subSequence(5,6)
+        val yearJoined = dateJoined.subSequence(0, 3)
+        val monthJoined = dateJoined.subSequence(5, 6)
 
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
         val month = cal.get(Calendar.MONTH) + 1
 
         var period = month - monthJoined.toString().toInt()
-        if(period > 11)
-        {
+        if (period > 11) {
             period = year - yearJoined.toString().toInt()
             binding.tvDate.text = "$period years Ago"
-        }
-        else
-        {
+        } else {
             binding.tvDate.text = "$period months Ago"
         }
 
@@ -233,8 +247,8 @@ class ProfileFragment : Fragment() {
         val dateJoined = premiumUser.user.dateJoined.dropLast(12)
         val dateCheckIn = premiumUser.dateInfo.checkIn.dropLast(14)
 
-        val yearJoined = dateJoined.subSequence(0,3)
-        val monthJoined = dateJoined.subSequence(5,6)
+        val yearJoined = dateJoined.subSequence(0, 3)
+        val monthJoined = dateJoined.subSequence(5, 6)
 
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
@@ -242,13 +256,10 @@ class ProfileFragment : Fragment() {
 
 
         var period = month - monthJoined.toString().toInt()
-        if(period > 11)
-        {
+        if (period > 11) {
             period = year - yearJoined.toString().toInt()
             binding.tvDate.text = "$period years Ago"
-        }
-        else
-        {
+        } else {
             binding.tvDate.text = "$period months Ago"
         }
 

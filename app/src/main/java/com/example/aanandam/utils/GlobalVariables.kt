@@ -4,11 +4,14 @@ import com.example.aanandam.model.entities.AanandamEntities
 
 object GlobalVariables {
 
-    var roomData : AanandamEntities.BookRoom? = null
+    var roomData: AanandamEntities.BookRoom? = null
 
-    var serviceBooked : Boolean = false
-    var roomBooked : Boolean = false
-    var isPremiumUser : Boolean = false
+    var serviceBooked: Boolean = false
+    var roomBooked: Boolean = false
+    var serviceData: AanandamEntities.ServiceBook? = null
 
-    var serviceData : AanandamEntities.ServiceBook? = null
+    var isPremiumUser: String = ""
+    var emailId: String = ""
+    var servicesAvailed: String = ""
+    var token: String = ""
 }

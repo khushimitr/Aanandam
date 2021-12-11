@@ -46,7 +46,7 @@ class AanandamRepoImpl @Inject constructor(
             val result = aanandamAPI.loginUser(user)
 
             if (result.success) {
-                GlobalVariables.isPremiumUser = result.user.isPremium
+//                GlobalVariables.isPremiumUser = result.user.isPremium
                 sessionManager.updateSession(result.accessToken, result.user.isPremium, user.email, result.user.availedServices)
                 Response.Success<UserInfo>(result)
             } else
@@ -80,10 +80,20 @@ class AanandamRepoImpl @Inject constructor(
 
     override suspend fun getUser(): Response<AanandamEntities.LoginUser> {
         return try {
+
             val email = sessionManager.getCurrentUserEmail()
+            val token = sessionManager.getJWTToken()
+            val availedServices = sessionManager.getAvailedServices()
+            val isPremium = sessionManager.getCurrentUserType()
+
             if (email == null || email.isEmpty()) {
                 Response.Error<AanandamEntities.LoginUser>("User Not logged In!")
             }
+            GlobalVariables.emailId = email!!
+            GlobalVariables.token = token!!
+            GlobalVariables.isPremiumUser = isPremium!!
+            GlobalVariables.servicesAvailed = availedServices!!
+
             Response.Success(AanandamEntities.LoginUser(email!!, ""))
         } catch (e: Exception) {
             e.printStackTrace()
@@ -91,33 +101,33 @@ class AanandamRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getToken(): Response<String> {
-        val token = sessionManager.getJWTToken()
-        if (token != null) {
-            return Response.Success<String>(token)
-        } else {
-            return Response.Error<String>("User Not logged In.")
-        }
-    }
-
-    override suspend fun getStatus(): Response<String> {
-        val status = sessionManager.getCurrentUserType()
-        if (status != null) {
-            Log.i("PREMIUM_USER", status.toString())
-            return Response.Success<String>(status)
-        } else {
-            return Response.Error<String>("User Not logged In.")
-        }
-    }
-
-    override suspend fun getServicesAvailed(): Response<String> {
-        val servicesAvailed = sessionManager.getCurrentUserType()
-        if (servicesAvailed != null) {
-            return Response.Success<String>(servicesAvailed)
-        } else {
-            return Response.Error<String>("User Not logged In.")
-        }
-    }
+//    override suspend fun getToken(): Response<String> {
+//        val token = sessionManager.getJWTToken()
+//        if (token != null) {
+//            return Response.Success<String>(token)
+//        } else {
+//            return Response.Error<String>("User Not logged In.")
+//        }
+//    }
+//
+//    override suspend fun getStatus(): Response<String> {
+//        val status = sessionManager.getCurrentUserType()
+//        if (status != null) {
+//            Log.i("PREMIUM_USER", status.toString())
+//            return Response.Success<String>(status)
+//        } else {
+//            return Response.Error<String>("User Not logged In.")
+//        }
+//    }
+//
+//    override suspend fun getServicesAvailed(): Response<String> {
+//        val servicesAvailed = sessionManager.getCurrentUserType()
+//        if (servicesAvailed != null) {
+//            return Response.Success<String>(servicesAvailed)
+//        } else {
+//            return Response.Error<String>("User Not logged In.")
+//        }
+//    }
 
     override suspend fun logout(): Response<String> {
         return try {

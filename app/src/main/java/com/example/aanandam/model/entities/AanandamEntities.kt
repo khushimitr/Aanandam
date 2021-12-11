@@ -33,7 +33,8 @@ object AanandamEntities {
         val pickUpAddress: String,
         val servingDateEnd: String,
         val servingDateStart: String,
-        val type: String
+        val type: String,
+        val teleNumber: Long
     )
 
     data class UserEditProfile(

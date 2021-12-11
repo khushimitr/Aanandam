@@ -35,16 +35,16 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAanandamAPI() : AanandamAPI {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
+//        val httpLoggingInterceptor = HttpLoggingInterceptor()
+//            .setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val client = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .build()
+//        val client = OkHttpClient.Builder()
+//            .addInterceptor(httpLoggingInterceptor)
+//            .build()
 
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-            .client(client)
+//            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AanandamAPI::class.java)

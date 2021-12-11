@@ -22,7 +22,7 @@ class StartupFragment : Fragment() {
 
     private var _binding: FragmentStartupBinding? = null
     private val binding get() = _binding!!
-    private val userViewModel : UserViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class StartupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentStartupBinding.inflate(inflater,container,false)
+        _binding = FragmentStartupBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -65,56 +65,58 @@ class StartupFragment : Fragment() {
     }
 
     private fun subscribeToCurrentUserEvents() = lifecycleScope.launch {
-        userViewModel.currentUserState.collect { response->
-            when(response){
-                is Response.Success->{
-                    Toast.makeText(requireContext(), response.data?.email, Toast.LENGTH_SHORT).show()
-                    subscribeToPremiumUser()
-                    userViewModel.getCurrentUserStatus()
-                }
-                is Response.Error ->{
-                    hideProgress()
-                    userNotLoggedIn()
-                }
-                is Response.Loading->{
-                    showProgress()
-                }
-            }
-        }
-    }
-
-    private fun subscribeToPremiumUser() = lifecycleScope.launch {
-        userViewModel.currentUserStatusState.collect { response->
-            when(response){
-                is Response.Success->{
-                    GlobalVariables.isPremiumUser = (response.data!! == "true")
+        userViewModel.currentUserState.collect { response ->
+            when (response) {
+                is Response.Success -> {
+                    Toast.makeText(requireContext(), response.data?.email, Toast.LENGTH_SHORT)
+                        .show()
                     userLoggedIn()
+//                    subscribeToPremiumUser()
+//                    userViewModel.getCurrentUserStatus()
                 }
-                is Response.Error ->{
+                is Response.Error -> {
                     hideProgress()
                     userNotLoggedIn()
                 }
-                is Response.Loading->{
+                is Response.Loading -> {
                     showProgress()
                 }
             }
         }
     }
 
-    private fun userLoggedIn(){
+//    private fun subscribeToPremiumUser() = lifecycleScope.launch {
+//        userViewModel.currentUserStatusState.collect { response->
+//            when(response){
+//                is Response.Success->{
+//                    GlobalVariables.isPremiumUser = (response.data!! == "true")
+//                    userLoggedIn()
+//                }
+//                is Response.Error ->{
+//                    hideProgress()
+//                    userNotLoggedIn()
+//                }
+//                is Response.Loading->{
+//                    showProgress()
+//                }
+//            }
+//        }
+//    }
+
+    private fun userLoggedIn() {
         findNavController().navigate(StartupFragmentDirections.actionStartupFragmentToNavigationDiscover())
     }
 
-    private fun userNotLoggedIn(){
+    private fun userNotLoggedIn() {
         // Show this fragment only
     }
 
-    private fun showProgress(){
+    private fun showProgress() {
         binding.loadingView.visibility = View.VISIBLE
         binding.startPage.visibility = View.GONE
     }
 
-    private fun hideProgress(){
+    private fun hideProgress() {
         binding.loadingView.visibility = View.GONE
         binding.startPage.visibility = View.VISIBLE
     }

@@ -1,6 +1,7 @@
 package com.example.aanandam.view.fragments
 
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aanandam.databinding.FragmentServicesBinding
 import com.example.aanandam.model.entities.HotelService
+import com.example.aanandam.utils.GlobalVariables
 import com.example.aanandam.utils.Response
 import com.example.aanandam.view.adapters.PopularServiceAdapter
 import com.example.aanandam.view.adapters.ServicesAdapter
@@ -51,25 +53,27 @@ class ServicesFragment : Fragment() {
 
         servicesViewModel.getAllServices()
 
-        subscribeToServicesUserEvent()
-        userViewModel.getCurrentUserServicesAvailed()
+        binding.tvNumberOfServices.text = GlobalVariables.servicesAvailed.toString()
+
+//        subscribeToServicesUserEvent()
+//        userViewModel.getCurrentUserServicesAvailed()
     }
 
-    private fun subscribeToServicesUserEvent() = lifecycleScope.launch{
-        userViewModel.currentUserStatusState.collect{ response->
-            when(response){
-                is Response.Success->{
-                    binding.tvNumberOfServices.text = response.toString()
-                }
-                is Response.Error->{
-                    binding.tvNumberOfServices.text = "?"
-                }
-                is Response.Loading->{
-
-                }
-            }
-        }
-    }
+//    private fun subscribeToServicesUserEvent() = lifecycleScope.launch{
+//        userViewModel.currentUserStatusState.collect{ response->
+//            when(response){
+//                is Response.Success->{
+//                    binding.tvNumberOfServices.text = response.toString()
+//                }
+//                is Response.Error->{
+//                    binding.tvNumberOfServices.text = "?"
+//                }
+//                is Response.Loading->{
+//
+//                }
+//            }
+//        }
+//    }
 
     private fun subscribeToServicesEvent() = lifecycleScope.launch {
         servicesViewModel.allServiceState.collect { response ->
