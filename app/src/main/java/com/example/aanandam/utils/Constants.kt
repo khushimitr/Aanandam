@@ -12,6 +12,10 @@ object Constants {
     const val USER_INFO : String = "users"
     const val ALL_SERVICES : String = "hotelservices"
     const val BOOK_SERVICE : String = "services"
+    const val YOUR_SERVICES : String = "services/info"
+    const val UPDATE_PROFILE : String = "users"
+    const val APPLY_LEAVE : String = "leaves"
+
 
     const val ROOM_TYPE : String = "type"
     const val MAX_ROOM_SIZE : String = "maxperson"

@@ -60,8 +60,7 @@ class SuccessFragment : Fragment() {
         serviceViewModel.serviceBookState.collect{response->
             when(response){
                 is Response.Success -> {
-                    findNavController().navigate(SuccessFragmentDirections.actionSuccessFragment2ToNavigationYourServices(
-                        response.data!!.service))
+                    findNavController().navigate(SuccessFragmentDirections.actionSuccessFragment2ToNavigationYourServices())
                 }
                 is Response.Error -> {
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()

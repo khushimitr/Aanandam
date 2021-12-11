@@ -170,7 +170,8 @@
             app:popUpTo="@id/navigation_discover" />
         <action
             android:id="@+id/action_successFragment2_to_navigation_your_services"
-            app:destination="@id/navigation_your_services" />
+            app:destination="@id/navigation_your_services"
+            app:popUpTo="@id/navigation_your_services" />
     </fragment>
     <fragment
         android:id="@+id/errorFragment"
@@ -202,6 +203,16 @@
         <action
             android:id="@+id/action_employeeeFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <argument
+            android:name="employeeInfo"
+            app:argType="com.example.aanandam.model.entities.Employee" />
+        <action
+            android:id="@+id/action_employeeeFragment_to_applyLeaveFragment"
+            app:destination="@id/applyLeaveFragment" />
+        <action
+            android:id="@+id/action_employeeeFragment_to_startupFragment"
+            app:destination="@id/startupFragment"
+            app:popUpTo="@id/startupFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -212,10 +223,6 @@
             android:id="@+id/action_editProfileFragment_to_navigation_profile"
             app:destination="@id/navigation_profile"
             app:popUpTo="@id/navigation_profile" />
-        <action
-            android:id="@+id/action_editProfileFragment_to_employeeeFragment"
-            app:destination="@id/employeeeFragment"
-            app:popUpTo="@id/employeeeFragment" />
         <argument
             android:name="userData"
             app:argType="com.example.aanandam.model.entities.EditProfile"
@@ -227,11 +234,6 @@
         android:name="com.example.aanandam.view.fragments.UserServiceDetailFragment"
         android:label="fragment_user_service_detail"
         tools:layout="@layout/fragment_user_service_detail" >
-        <argument
-            android:name="yourServices"
-            app:argType="com.example.aanandam.model.entities.Service"
-            app:nullable="true"
-            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/feedbackFragment"

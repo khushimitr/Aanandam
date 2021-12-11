@@ -25,6 +25,8 @@ class ServicesViewModel @Inject constructor(
     private val _serviceBookState = MutableSharedFlow<Response<YourBookedServices>>()
     val serviceBookState : SharedFlow<Response<YourBookedServices>> = _serviceBookState
 
+    private val _yourServicesState = MutableSharedFlow<Response<YourAllBookedServices>>()
+    val yourServicesState : SharedFlow<Response<YourAllBookedServices>> = _yourServicesState
 
     fun getAllServices() = viewModelScope.launch{
         _allServiceState.emit(Response.Loading())
@@ -41,6 +43,11 @@ class ServicesViewModel @Inject constructor(
     fun bookServices(service : AanandamEntities.ServiceBook) = viewModelScope.launch {
         _serviceBookState.emit(Response.Loading())
         _serviceBookState.emit(aanandamRepository.bookService(service))
+    }
+
+    fun getYourServices(accessToken : AanandamEntities.AccessToken) = viewModelScope.launch {
+        _yourServicesState.emit(Response.Loading())
+        _yourServicesState.emit(aanandamRepository.getYourServices(accessToken))
     }
 
 }

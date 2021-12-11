@@ -21,7 +21,10 @@ interface AanandamAPI {
         @Body employee : AanandamEntities.LoginUser
     ) : Employee
 
-
+    @POST(Constants.APPLY_LEAVE)
+    suspend fun applyleaves(
+        @Body leave : AanandamEntities.Leave
+    ) : SimpleResponse
 
 
     @POST(Constants.BOOK_ROOM)
@@ -58,7 +61,10 @@ interface AanandamAPI {
         @Body service : AanandamEntities.ServiceBook
     ) : YourBookedServices
 
-
+    @POST(Constants.YOUR_SERVICES)
+    suspend fun getYourServices(
+        @Body token : AanandamEntities.AccessToken
+    ) : YourAllBookedServices
 
 
     @POST(Constants.PREMIUM_USER_INFO)
@@ -70,5 +76,10 @@ interface AanandamAPI {
     @POST(Constants.USER_INFO)
     suspend fun getUserInfo(
         @Body accessToken: AanandamEntities.AccessToken
+    ) : UserInfo
+
+    @PUT(Constants.UPDATE_PROFILE)
+    suspend fun updateProfile(
+        @Body profile : AanandamEntities.UserEditProfile
     ) : UserInfo
 }

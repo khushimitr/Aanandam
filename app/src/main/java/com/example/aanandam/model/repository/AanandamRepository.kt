@@ -7,13 +7,20 @@ interface AanandamRepository {
 
     suspend fun registerUser(user : AanandamEntities.NewUser):Response<UserInfo>
     suspend fun loginUser(user : AanandamEntities.LoginUser):Response<UserInfo>
+
+
     suspend fun loginEmployee(user : AanandamEntities.LoginUser) : Response<Employee>
+    suspend fun applyLeave(leave : AanandamEntities.Leave) : Response<SimpleResponse>
+
 
     suspend fun getUser():Response<AanandamEntities.LoginUser>
 //    suspend fun getToken():Response<String>
 //    suspend fun getStatus():Response<String>
 //    suspend fun getServicesAvailed() : Response<String>
-    suspend fun logout(): Response<String>
+//    suspend fun logout(): Response<String>
+
+    suspend fun logout()
+
 
     suspend fun bookRoom(room : AanandamEntities.BookRoom) : Response<PremiumUser>
 
@@ -26,8 +33,11 @@ interface AanandamRepository {
     suspend fun getServiceInfo(id : String) : Response<ServiceInfo>
 
     suspend fun bookService(service : AanandamEntities.ServiceBook) : Response<YourBookedServices>
+    suspend fun getYourServices(accessToken: AanandamEntities.AccessToken) : Response<YourAllBookedServices>
 
     suspend fun getPremiumUserInfo(accessToken : AanandamEntities.AccessToken) : Response<PremiumUser>
     suspend fun getUserInfo(accessToken : AanandamEntities.AccessToken) : Response<UserInfo>
+
+    suspend fun updateProfile(profile : AanandamEntities.UserEditProfile) : Response<UserInfo>
 
 }

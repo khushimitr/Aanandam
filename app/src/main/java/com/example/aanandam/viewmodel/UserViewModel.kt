@@ -1,12 +1,8 @@
 package com.example.aanandam.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aanandam.model.entities.AanandamEntities
-import com.example.aanandam.model.entities.Employee
-import com.example.aanandam.model.entities.PremiumUser
-import com.example.aanandam.model.entities.UserInfo
+import com.example.aanandam.model.entities.*
 import com.example.aanandam.model.repository.AanandamRepository
 import com.example.aanandam.utils.Constants
 import com.example.aanandam.utils.Response
@@ -48,6 +44,15 @@ class UserViewModel @Inject constructor(
 
     private val _userProfileStatus = MutableSharedFlow<Response<UserInfo>>()
     val userProfileStatus : SharedFlow<Response<UserInfo>> = _userProfileStatus
+
+    private val _updateProfileStatus = MutableSharedFlow<Response<UserInfo>>()
+    val updateProfileStatus : SharedFlow<Response<UserInfo>> = _updateProfileStatus
+
+    private val _applyleaveStatus = MutableSharedFlow<Response<SimpleResponse>>()
+    val applyleaveStatus : SharedFlow<Response<SimpleResponse>> = _applyleaveStatus
+
+//    private val _logoutStatus = MutableSharedFlow<Response<String>>()
+//    val logoutStatus : SharedFlow<Response<String>> = _logoutStatus
 
 
     fun registerUser(
@@ -134,6 +139,11 @@ class UserViewModel @Inject constructor(
         _employeeLoginState.emit(aanandamRepository.loginEmployee(user))
     }
 
+    fun applyLeave(leave : AanandamEntities.Leave) = viewModelScope.launch {
+        _applyleaveStatus.emit(Response.Loading())
+        _applyleaveStatus.emit(aanandamRepository.applyLeave(leave))
+    }
+
     fun getCurrentUser() = viewModelScope.launch {
         _currentUserState.emit(Response.Loading())
         _currentUserState.emit(aanandamRepository.getUser())
@@ -156,10 +166,7 @@ class UserViewModel @Inject constructor(
 
 
     fun logout() = viewModelScope.launch {
-        val result = aanandamRepository.logout()
-        if (result is Response.Success) {
-            getCurrentUser()
-        }
+        aanandamRepository.logout()
     }
 
     fun getUserInfo(token : AanandamEntities.AccessToken) = viewModelScope.launch{
@@ -171,6 +178,11 @@ class UserViewModel @Inject constructor(
     fun getPremiumUserInfo(token : AanandamEntities.AccessToken) = viewModelScope.launch {
         _premiumUserProfileStatus.emit(Response.Loading())
         _premiumUserProfileStatus.emit(aanandamRepository.getPremiumUserInfo(token))
+    }
+
+    fun updateUserProfile(profile : AanandamEntities.UserEditProfile) = viewModelScope.launch {
+        _updateProfileStatus.emit(Response.Loading())
+        _updateProfileStatus.emit(aanandamRepository.updateProfile(profile))
     }
 
     private fun isEmailVaild(email: String): Boolean {

@@ -25,7 +25,10 @@ class AanandamRepoImpl @Inject constructor(
             val result = aanandamAPI.registerUser(user)
 
             if (result.success) {
-                sessionManager.updateSession(result.accessToken, result.user.isPremium, user.email,result.user.availedServices)
+                sessionManager.updateSession(result.accessToken,
+                    result.user.isPremium,
+                    user.email,
+                    result.user.availedServices)
                 Response.Success<UserInfo>(result)
             } else
                 Response.Error<UserInfo>("Error in Connection")
@@ -47,7 +50,10 @@ class AanandamRepoImpl @Inject constructor(
 
             if (result.success) {
 //                GlobalVariables.isPremiumUser = result.user.isPremium
-                sessionManager.updateSession(result.accessToken, result.user.isPremium, user.email, result.user.availedServices)
+                sessionManager.updateSession(result.accessToken,
+                    result.user.isPremium,
+                    user.email,
+                    result.user.availedServices)
                 Response.Success<UserInfo>(result)
             } else
                 Response.Error<UserInfo>("Error in Connection")
@@ -60,21 +66,41 @@ class AanandamRepoImpl @Inject constructor(
 
     @RequiresApi(Build.VERSION_CODES.M)
     override suspend fun loginEmployee(user: AanandamEntities.LoginUser): Response<Employee> {
-        return try{
-            if(!isNetworkConnected(sessionManager.context)){
+        return try {
+            if (!isNetworkConnected(sessionManager.context)) {
                 Response.Error<Employee>("No Internet Connection")
             }
 
             val result = aanandamAPI.employeeLogin(user)
-            if(result.success){
-                sessionManager.updateSession(result.accessToken,false, "",0)
+            if (result.success) {
+//                sessionManager.updateSession(result.accessToken, false, user.email, 0)
+                GlobalVariables.token = result.accessToken
                 Response.Success(result)
-            }else{
+            } else {
                 Response.Error<Employee>("Error in Logging In.")
             }
-        }catch (e : Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             Response.Error<Employee>(e.message ?: "Some Problem Occurred")
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun applyLeave(leave: AanandamEntities.Leave): Response<SimpleResponse> {
+        return try {
+            if (!isNetworkConnected(sessionManager.context)) {
+                Response.Error<SimpleResponse>("No Internet Connection")
+            }
+
+            val result = aanandamAPI.applyleaves(leave)
+            if (result.success) {
+                Response.Success(result)
+            } else {
+                Response.Error<SimpleResponse>("Error in Logging In.")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Response.Error<SimpleResponse>(e.message ?: "Some Problem Occurred")
         }
     }
 
@@ -86,7 +112,7 @@ class AanandamRepoImpl @Inject constructor(
             val availedServices = sessionManager.getAvailedServices()
             val isPremium = sessionManager.getCurrentUserType()
 
-            if (email == null || email.isEmpty()) {
+            if (email == null || email == "") {
                 Response.Error<AanandamEntities.LoginUser>("User Not logged In!")
             }
             GlobalVariables.emailId = email!!
@@ -129,14 +155,8 @@ class AanandamRepoImpl @Inject constructor(
 //        }
 //    }
 
-    override suspend fun logout(): Response<String> {
-        return try {
-            sessionManager.logout()
-            Response.Success("Logged Out Successfully")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Response.Error(e.message ?: "Some Problem Occurred")
-        }
+    override suspend fun logout() {
+        sessionManager.logout()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -153,7 +173,10 @@ class AanandamRepoImpl @Inject constructor(
             val servicesAvailed = sessionManager.getAvailedServices()
 
             if (result.success) {
-                sessionManager.updateSession(accessToken!!, true, email!!, servicesAvailed!!.toInt())
+                sessionManager.updateSession(accessToken!!,
+                    true,
+                    email!!,
+                    servicesAvailed!!.toInt())
                 Response.Success<PremiumUser>(result)
             } else
                 Response.Error<PremiumUser>("Error in Connection")
@@ -163,7 +186,6 @@ class AanandamRepoImpl @Inject constructor(
             Response.Error(e.message ?: "Some Problem Occurred")
         }
     }
-
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -292,6 +314,27 @@ class AanandamRepoImpl @Inject constructor(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun getYourServices(accessToken: AanandamEntities.AccessToken): Response<YourAllBookedServices> {
+        return try {
+            if (!isNetworkConnected(sessionManager.context)) {
+                Response.Error<YourAllBookedServices>("No Internet Connection")
+            }
+
+            val result = aanandamAPI.getYourServices(accessToken)
+
+            if (result.success) {
+                //OK
+                Response.Success<YourAllBookedServices>(result)
+            } else
+                Response.Error<YourAllBookedServices>("Error in Connection")
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Response.Error(e.message ?: "Some Problem Occurred")
+        }
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override suspend fun getPremiumUserInfo(accessToken: AanandamEntities.AccessToken): Response<PremiumUser> {
@@ -304,8 +347,7 @@ class AanandamRepoImpl @Inject constructor(
 
             if (result.success) {
                 Response.Success<PremiumUser>(result)
-            } else
-            {
+            } else {
                 Response.Error<PremiumUser>("Error in Connection")
             }
         } catch (e: Exception) {
@@ -324,6 +366,34 @@ class AanandamRepoImpl @Inject constructor(
             val result = aanandamAPI.getUserInfo(accessToken)
 
             if (result.success) {
+                Response.Success<UserInfo>(result)
+            } else
+                Response.Error<UserInfo>("Error in Connection")
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Response.Error(e.message ?: "Some Problem Occurred")
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun updateProfile(profile: AanandamEntities.UserEditProfile): Response<UserInfo> {
+        return try {
+            if (!isNetworkConnected(sessionManager.context)) {
+                Response.Error<UserInfo>("No Internet Connection")
+            }
+
+            val result = aanandamAPI.updateProfile(profile)
+
+            if (result.success) {
+                GlobalVariables.token = result.accessToken
+                GlobalVariables.isPremiumUser = result.user.isPremium.toString()
+                GlobalVariables.emailId = result.user.email
+                GlobalVariables.servicesAvailed = result.user.availedServices.toString()
+                sessionManager.updateSession(result.accessToken,
+                    result.user.isPremium,
+                    result.user.email,
+                    result.user.availedServices)
                 Response.Success<UserInfo>(result)
             } else
                 Response.Error<UserInfo>("Error in Connection")

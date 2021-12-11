@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class EditProfile(
-    val username : String,
+    val userName : String,
     val teleNumber : String,
     val address : String,
-    val profileImage : String,
+    val profile : String,
     val email : String
 ) : Parcelable

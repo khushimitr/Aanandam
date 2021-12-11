@@ -1,6 +1,7 @@
 package com.example.aanandam.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,7 @@ class LoginEmployeeFragment : Fragment() {
     private var _binding: FragmentLoginEmployeeBinding? = null
     private val binding get() = _binding!!
 
-    private val userViewModel : UserViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +33,10 @@ class LoginEmployeeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentLoginEmployeeBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginEmployeeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,7 +48,7 @@ class LoginEmployeeFragment : Fragment() {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            userViewModel.loginEmployee(email.trim(),password.trim())
+            userViewModel.loginEmployee(email.trim(), password.trim())
         }
 
         binding.tvForgot.setOnClickListener {
@@ -62,28 +63,31 @@ class LoginEmployeeFragment : Fragment() {
     }
 
     private fun subscribeToEmployeeLoginEvents() = lifecycleScope.launch {
-        userViewModel.employeeLoginState.collect { response->
-            when(response){
-                is Response.Success->{
-                    findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToEmployeeeFragment())
+        userViewModel.employeeLoginState.collect { response ->
+            when (response) {
+                is Response.Success -> {
+                    findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToEmployeeeFragment(
+                        response.data!!
+                    ))
                 }
-                is Response.Error ->{
+                is Response.Error -> {
                     hideProgress()
+                    Log.i("USER", response.errorMsg.toString())
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
-                is Response.Loading->{
+                is Response.Loading -> {
                     showProgress()
                 }
             }
         }
     }
 
-    private fun showProgress(){
+    private fun showProgress() {
         binding.loadingView.visibility = View.VISIBLE
         binding.employeeLoginPAGE.visibility = View.GONE
     }
 
-    private fun hideProgress(){
+    private fun hideProgress() {
         binding.loadingView.visibility = View.GONE
         binding.employeeLoginPAGE.visibility = View.VISIBLE
     }

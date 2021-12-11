@@ -38,12 +38,24 @@ object AanandamEntities {
     )
 
     data class UserEditProfile(
-        val accessToken : String,
-        val username : String,
-        val teleNumber : String,
-        val address : String,
-        val profileImage : String,
-        val email : String
+        val accessToken: String,
+        val address: String,
+        val email: String,
+        val profileImgae: String,
+        val teleNumber: String,
+        val username: String
+    )
+
+    data class Date(
+        val from: String,
+        val to: String
+    )
+
+    data class Leave(
+        val accessToken: String,
+        val date: Date,
+        val description: String,
+        val title: String
     )
 
     data class AccessToken(

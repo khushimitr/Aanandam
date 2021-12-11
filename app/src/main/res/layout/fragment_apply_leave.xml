@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beige"
-    tools:context=".view.fragments.Appl">
+    tools:context=".view.fragments.ApplyLeaveFragment">
 
     <FrameLayout
         android:id="@+id/flBackground"
@@ -17,12 +17,13 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/start_img_size"
+            android:layout_height="@dimen/_200sdp"
             android:background="@drawable/ic_intersection_4" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/start_img_size"
+            android:foregroundGravity="right"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_gravity="right|bottom"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
@@ -83,6 +84,7 @@
         android:layout_height="@dimen/_50sdp"
         android:layout_marginTop="@dimen/margin_12"
         app:cardCornerRadius="@dimen/_12sdp"
+        android:clickable="true"
         app:layout_constraintEnd_toStartOf="@+id/cardCheckOut"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,6 +130,7 @@
         android:layout_marginTop="@dimen/margin_12"
         android:layout_marginBottom="39dp"
         app:cardCornerRadius="@dimen/_12sdp"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/tilTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardCheckIn"

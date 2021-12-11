@@ -1,5 +1,6 @@
 package com.example.aanandam.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,11 +23,13 @@ import com.example.aanandam.model.entities.User
 import com.example.aanandam.utils.GlobalVariables
 import com.example.aanandam.utils.Response
 import com.example.aanandam.view.activities.MainActivity
+import com.example.aanandam.view.activities.SplashScreenActivity
 import com.example.aanandam.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.concurrent.timerTask
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -61,7 +64,6 @@ class ProfileFragment : Fragment() {
             (activity as MainActivity?)?.showBottomNavigationView()
         }
 
-
         binding.ivSettings.setOnClickListener {
             val popup = PopupMenu(requireActivity(), binding.ivSettings)
             popup.menuInflater.inflate(R.menu.profile_menu, popup.menu)
@@ -75,10 +77,22 @@ class ProfileFragment : Fragment() {
                         )
                     )
                 }
+
                 if (it.itemId == R.id.miLogout) {
                     Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
-                    subscribeToLogoutEvents()
+//                    subscribeToLogoutEvents()
                     userViewModel.logout()
+
+                    GlobalVariables.token = ""
+                    GlobalVariables.emailId = ""
+                    GlobalVariables.isPremiumUser = ""
+                    GlobalVariables.servicesAvailed = ""
+
+
+                    val intent = Intent(requireActivity(), SplashScreenActivity::class.java)
+                    requireActivity().startActivity(intent)
+
+//                    findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStartupFragment())
                 }
                 true
             }
@@ -93,8 +107,7 @@ class ProfileFragment : Fragment() {
             if (GlobalVariables.isPremiumUser == "true") {
                 subscribeToPremiumProfile()
                 userViewModel.getPremiumUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
-            }
-            else{
+            } else {
                 binding.cardRoom.visibility = View.GONE
                 subscribeToUserProfile()
                 userViewModel.getUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
@@ -106,27 +119,27 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun subscribeToLogoutEvents() = lifecycleScope.launch {
-        userViewModel.currentUserState.collect { response ->
-            when (response) {
-                is Response.Success -> {
-                    Toast.makeText(requireActivity(), "Some problem occured.", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                is Response.Error -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        "User Successfully Logged out",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStartupFragment())
-                }
-                is Response.Loading -> {
-
-                }
-            }
-        }
-    }
+//    private fun subscribeToLogoutEvents() = lifecycleScope.launch {
+//        userViewModel.logoutStatus.collect { response ->
+//            when (response) {
+//                is Response.Success -> {
+//                    Toast.makeText(
+//                        requireActivity(),
+//                        "User Successfully Logged out",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                    findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStartupFragment())
+//                }
+//                is Response.Error -> {
+//                    Toast.makeText(requireActivity(), "Some problem occurred.", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//                is Response.Loading -> {
+//
+//                }
+//            }
+//        }
+//    }
 
 //    private fun subscribeToTokenEvents() = lifecycleScope.launch {
 //        userViewModel.currentUserTokenState.collect { response ->
@@ -235,7 +248,7 @@ class ProfileFragment : Fragment() {
             user.username,
             user.contact.toString(),
             user.address,
-            binding.ivProfile.toString(),
+            "",
             user.email
         )
     }
@@ -289,7 +302,7 @@ class ProfileFragment : Fragment() {
             premiumUser.user.username,
             premiumUser.user.contact.toString(),
             premiumUser.user.address,
-            binding.ivProfile.toString(),
+            "",
             premiumUser.user.email
         )
     }
