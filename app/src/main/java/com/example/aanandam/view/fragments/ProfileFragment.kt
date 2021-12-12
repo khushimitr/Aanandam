@@ -47,6 +47,8 @@ class ProfileFragment : Fragment() {
     private val userViewModel: UserViewModel by activityViewModels()
     private var userdata: EditProfile? = null
 
+    private var isEditSelected: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -68,6 +70,16 @@ class ProfileFragment : Fragment() {
             (activity as MainActivity?)?.showBottomNavigationView()
         }
 
+        if (isEditSelected) {
+            if (GlobalVariables.isPremiumUser == "true") {
+                subscribeToPremiumProfile()
+                userViewModel.getPremiumUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
+            } else {
+                binding.cardRoom.visibility = View.GONE
+                subscribeToUserProfile()
+                userViewModel.getUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
+            }
+        }
 
         Glide.with(requireActivity())
             .load(GlobalVariables.url)
@@ -82,6 +94,7 @@ class ProfileFragment : Fragment() {
 
             popup.setOnMenuItemClickListener {
                 if (it.itemId == R.id.miEditProfile) {
+                    isEditSelected = true
                     findNavController().navigate(
                         ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment(
                             userdata

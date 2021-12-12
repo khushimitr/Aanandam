@@ -7,236 +7,287 @@
     android:background="@color/beige"
     tools:context=".view.fragments.EmployeeeFragment">
 
-
-    <ImageView
-        android:id="@+id/ivSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_19"
-        android:layout_marginEnd="@dimen/margin_horizontal"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/ic_icon_feather_settings"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LoadingScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardProfile"
-        android:layout_width="@dimen/_110sdp"
-        android:layout_height="@dimen/_110sdp"
-        android:layout_marginVertical="@dimen/margin_12"
-        android:layout_marginStart="@dimen/margin_horizontal"
-        android:layout_marginEnd="@dimen/_50sdp"
-        app:cardCornerRadius="@dimen/_55sdp"
-        app:layout_constraintEnd_toStartOf="@id/divider4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivSettings">
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLoading"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            app:layout_constraintBottom_toTopOf="@id/tvloading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_dots"
+            app:lottie_url="REPLACE_JSON_URL" />
+
+        <TextView
+            android:id="@+id/tvloading"
+            style="@style/DarkGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/hang_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lavLoading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="Profile Image"
-            android:src="@mipmap/ic_launcher" />
-    </com.google.android.material.card.MaterialCardView>
+            android:id="@+id/ivSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_19"
+            android:layout_marginEnd="@dimen/margin_horizontal"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            android:src="@drawable/ic_icon_feather_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvName"
-        style="@style/DarkGreenTextBold32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_12"
-        android:text="David"
-        app:layout_constraintStart_toStartOf="@id/cardProfile"
-        app:layout_constraintTop_toBottomOf="@id/cardProfile" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardProfile"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_marginVertical="@dimen/margin_12"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginEnd="@dimen/_50sdp"
+            app:cardCornerRadius="@dimen/_55sdp"
+            app:layout_constraintEnd_toStartOf="@id/divider4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivSettings">
 
-
-    <View
-        android:id="@+id/divider4"
-        android:layout_width="1dp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginVertical="@dimen/margin_12"
-        android:background="@color/dark_green"
-        app:layout_constraintEnd_toStartOf="@id/joined"
-        app:layout_constraintStart_toEndOf="@id/cardProfile"
-        app:layout_constraintTop_toBottomOf="@id/ivSettings" />
-
-    <TextView
-        android:id="@+id/joined"
-        style="@style/MediumGreenTextLight32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_23"
-        android:text="@string/joined"
-        app:layout_constraintBottom_toTopOf="@id/tvDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/divider4"
-        app:layout_constraintTop_toTopOf="@id/divider4" />
-
-    <TextView
-        android:id="@+id/tvDate"
-        style="@style/DarkGreenTextBold16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_23"
-        android:layout_marginTop="@dimen/margin_23"
-        android:text="6 mon Ago"
-        app:layout_constraintBottom_toBottomOf="@+id/divider4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/divider4"
-        app:layout_constraintTop_toBottomOf="@id/joined" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardUpcomingServices"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_10"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_22sdp"
-        app:layout_constraintBottom_toTopOf="@id/cardApplyLeave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvName">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView10"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_19"
-                android:text="Upcoming Services :"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvPlaceholder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No upcoming Services"
-                style="@style/DarkGreenTextBold16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView10"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvServices"
+            <ImageView
+                android:id="@+id/ivProfile"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="@dimen/margin_12"
-                android:layout_marginTop="@dimen/margin_12"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView10" />
+                android:layout_height="match_parent"
+                android:contentDescription="Profile Image"
+                android:src="@mipmap/ic_launcher" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/DarkGreenTextBold32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:text="David"
+            app:layout_constraintStart_toStartOf="@id/cardProfile"
+            app:layout_constraintTop_toBottomOf="@id/cardProfile" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginVertical="@dimen/margin_12"
+            android:background="@color/dark_green"
+            app:layout_constraintEnd_toStartOf="@id/joined"
+            app:layout_constraintStart_toEndOf="@id/cardProfile"
+            app:layout_constraintTop_toBottomOf="@id/ivSettings" />
 
+        <TextView
+            android:id="@+id/joined"
+            style="@style/MediumGreenTextLight32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_23"
+            android:text="@string/joined"
+            app:layout_constraintBottom_toTopOf="@id/tvDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/divider4"
+            app:layout_constraintTop_toTopOf="@id/divider4" />
 
-    </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/tvDate"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_23"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="6 mon Ago"
+            app:layout_constraintBottom_toBottomOf="@+id/divider4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/divider4"
+            app:layout_constraintTop_toBottomOf="@id/joined" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardApplyLeave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_12"
-        app:cardCornerRadius="@dimen/_22sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardUpcomingServices">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardUpcomingServices"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_10"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_22sdp"
+            app:layout_constraintBottom_toTopOf="@id/cardApplyLeave"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName">
 
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_19"
-                android:layout_marginTop="@dimen/margin_19"
-                android:text="Apply For Leave"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView7"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_19"
-                android:layout_marginTop="@dimen/margin_12"
-                android:layout_marginBottom="@dimen/margin_12"
-                android:text="Please apply 2 days prior to Admin."
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView2" />
+                <TextView
+                    android:id="@+id/textView10"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_19"
+                    android:text="Upcoming Services :"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvPlaceholder"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No upcoming Services"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView10" />
 
-    </com.google.android.material.card.MaterialCardView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="@dimen/margin_12"
+                    android:layout_marginTop="@dimen/margin_12"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView10" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardSalary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginVertical="@dimen/margin_19"
-        app:cardCornerRadius="@dimen/_22sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardApplyLeave">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardApplyLeave"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
+            app:cardCornerRadius="@dimen/_22sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardUpcomingServices">
 
-            <TextView
-                android:id="@+id/tvServicesRemain"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_19"
-                android:layout_marginTop="@dimen/margin_12"
-                android:text="Salary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvServiceAvailed"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_19"
-                android:layout_marginBottom="@dimen/margin_12"
-                android:text="Monthly Salary : "
-                app:layout_constraintBaseline_toBaselineOf="@+id/tvSalary"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_19"
+                    android:layout_marginTop="@dimen/margin_19"
+                    android:text="Apply For Leave"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvSalary"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_12"
-                android:layout_marginEnd="@dimen/margin_19"
-                android:layout_marginBottom="@dimen/margin_12"
-                android:text="Rs. 3000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvServicesRemain" />
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_19"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginBottom="@dimen/margin_12"
+                    android:text="Please apply 2 days prior to Admin."
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView2" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginVertical="@dimen/margin_19"
+            app:cardCornerRadius="@dimen/_22sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardApplyLeave">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvServicesRemain"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_19"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:text="Salary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvServiceAvailed"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_19"
+                    android:layout_marginBottom="@dimen/margin_12"
+                    android:text="Monthly Salary : "
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tvSalary"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvSalary"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginEnd="@dimen/margin_19"
+                    android:layout_marginBottom="@dimen/margin_12"
+                    android:text="Rs. 3000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvServicesRemain" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
