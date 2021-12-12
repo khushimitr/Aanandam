@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aanandam.R
 import com.example.aanandam.databinding.ItemAccomodationBinding
-import com.example.aanandam.databinding.ItemCardBinding
 
 class AccomodationAdapter(
     private val fragment: Fragment,
@@ -46,10 +45,10 @@ class AccomodationAdapter(
             "Mess" -> {
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_food)
             }
-            "Gymnasium" -> {
+            "Gym" -> {
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_gym)
             }
-            "Room Service" -> {
+            "Service" -> {
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_room_service)
             }
             "Assistant" -> {

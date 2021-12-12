@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aanandam.R
-import com.example.aanandam.databinding.ItemCardBinding
+import com.example.aanandam.databinding.ItemRoomCardBinding
 import com.example.aanandam.model.entities.AanandamEntities
 import com.example.aanandam.model.entities.RoomShortDetails
 import com.example.aanandam.model.entities.RoomX
@@ -19,7 +19,7 @@ class RoomCardAdapter(
 
     private var rooms : List<RoomShortDetails> = listOf()
 
-    inner class RoomCardViewHolder(binding : ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class RoomCardViewHolder(binding : ItemRoomCardBinding) : RecyclerView.ViewHolder(binding.root) {
         val roomTitle = binding.tvTitle
         val roomNumber = binding.tvHomeNumber
         val roomAddress = binding.tvAddress
@@ -31,7 +31,7 @@ class RoomCardAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomCardViewHolder {
-        val binding = ItemCardBinding.inflate(LayoutInflater.from(fragment.context), parent, false)
+        val binding = ItemRoomCardBinding.inflate(LayoutInflater.from(fragment.context), parent, false)
 
         return RoomCardViewHolder(binding)
     }

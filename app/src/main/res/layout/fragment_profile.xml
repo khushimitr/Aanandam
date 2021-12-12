@@ -194,7 +194,7 @@
                             android:layout_marginTop="@dimen/margin_19"
                             android:text="Enjoying Room"
                             app:layout_constraintEnd_toStartOf="@id/ivIcon"
-                            app:layout_constraintStart_toEndOf="@id/cardImage"
+                            app:layout_constraintStart_toEndOf="@+id/cardImage"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -285,7 +285,8 @@
                             app:cornerRadius="@dimen/_30sdp"
                             app:elevation="@dimen/_8sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvDuePaymentCharge" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

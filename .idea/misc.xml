@@ -3,8 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/drawable/card_gradient.xml" value="0.2484375" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/drawable/ic_court.xml" value="0.2484375" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/fragment_discover.xml" value="0.23229166666666667" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/fragment_service_book.xml" value="0.23229166666666667" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/fragment_services.xml" value="0.2" />
         <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/fragment_services_detail.xml" value="0.23229166666666667" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/item_accomodation.xml" value="0.23229166666666667" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/item_card.xml" value="0.23229166666666667" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/item_room_card.xml" value="0.4" />
+        <entry key="..\:/Projects/anandam/Aanandam/app/src/main/res/layout/item_service.xml" value="0.23229166666666667" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/background_color_chip_state_list.xml" value="0.1569078947368421" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/background_tmp.xml" value="0.2484375" />
         <entry key="..\:/projects/Aanandam/Aanandam/app/src/main/res/drawable/bottom_gradient.xml" value="0.1569078947368421" />

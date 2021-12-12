@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/roomCard"
+    android:layout_height="@dimen/room_card"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:layout_marginBottom="@dimen/margin_19"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:background="@android:color/transparent"
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/_13sdp"
+            app:cardBackgroundColor="@color/beige"
+            app:cardElevation="0dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_gradient"
+                >
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:text="Angel Aura Point"
+                    app:layout_constraintBottom_toTopOf="@id/tvHomeNumber"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvHomeNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Scope A,"
+                    android:textColor="@color/medium_green"
+                    android:textSize="@dimen/font_14"
+                    app:layout_constraintBottom_toTopOf="@id/tvAddress"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Lorem Ipsum, CA 94133"
+                    android:textColor="@color/medium_green"
+                    android:textSize="@dimen/font_14"
+                    app:layout_constraintBottom_toTopOf="@id/tvBHK"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeNumber"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHomeNumber" />
+
+
+                <TextView
+                    android:id="@+id/tvBHK"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:text="2 BHK"
+                    android:textColor="@color/medium_green"
+                    android:textSize="@dimen/font_14"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tvPerson"
+                    app:layout_constraintStart_toStartOf="@+id/tvAddress" />
+
+                <TextView
+                    android:id="@+id/tvPerson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="1 person"
+                    android:textColor="@color/medium_green"
+                    android:textSize="@dimen/font_14"
+                    app:layout_constraintStart_toEndOf="@+id/tvBHK"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_17sdp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="₹ 3900"
+                    android:textColor="@color/dark_green"
+                    android:textSize="@dimen/font_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="166dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_130sdp"
+        android:elevation="@dimen/_3sdp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRoomImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/vlight_green"
+            app:cardCornerRadius="@dimen/_16sdp">
+
+            <ImageView
+                android:id="@+id/ivRoom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src="@drawable/ic_group_12" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

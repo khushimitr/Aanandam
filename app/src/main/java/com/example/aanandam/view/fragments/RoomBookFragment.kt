@@ -129,7 +129,7 @@ class RoomBookFragment : Fragment() {
                     binding.tvTotalCharge.text = "Rs.${totalBook}"
 
                     binding.cardCheckOut.isClickable = false
-                    binding.cardCheckOut.setCardBackgroundColor(resources.getColor(R.color.gray))
+                    binding.cardCheckOut.setCardBackgroundColor(resources.getColor(R.color.gray_light))
                     isDateCorrect = true
                     checkOutDateSelected = true
                 }

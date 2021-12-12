@@ -58,7 +58,6 @@
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpRoom"
             android:layout_width="match_parent"
@@ -146,13 +145,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_horizontal"
-                    android:layout_marginStart="52dp"
                     android:layout_marginTop="8dp"
                     android:text="03"
                     app:layout_constraintBottom_toTopOf="@+id/tvServices"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvServices"
@@ -171,10 +169,10 @@
                     style="@style/MediumGreenTextRegular14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:text="Services availed till now"
-                    app:layout_constraintStart_toEndOf="@+id/tvNumberOfServices"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -183,7 +181,15 @@
                     android:layout_height="wrap_content"
                     android:text="Hope you are enjoying our services"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tvServices"
-                    app:layout_constraintStart_toStartOf="@+id/textView5" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="79dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
