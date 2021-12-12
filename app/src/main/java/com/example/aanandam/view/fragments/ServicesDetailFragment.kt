@@ -73,6 +73,7 @@ class ServicesDetailFragment : Fragment() {
         serviceViewModel.serviceInfoState.collect { response->
             when(response){
                 is Response.Success ->{
+                    hideLoadingView()
                     val serviceInfo = response.data!!.hotelService
 
                     val adapter = AccomodationAdapter(this@ServicesDetailFragment,serviceInfo.accomodations)
@@ -90,20 +91,32 @@ class ServicesDetailFragment : Fragment() {
 //                    indicator.setViewPager(binding.vpRoom)
 
                     binding.btnBookRoom.setOnClickListener {
-                        Toast.makeText(requireActivity(), "Button Clicked", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireActivity(), "Button Clicked", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(ServicesDetailFragmentDirections.actionServicesDetailFragmentToServiceBookFragment(
                             serviceInfo
                         ))
                     }
                 }
                 is Response.Error ->{
+                    hideLoadingView()
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading ->{
-
+                    showLoadingView()
                 }
             }
         }
+    }
+
+
+    private fun showLoadingView() {
+        binding.LoadingScreen.visibility = View.VISIBLE
+        binding.Screen.visibility = View.GONE
+    }
+
+    private fun hideLoadingView() {
+        binding.LoadingScreen.visibility = View.GONE
+        binding.Screen.visibility = View.VISIBLE
     }
 
 

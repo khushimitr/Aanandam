@@ -7,238 +7,289 @@
     android:background="@color/beige"
     tools:context=".view.fragments.RoomDetailFragment">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LoadingScreen"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        android:scrollbars="none"
+        android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLoading"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/image_size"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            app:layout_constraintBottom_toTopOf="@id/tvloading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_dots"
+            app:lottie_url="REPLACE_JSON_URL" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vpRoom"
+        <TextView
+            android:id="@+id/tvloading"
+            style="@style/DarkGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/hang_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lavLoading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/start_img_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content">
 
-            <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/vpRoomIndiator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:layout_constraintBottom_toTopOf="@id/mcvDetailsCard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpRoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/start_img_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/vpRoomIndiator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toTopOf="@id/mcvDetailsCard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_12"
-                android:clickable="true"
-                android:elevation="@dimen/_10sdp"
-                app:cardCornerRadius="360dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/ibBack"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:contentDescription="@string/back_btn"
-                    android:padding="@dimen/margin_12"
-                    android:src="@drawable/ic_arrow_back" />
+                    android:layout_margin="@dimen/margin_12"
+                    android:clickable="true"
+                    android:elevation="@dimen/_10sdp"
+                    app:cardCornerRadius="360dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <ImageView
+                        android:id="@+id/ibBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:contentDescription="@string/back_btn"
+                        android:padding="@dimen/margin_12"
+                        android:src="@drawable/ic_arrow_back" />
+
+                </com.google.android.material.card.MaterialCardView>
 
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcvDetailsCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_horizontal"
-                android:alpha="0.9"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/_21sdp"
-                app:cardElevation="@dimen/_8sdp"
-                app:layout_constraintBottom_toBottomOf="@id/vpRoom"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vpRoom">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvDetailsCard"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_horizontal"
+                    android:alpha="0.9"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_21sdp"
+                    app:cardElevation="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="@id/vpRoom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vpRoom">
 
-                    <TextView
-                        android:id="@+id/tvCardName"
-                        style="@style/DarkBrownTextBold32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/margin_12"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:text="@string/room"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/tvCostAmount"
-                        style="@style/DarkBrownTextBold32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginRight="@dimen/margin_12"
-                        android:text="Cost"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/tvCardName"
+                            style="@style/DarkBrownTextBold32"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_19"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginEnd="180dp"
+                            android:text="@string/room"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvAddress"
-                        style="@style/MediumGreenTextRegular14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_12"
-                        android:layout_marginTop="@dimen/margin_14"
-                        android:text="Lorem Ipsum, CA 94133"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvCardName" />
+                        <TextView
+                            android:id="@+id/tvCostAmount"
+                            style="@style/DarkBrownTextBold16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_19"
+                            android:text="Cost"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tvCardName"
+                            app:layout_constraintRight_toRightOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvRoomType"
-                        style="@style/LightBrownTextRegular14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/margin_12"
-                        android:layout_marginStart="@dimen/margin_12"
-                        android:layout_marginTop="8dp"
-                        android:text="1 BHK"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView2"
-                        app:layout_constraintTop_toBottomOf="@id/tvAddress" />
+                        <TextView
+                            android:id="@+id/tvAddress"
+                            style="@style/MediumGreenTextRegular14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_14"
+                            android:text="Lorem Ipsum, CA 94133"
+                            app:layout_constraintStart_toStartOf="@id/tvCardName"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCardName" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_19"
-                        android:src="@drawable/ic_email"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvRoomType"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvRoomType" />
+                        <TextView
+                            android:id="@+id/tvRoomType"
+                            style="@style/LightBrownTextRegular14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/margin_12"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="8dp"
+                            android:text="1 BHK"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView2"
+                            app:layout_constraintTop_toBottomOf="@id/tvAddress" />
 
-                    <TextView
-                        android:id="@+id/tvMaxPerson"
-                        style="@style/LightBrownTextRegular14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/margin_12"
-                        android:layout_marginStart="@dimen/margin_12"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/_1_person"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView3"
-                        app:layout_constraintTop_toBottomOf="@id/tvAddress" />
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_email"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvRoomType"
+                            app:layout_constraintStart_toStartOf="@id/tvAddress"
+                            app:layout_constraintTop_toTopOf="@+id/tvRoomType" />
 
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_19"
-                        android:src="@drawable/ic_email"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvMaxPerson"
-                        app:layout_constraintStart_toEndOf="@id/tvRoomType"
-                        app:layout_constraintTop_toTopOf="@+id/tvMaxPerson" />
+                        <TextView
+                            android:id="@+id/tvMaxPerson"
+                            style="@style/LightBrownTextRegular14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/margin_12"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/_1_person"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView3"
+                            app:layout_constraintTop_toBottomOf="@id/tvAddress" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_19"
+                            android:src="@drawable/ic_user"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvMaxPerson"
+                            app:layout_constraintStart_toEndOf="@id/tvRoomType"
+                            app:layout_constraintTop_toTopOf="@+id/tvMaxPerson" />
 
-            </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvAccomodation"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_horizontal"
-                android:layout_marginTop="@dimen/margin_12"
-                android:text="@string/accomodations"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mcvDetailsCard" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAccomodation"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:text="@string/accomodations"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mcvDetailsCard" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRoomAccomodations"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_12"
-                android:layout_marginStart="@dimen/margin_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAccomodation" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRoomAccomodations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAccomodation" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/Details"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_horizontal"
-                android:layout_marginTop="@dimen/margin_12"
-                android:text="@string/details"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvRoomAccomodations" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/Details"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_horizontal"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:text="@string/details"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvRoomAccomodations" />
 
-            <TextView
-                android:id="@+id/tvDetails"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_horizontal"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="@dimen/_70sdp"
-                android:justificationMode="inter_word"
-                android:text="@string/lorem_ipsum"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Details" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvDetails"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_horizontal"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="@dimen/_70sdp"
+                    android:justificationMode="inter_word"
+                    android:text="@string/lorem_ipsum"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Details" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+        </ScrollView>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_130sdp"
-        android:background="@drawable/bottom_gradient"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_130sdp"
+            android:background="@drawable/bottom_gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBookRoom"
-        style="@style/WhiteTextBold14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginBottom="@dimen/margin_12"
-        android:backgroundTint="@color/light_brown"
-        android:fontFamily="@font/open_sans_bold"
-        android:padding="@dimen/_10sdp"
-        android:text="@string/book_the_room"
-        android:textAllCaps="false"
-        app:cornerRadius="@dimen/_30sdp"
-        app:elevation="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBookRoom"
+            style="@style/WhiteTextBold14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginBottom="@dimen/margin_12"
+            android:backgroundTint="@color/light_brown"
+            android:fontFamily="@font/open_sans_bold"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/book_the_room"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/_30sdp"
+            app:elevation="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

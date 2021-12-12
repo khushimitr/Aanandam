@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.setPadding
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -61,21 +62,32 @@ class ServiceBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(requireActivity(), "screen pe aa gye", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireActivity(), "screen pe aa gye", Toast.LENGTH_SHORT).show()
 
 
         binding.tvTitleCardService2.text = args.serviceInfo.serviceName
         binding.tvDescCardService2.text = args.serviceInfo.description
 
-        if (alreadyPremiumUser) {
 
-        }
+
+//        if (alreadyPremiumUser) {
+//
+//        }
 
         if (alreadyPremiumUser && servicesAvailed <= 20) {
             binding.btnPayment2.text = resources.getString(R.string.book)
             binding.tvCharge2.text = "--"
             binding.tv2Charge2.text = "--"
             binding.tvTotalCharge2.text = "--"
+        }
+        else{
+            binding.tvCharge2.text = "Rs.${args.serviceInfo.price.regular}"
+
+            val charge1 = binding.tvCharge2.text.toString().drop(3).toInt()
+            val charge2 = binding.tv2Charge2.text.toString().drop(3).toInt()
+
+            val total = charge1 + charge2
+            binding.tvTotalCharge2.text = "Rs.${total}"
         }
 
         binding.cardCheckIn2.setOnClickListener {
@@ -84,6 +96,11 @@ class ServiceBookFragment : Fragment() {
 
         binding.cardCheckOut2.setOnClickListener {
             datePicker(binding.tvCheckOutDate2)
+        }
+
+        binding.btnBack.setOnClickListener {
+            binding.ibBack.setPadding(resources.getDimension(R.dimen.margin_10).toInt())
+            findNavController().navigateUp()
         }
 
 
@@ -97,11 +114,7 @@ class ServiceBookFragment : Fragment() {
             val destinationAddress = binding.etDestinationAddress2.text.toString()
             val extraDescription = binding.etDescription2.text.toString()
 
-            Toast.makeText(
-                requireActivity(),
-                "$alreadyPremiumUser , $servicesAvailed",
-                Toast.LENGTH_SHORT
-            ).show()
+
             if (teleNumber.isNullOrBlank() || pickUpAddress.isNullOrBlank() || destinationAddress.isNullOrBlank() || !checkInDateSelected || !checkOutDateSelected) {
                 Toast.makeText(requireActivity(), "Some fields are empty.", Toast.LENGTH_SHORT)
                     .show()
@@ -123,7 +136,7 @@ class ServiceBookFragment : Fragment() {
             if (alreadyPremiumUser && servicesAvailed <= 20) {
                 GlobalVariables.serviceBooked = true
                 GlobalVariables.roomBooked = false
-                Toast.makeText(requireActivity(), "Booked Service", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireActivity(), "Booked Service", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(ServiceBookFragmentDirections.actionServiceBookFragmentToSuccessFragment2())
             } else {
                 Checkout.preload(requireActivity().applicationContext)
@@ -271,12 +284,9 @@ class ServiceBookFragment : Fragment() {
         dialog.show()
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
 
         _binding = null
     }
-
-
 }

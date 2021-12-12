@@ -29,6 +29,10 @@ class AanandamRepoImpl @Inject constructor(
                     result.user.isPremium,
                     user.email,
                     result.user.availedServices)
+                GlobalVariables.emailId = user.email
+                GlobalVariables.token = result.accessToken
+                GlobalVariables.isPremiumUser = result.user.isPremium.toString()
+                GlobalVariables.servicesAvailed = result.user.availedServices.toString()
                 Response.Success<UserInfo>(result)
             } else
                 Response.Error<UserInfo>("Error in Connection")
@@ -54,6 +58,10 @@ class AanandamRepoImpl @Inject constructor(
                     result.user.isPremium,
                     user.email,
                     result.user.availedServices)
+                GlobalVariables.emailId = user.email
+                GlobalVariables.token = result.accessToken
+                GlobalVariables.isPremiumUser = result.user.isPremium.toString()
+                GlobalVariables.servicesAvailed = result.user.availedServices.toString()
                 Response.Success<UserInfo>(result)
             } else
                 Response.Error<UserInfo>("Error in Connection")
@@ -177,6 +185,7 @@ class AanandamRepoImpl @Inject constructor(
                     true,
                     email!!,
                     servicesAvailed!!.toInt())
+                GlobalVariables.isPremiumUser = true.toString()
                 Response.Success<PremiumUser>(result)
             } else
                 Response.Error<PremiumUser>("Error in Connection")
@@ -304,6 +313,8 @@ class AanandamRepoImpl @Inject constructor(
 
             if (result.success) {
                 //OK
+                val service_availed = GlobalVariables.servicesAvailed.toInt()
+                GlobalVariables.servicesAvailed = (service_availed + 1).toString()
                 Response.Success<YourBookedServices>(result)
             } else
                 Response.Error<YourBookedServices>("Error in Connection")
@@ -386,15 +397,23 @@ class AanandamRepoImpl @Inject constructor(
             val result = aanandamAPI.updateProfile(profile)
 
             if (result.success) {
-                GlobalVariables.token = result.accessToken
-                GlobalVariables.isPremiumUser = result.user.isPremium.toString()
-                GlobalVariables.emailId = result.user.email
-                GlobalVariables.servicesAvailed = result.user.availedServices.toString()
+
                 sessionManager.updateSession(result.accessToken,
                     result.user.isPremium,
                     result.user.email,
                     result.user.availedServices)
+                if (GlobalVariables.emailId.isEmpty()) {
+                    GlobalVariables.token = result.accessToken
+                } else {
+                    GlobalVariables.token = result.accessToken
+                    GlobalVariables.isPremiumUser = result.user.isPremium.toString()
+                    GlobalVariables.emailId = result.user.email
+                    GlobalVariables.servicesAvailed = result.user.availedServices.toString()
+                }
+
                 Response.Success<UserInfo>(result)
+
+
             } else
                 Response.Error<UserInfo>("Error in Connection")
 

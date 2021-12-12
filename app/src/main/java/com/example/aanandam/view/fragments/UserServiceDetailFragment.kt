@@ -62,17 +62,31 @@ class UserServiceDetailFragment : Fragment() {
         serviceViewModel.yourServicesState.collect { response ->
             when (response) {
                 is Response.Success -> {
+                    hideLoadingView()
                     inflateServices(response.data!!)
                 }
                 is Response.Error -> {
+                    hideLoadingView()
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading -> {
-
+                    showLoadingView()
                 }
             }
         }
     }
+
+
+    private fun showLoadingView() {
+        binding.LoadingScreen.visibility = View.VISIBLE
+        binding.Screen.visibility = View.GONE
+    }
+
+    private fun hideLoadingView() {
+        binding.LoadingScreen.visibility = View.GONE
+        binding.Screen.visibility = View.VISIBLE
+    }
+
 
     private fun inflateServices(data: YourAllBookedServices) {
         val adapter = YourServicesAdapter(this)

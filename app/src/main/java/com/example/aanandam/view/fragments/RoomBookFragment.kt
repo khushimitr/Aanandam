@@ -125,11 +125,18 @@ class RoomBookFragment : Fragment() {
                     binding.tvCharge.text = "Rs.${args.roomInfo.cost[0]}"
                     binding.tv3Charge.text = monthlyCharge
                     binding.tvTotalCharge.text = "Rs.${totalSubscribe}"
+                    binding.cardCheckOut.isClickable = true
+                    isDateCorrect = false
+                    checkOutDateSelected = false
                 }
                 resources.getString(R.string.book) -> {
                     binding.tvCharge.text = "Rs.${args.roomInfo.cost[1]}"
                     binding.tv3Charge.text = "--"
                     binding.tvTotalCharge.text = "Rs.${totalBook}"
+
+                    binding.cardCheckOut.isClickable = false
+                    isDateCorrect = true
+                    checkOutDateSelected = true
                 }
             }
         }
@@ -326,6 +333,18 @@ class RoomBookFragment : Fragment() {
             month,
             day
         )
+        val yearDiff = yearOut - yearIn
+        val monthDiff = monthOut - monthIn
+
+        if(yearDiff >1)
+        {
+            isDateCorrect = true
+        }
+        else if(monthDiff > 1)
+        {
+            isDateCorrect = true
+        }
+
         dialog.datePicker.minDate = (cal.timeInMillis)
         dialog.show()
     }

@@ -91,6 +91,7 @@ class ProfileFragment : Fragment() {
 
                     val intent = Intent(requireActivity(), SplashScreenActivity::class.java)
                     requireActivity().startActivity(intent)
+                    requireActivity().finish()
 
 //                    findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStartupFragment())
                 }
@@ -187,17 +188,21 @@ class ProfileFragment : Fragment() {
 //        }
 //    }
 
+
+
     private fun subscribeToUserProfile() = lifecycleScope.launch {
         userViewModel.userProfileStatus.collect { response ->
             when (response) {
                 is Response.Success -> {
+                    hideLoadingView()
                     inflateUserInfo(response.data!!.user)
                 }
                 is Response.Error -> {
+                    hideLoadingView()
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading -> {
-
+                    showLoadingView()
                 }
             }
         }
@@ -208,17 +213,28 @@ class ProfileFragment : Fragment() {
         userViewModel.premiumUserProfileStatus.collect { response ->
             when (response) {
                 is Response.Success -> {
-                    Log.i("RESPONSE_PR", response.data!!.premiumUser._id)
+                    hideLoadingView()
                     inflatePremiumUserDetails(response.data!!.premiumUser)
                 }
                 is Response.Error -> {
+                    hideLoadingView()
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading -> {
-
+                    showLoadingView()
                 }
             }
         }
+    }
+
+    private fun showLoadingView() {
+        binding.LoadingScreen.visibility = View.VISIBLE
+        binding.Screen.visibility = View.GONE
+    }
+
+    private fun hideLoadingView() {
+        binding.LoadingScreen.visibility = View.GONE
+        binding.Screen.visibility = View.VISIBLE
     }
 
     private fun inflateUserInfo(user: User) {
@@ -253,7 +269,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.tvServiceAvailed.text = user.availedServices.toString()
-        binding.tvServicesRemain.text = (20 - user.availedServices).toString()
+        binding.tvServicesRemain.text = "--"
 
         userdata = EditProfile(
             user.username,

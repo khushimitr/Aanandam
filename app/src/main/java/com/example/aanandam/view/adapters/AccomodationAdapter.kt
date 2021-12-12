@@ -58,7 +58,7 @@ class AccomodationAdapter(
             "Car facility" ->{
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_car)
             }
-            "No Money" ->{
+            "No money" ->{
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_money)
             }
             else -> {

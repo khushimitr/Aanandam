@@ -57,8 +57,8 @@ class EmployeeeFragment : Fragment() {
         binding.tvName.text = args.employeeInfo.employee.user.username
         val dateJoined = args.employeeInfo.employee.user.dateJoined.dropLast(12)
 
-        val yearJoined = dateJoined.subSequence(0, 3)
-        val monthJoined = dateJoined.subSequence(5, 6)
+        val yearJoined = dateJoined.subSequence(0, 4)
+        val monthJoined = dateJoined.subSequence(5, 7)
 
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
@@ -120,7 +120,7 @@ class EmployeeeFragment : Fragment() {
 
                     val intent = Intent(requireActivity(), SplashScreenActivity::class.java)
                     requireActivity().startActivity(intent)
-
+                    requireActivity().finish()
 //                    findNavController().navigate(EmployeeeFragmentDirections.actionEmployeeeFragmentToStartupFragment())
                 }
                 true

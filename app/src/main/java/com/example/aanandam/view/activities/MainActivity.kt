@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity(), PaymentResultListener {
             }
         }
         val frag = NavDeepLinkBuilder(this).setGraph(R.navigation.mobile_navigation).setDestination(R.id.successFragment2).createPendingIntent()
-
         frag.send()
     }
 

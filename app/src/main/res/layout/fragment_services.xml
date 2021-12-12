@@ -6,134 +6,189 @@
     android:layout_height="match_parent"
     tools:context=".view.fragments.ServicesFragment">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpRoom"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LoadingScreen"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/card_size_small"
+        android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <me.relex.circleindicator.CircleIndicator3
-        android:id="@+id/vpRoomIndiator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vpRoom" />
-
-    <TextView
-        android:id="@+id/textView3"
-        style="@style/DarkGreenTextBold16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_23"
-        android:text="@string/popular_services"
-        app:layout_constraintBottom_toTopOf="@+id/rvPopularServices"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vpRoom" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPopularServices"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_10"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView3" />
-
-    <TextView
-        android:id="@+id/textView4"
-        style="@style/DarkGreenTextBold16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_10"
-        android:text="@string/all_services"
-        app:layout_constraintBottom_toTopOf="@+id/rvService"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPopularServices" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvService"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginVertical="@dimen/margin_10"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/cardServicesLeft"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardServicesLeft"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginBottom="@dimen/margin_10"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_15sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLoading"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/image_size"
+            android:layout_marginHorizontal="@dimen/margin_12"
+            app:layout_constraintBottom_toTopOf="@id/tvloading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            app:lottie_rawRes="@raw/loading_dots"
+            app:lottie_url="REPLACE_JSON_URL" />
 
-            <TextView
-                android:id="@+id/tvNumberOfServices"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_horizontal"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="8dp"
-                android:text="03"
-                app:layout_constraintBottom_toTopOf="@+id/tvServices"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/tvloading"
+            style="@style/DarkGreenTextRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/hang_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lavLoading" />
 
-            <TextView
-                android:id="@+id/tvServices"
-                style="@style/DarkGreenTextBold16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="@string/services"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tvNumberOfServices"
-                app:layout_constraintStart_toStartOf="@+id/tvNumberOfServices" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <TextView
-                android:id="@+id/textView5"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:text="Services availed till now"
-                app:layout_constraintStart_toEndOf="@+id/tvNumberOfServices"
-                app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hope you are enjoying our services"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tvServices"
-                app:layout_constraintStart_toStartOf="@+id/textView5" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpRoom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/vpRoomIndiator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vpRoom" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/popular_services"
+            app:layout_constraintBottom_toTopOf="@+id/rvPopularServices"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vpRoom" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPopularServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_10"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="@string/all_services"
+            app:layout_constraintBottom_toTopOf="@+id/rvService"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvPopularServices" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvService"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginVertical="@dimen/margin_10"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/cardServicesLeft"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardServicesLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginBottom="@dimen/margin_10"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvNumberOfServices"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_horizontal"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="8dp"
+                    android:text="03"
+                    app:layout_constraintBottom_toTopOf="@+id/tvServices"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/tvServices"
+                    style="@style/DarkGreenTextBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/services"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tvNumberOfServices"
+                    app:layout_constraintStart_toStartOf="@+id/tvNumberOfServices" />
+
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Services availed till now"
+                    app:layout_constraintStart_toEndOf="@+id/tvNumberOfServices"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hope you are enjoying our services"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tvServices"
+                    app:layout_constraintStart_toStartOf="@+id/textView5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

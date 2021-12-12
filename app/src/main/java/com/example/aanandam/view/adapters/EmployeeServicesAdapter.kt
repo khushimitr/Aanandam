@@ -33,7 +33,7 @@ class EmployeeServicesAdapter(
 
         holder.customerName.text = service.user.username
         holder.name.text = service.hotelService.serviceName
-        holder.tvdate.text = service.dateInfo.servingDateStart
+        holder.tvdate.text = service.dateInfo.servingDateStart.dropLast(14)
     }
 
     override fun getItemCount(): Int {

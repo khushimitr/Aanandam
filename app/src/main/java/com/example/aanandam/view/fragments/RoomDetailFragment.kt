@@ -71,6 +71,7 @@ class RoomDetailFragment : Fragment() {
         roomViewModel.roomInfoState.collect { response->
             when(response){
                 is Response.Success ->{
+                    hideLoadingView()
                     val roomInfo = response.data!!.room
 
                     val adapter = AccomodationAdapter(this@RoomDetailFragment,roomInfo.accomodations)
@@ -101,13 +102,24 @@ class RoomDetailFragment : Fragment() {
                     }
                 }
                 is Response.Error ->{
+                    hideLoadingView()
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading ->{
-
+                    showLoadingView()
                 }
             }
         }
+    }
+
+    private fun showLoadingView() {
+        binding.LoadingScreen.visibility = View.VISIBLE
+        binding.Screen.visibility = View.GONE
+    }
+
+    private fun hideLoadingView() {
+        binding.LoadingScreen.visibility = View.GONE
+        binding.Screen.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

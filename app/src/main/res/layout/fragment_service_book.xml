@@ -14,17 +14,40 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardService2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
-            android:layout_marginHorizontal="@dimen/margin_horizontal"
-            android:layout_marginTop="@dimen/margin_19"
-            android:background="@color/white"
-            app:cardCornerRadius="@dimen/_23sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tilPhoneNumber2"
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_12"
+            android:clickable="true"
+            android:elevation="@dimen/_10sdp"
+            app:cardCornerRadius="360dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ibBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:contentDescription="@string/back_btn"
+                android:padding="@dimen/margin_12"
+                android:src="@drawable/ic_arrow_back" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardService2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@color/white"
+            app:cardCornerRadius="@dimen/_23sdp"
+            app:layout_constraintBottom_toTopOf="@id/tilPhoneNumber2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -33,10 +56,10 @@
                 <ImageView
                     android:id="@+id/ivCardService2"
                     android:layout_width="@dimen/_100sdp"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:contentDescription="@string/service_image"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher_icon"
+                    android:src="@mipmap/ic_launcher"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +69,7 @@
                     style="@style/LightBrownTextBold16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginTop="@dimen/margin_19"
                     android:layout_marginRight="@dimen/margin_23"
                     android:text="Hospital Service"
                     app:layout_constraintBottom_toTopOf="@id/tvDescCardService2"
@@ -73,6 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/margin_19"
                     android:minLines="1"
                     android:text="Service is Available"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -105,11 +129,11 @@
                 style="@style/DarkGreenTextRegular16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="10"
                 android:drawableStart="@drawable/ic_outline_phone_24"
                 android:drawablePadding="@dimen/margin_12"
                 android:drawableTint="@color/light_brown"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:maxLength="10" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,11 +160,11 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_outline_phone_24"
                 android:drawablePadding="@dimen/margin_12"
-                android:text="Aanandam Campus"
                 android:drawableTint="@color/light_brown"
                 android:inputType="textPostalAddress|textMultiLine"
                 android:maxLines="2"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:text="Aanandam Campus" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -335,41 +359,39 @@
 
         <TextView
             android:id="@+id/tvTitleCharge2"
+            style="@style/MediumGreenTextRegular12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MediumGreenTextRegular12"
             android:layout_marginHorizontal="@dimen/margin_horizontal"
-            android:text="Service Charge2"
+            android:layout_marginTop="@dimen/margin_19"
+            android:text="Service Charge"
             app:layout_constraintBottom_toTopOf="@id/tv2TitleCharge2"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/margin_19"
-            app:layout_constraintTop_toBottomOf="@id/divider22"
-            />
+            app:layout_constraintTop_toBottomOf="@id/divider22" />
 
         <TextView
             android:id="@+id/tvCharge2"
             style="@style/MediumGreenTextBold14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/tv2Charge2"
             android:layout_marginHorizontal="@dimen/margin_horizontal"
-            android:text="Rs. 500"
+            android:text="Rs.500"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvTitleCharge2"
+            app:layout_constraintBottom_toTopOf="@id/tv2Charge2"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
         <TextView
             android:id="@+id/tv2TitleCharge2"
+            style="@style/MediumGreenTextRegular12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/MediumGreenTextRegular12"
             android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_12"
             android:text="Service Charge"
             app:layout_constraintBottom_toTopOf="@id/divider32"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/margin_12"
-            app:layout_constraintTop_toBottomOf="@id/tvTitleCharge2"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tvTitleCharge2" />
 
         <TextView
             android:id="@+id/tv2Charge2"
@@ -377,12 +399,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal"
-            android:text="Rs. 500"
             android:layout_marginTop="@dimen/margin_12"
-            app:layout_constraintBottom_toTopOf="@id/divider32"
-            app:layout_constraintTop_toBottomOf="@id/tvCharge2"
+            android:text="Rs.500"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv2TitleCharge2"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/divider32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCharge2" />
 
 
         <View
@@ -392,8 +414,8 @@
             android:layout_marginHorizontal="@dimen/margin_horizontal"
             android:layout_marginTop="@dimen/margin_12"
             android:background="@color/dark_green"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tvTotal2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv2TitleCharge2" />
 
@@ -433,11 +455,10 @@
             android:textAllCaps="false"
             app:cornerRadius="@dimen/_30sdp"
             app:elevation="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/tvTotal2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tvTotal2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

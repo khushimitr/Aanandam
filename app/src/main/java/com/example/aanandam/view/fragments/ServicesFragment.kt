@@ -82,7 +82,7 @@ class ServicesFragment : Fragment() {
         servicesViewModel.allServiceState.collect { response ->
             when (response) {
                 is Response.Success -> {
-
+                    hideLoadingView()
                     val adapter = ServicesAdapter(this@ServicesFragment,response.data!!.hotelServices)
                     binding.rvService.adapter = adapter
                     binding.rvService.layoutManager = LinearLayoutManager(requireActivity())
@@ -106,13 +106,24 @@ class ServicesFragment : Fragment() {
 
                 }
                 is Response.Error -> {
+                    hideLoadingView()
                     Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Response.Loading -> {
-                    //
+                    showLoadingView()
                 }
             }
         }
+    }
+
+    private fun showLoadingView() {
+        binding.LoadingScreen.visibility = View.VISIBLE
+        binding.Screen.visibility = View.GONE
+    }
+
+    private fun hideLoadingView() {
+        binding.LoadingScreen.visibility = View.GONE
+        binding.Screen.visibility = View.VISIBLE
     }
 
     fun moveToServicesInfo(id : String){

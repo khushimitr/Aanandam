@@ -215,7 +215,9 @@
         app:layout_constraintTop_toBottomOf="@id/btnApplyFilter"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/meditating_monkey"
+        android:scaleX="0.4"
+        android:scaleY="0.4"
+        app:lottie_rawRes="@raw/loading_dots"
         app:lottie_url="REPLACE_JSON_URL" />
 
     <TextView

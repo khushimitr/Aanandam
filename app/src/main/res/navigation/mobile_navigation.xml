@@ -57,10 +57,12 @@
         <action
             android:id="@+id/action_loginUserFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover" />
+            app:popUpTo="@id/navigation_discover"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginUserFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:popUpTo="@id/loginUserFragment" />
         <action
             android:id="@+id/action_loginUserFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
@@ -73,10 +75,12 @@
         <action
             android:id="@+id/action_signUpFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover" />
+            app:popUpTo="@id/navigation_discover"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpFragment_to_loginUserFragment"
-            app:destination="@id/loginUserFragment" />
+            app:destination="@id/loginUserFragment"
+            app:popUpTo="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginEmployeeFragment"
@@ -108,7 +112,8 @@
         <action
             android:id="@+id/action_startupFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover" />
+            app:popUpTo="@id/navigation_discover"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/serviceBookFragment"
@@ -167,7 +172,8 @@
         <action
             android:id="@+id/action_successFragment2_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover" />
+            app:popUpTo="@id/navigation_discover"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_successFragment2_to_navigation_your_services"
             app:destination="@id/navigation_your_services"
@@ -181,7 +187,8 @@
         <action
             android:id="@+id/action_errorFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover" />
+            app:popUpTo="@id/navigation_discover"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/servicesDetailFragment"
