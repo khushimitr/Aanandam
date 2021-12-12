@@ -46,7 +46,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_10"
             android:contentDescription="Camera Btn"
-            android:src="@drawable/ic_icon_feather_settings" />
+            android:src="@drawable/ic_icon_feather_refresh" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -145,7 +145,7 @@
             style="@style/DarkGreenTextRegular16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_outline_phone_24"
+            android:drawableStart="@drawable/ic_icon_awesome_address_book"
             android:drawablePadding="@dimen/margin_12"
             android:drawableTint="@color/light_brown"
             android:inputType="textPostalAddress|textMultiLine"
@@ -155,13 +155,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnUpdate"
-        style="@style/WhiteTextBold18"
+        style="@style/WhiteTextBold14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_30sdp"
         android:layout_marginVertical="@dimen/margin_35"
         android:backgroundTint="@color/light_brown"
-        android:padding="@dimen/_8sdp"
+        android:padding="@dimen/_10sdp"
         android:text="Update"
         android:textAllCaps="false"
         app:cornerRadius="@dimen/_30sdp"

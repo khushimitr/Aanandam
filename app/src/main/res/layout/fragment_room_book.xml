@@ -12,7 +12,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/roomBookPage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnBack"
@@ -200,7 +204,7 @@
                 style="@style/DarkGreenTextRegular16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_outline_phone_24"
+                android:drawableStart="@drawable/ic_icon_awesome_address_book"
                 android:drawablePadding="@dimen/margin_12"
                 android:drawableTint="@color/light_brown"
                 android:inputType="textPostalAddress|textMultiLine"
@@ -255,7 +259,9 @@
                     android:id="@+id/iconCalender"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_favorite"
+                    android:src="@drawable/ic_icon_awesome_calendar_alt"
+                    android:scaleY="0.8"
+                    android:scaleX="0.8"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tvCheckInDate"
                     app:layout_constraintStart_toStartOf="parent"
@@ -299,7 +305,9 @@
                     android:id="@+id/iconOutCalender"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_favorite"
+                    android:src="@drawable/ic_icon_awesome_calendar_alt"
+                    android:scaleY="0.8"
+                    android:scaleX="0.8"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/tvCheckOutDate"
                     app:layout_constraintStart_toStartOf="parent"

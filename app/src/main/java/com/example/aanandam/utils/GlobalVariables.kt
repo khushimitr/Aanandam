@@ -14,4 +14,5 @@ object GlobalVariables {
     var emailId: String = ""
     var servicesAvailed: String = ""
     var token: String = ""
+    var url : String = ""
 }

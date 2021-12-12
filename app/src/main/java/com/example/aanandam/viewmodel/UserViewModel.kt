@@ -185,6 +185,7 @@ class UserViewModel @Inject constructor(
         _updateProfileStatus.emit(aanandamRepository.updateProfile(profile))
     }
 
+
     private fun isEmailVaild(email: String): Boolean {
         val regex =
             "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"

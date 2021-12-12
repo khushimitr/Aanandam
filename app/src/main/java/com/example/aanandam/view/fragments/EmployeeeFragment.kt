@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.aanandam.R
 import com.example.aanandam.databinding.FragmentEmployeeeBinding
 import com.example.aanandam.model.entities.EditProfile
@@ -53,6 +54,11 @@ class EmployeeeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Glide.with(requireActivity())
+            .load(GlobalVariables.url)
+            .fitCenter()
+            .into(binding.ivProfile)
 
         binding.tvName.text = args.employeeInfo.employee.user.username
         val dateJoined = args.employeeInfo.employee.user.dateJoined.dropLast(12)

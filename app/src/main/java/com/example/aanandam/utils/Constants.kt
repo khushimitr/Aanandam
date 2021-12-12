@@ -5,6 +5,8 @@ object Constants {
 
     const val BASE_URL_IMAGES : String = "https://avatars.dicebear.com/api/personas/"
 
+//    https://avatars.dicebear.com/api/personas/1244fcec45.svg?mouth=smile
+
     const val REGISTER_ENDPOINT : String = "register"
     const val LOGIN_ENDPOINT : String = "login"
     const val EMPLOYEE_LOGIN_ENDPOINT : String = "employee/login"
@@ -22,12 +24,15 @@ object Constants {
     const val ROOM_TYPE : String = "type"
     const val MAX_ROOM_SIZE : String = "maxperson"
 
+    const val SVG : String = ".svg"
     const val MOUTH : String = "mouth"
+    const val MOUTH_VAL : String = "smile"
 
     const val JWT_TOKEN_KEY = "JWT_TOKEN_KEY"
     const val PREMIUM_USER_KEY = "PREMIUM_USER_KEY"
     const val EMAIL_KEY = "EMAIL_KEY"
     const val SERVICES_AVAILED = "SERVICES_AVAILED"
+    const val IMAGE_URL_KEY = "IMAGE_URL_KEY"
 
     const val MIN_PASSWORD_LENGTH = 5
     const val MAX_PASSWORD_LENGTH = 12

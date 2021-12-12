@@ -18,9 +18,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.aanandam.R
 import com.example.aanandam.databinding.FragmentEditProfileBinding
 import com.example.aanandam.model.entities.AanandamEntities
+import com.example.aanandam.utils.Constants
 import com.example.aanandam.utils.GlobalVariables
 import com.example.aanandam.utils.Response
 import com.example.aanandam.viewmodel.UserViewModel
@@ -62,8 +64,20 @@ class EditProfileFragment : Fragment() {
         binding.etPhoneNumber.setText(args.userData?.teleNumber)
         binding.etPickUpAddress.setText(args.userData?.address)
 
+        Glide.with(requireActivity())
+            .load(GlobalVariables.url)
+            .fitCenter()
+            .into(binding.ivProfile)
+
+
         binding.btnCamera.setOnClickListener {
 
+            GlobalVariables.url = randomImageUrl()
+
+            Glide.with(requireActivity())
+                .load(GlobalVariables.url)
+                .fitCenter()
+                .into(binding.ivProfile)
         }
 
 
@@ -81,7 +95,7 @@ class EditProfileFragment : Fragment() {
                     GlobalVariables.token,
                     address.trim(),
                     email,
-                    "",
+                    GlobalVariables.url,
                     teleNumber.trim(),
                     name.trim()
                 )
@@ -110,6 +124,21 @@ class EditProfileFragment : Fragment() {
                 }
             }
         }
+    }
+
+
+    private fun randomImageUrl(): String {
+        val STRING_LENGTH = kotlin.random.Random.nextInt(0, 10)
+        val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+
+        val randomString = (1..STRING_LENGTH)
+            .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+            .map(charPool::get)
+            .joinToString("");
+
+        val url = "${Constants.BASE_URL_IMAGES}$randomString.png?mouth=smile"
+
+        return url
     }
 
 

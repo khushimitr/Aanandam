@@ -29,8 +29,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_wifi" />
-                            <entry key="sourceFile" value="C:\projects\Aanandam\Aanandam\ExtraFiles\ic_wifi.svg" />
+                            <entry key="outputName" value="ic_icon_feather_refresh" />
+                            <entry key="sourceFile" value="D:\Designing\icons\aanandam_icons\Icon feather-refresh-ccw.svg" />
                           </map>
                         </option>
                       </PersistentState>
