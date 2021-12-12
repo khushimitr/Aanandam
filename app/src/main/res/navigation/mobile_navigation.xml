@@ -41,7 +41,7 @@
         <action
             android:id="@+id/action_navigation_profile_to_startupFragment"
             app:destination="@id/startupFragment"
-            app:popUpTo="@id/startupFragment" />
+             />
         <action
             android:id="@+id/action_navigation_profile_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -57,8 +57,7 @@
         <action
             android:id="@+id/action_loginUserFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/startupFragment"
-            app:popUpToInclusive="true" />
+             />
         <action
             android:id="@+id/action_loginUserFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
@@ -74,9 +73,7 @@
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_navigation_discover"
-            app:destination="@id/navigation_discover"
-            app:popUpTo="@id/startupFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/navigation_discover" />
         <action
             android:id="@+id/action_signUpFragment_to_loginUserFragment"
             app:destination="@id/loginUserFragment"
@@ -91,9 +88,10 @@
             android:id="@+id/action_loginEmployeeFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
         <action
-            android:id="@+id/action_loginEmployeeFragment_to_employeeeFragment"
-            app:destination="@id/employeeeFragment"
-            app:popUpTo="@id/employeeeFragment" />
+            android:id="@+id/action_loginEmployeeFragment_to_employeeeFragment" />
+        <action
+            android:id="@+id/action_loginEmployeeFragment_to_employeeeFragment2"
+            app:destination="@id/employeeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/startupFragment"
@@ -111,9 +109,7 @@
             app:destination="@id/loginUserFragment" />
         <action
             android:id="@+id/action_startupFragment_to_navigation_discover"
-            app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover"
-            app:popUpToInclusive="true" />
+            app:destination="@id/navigation_discover" />
     </fragment>
     <fragment
         android:id="@+id/serviceBookFragment"
@@ -146,7 +142,11 @@
         android:id="@+id/applyLeaveFragment"
         android:name="com.example.aanandam.view.fragments.ApplyLeaveFragment"
         android:label="fragment_apply_leave"
-        tools:layout="@layout/fragment_apply_leave" />
+        tools:layout="@layout/fragment_apply_leave" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/roomDetailFragment"
         android:name="com.example.aanandam.view.fragments.RoomDetailFragment"
@@ -167,18 +167,13 @@
         tools:layout="@layout/fragment_success" >
         <action
             android:id="@+id/action_successFragment2_to_navigation_profile"
-            app:destination="@id/navigation_profile"
-            app:popUpTo="@id/startupFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/navigation_profile" />
         <action
             android:id="@+id/action_successFragment2_to_navigation_discover"
-            app:destination="@id/navigation_discover"
-            app:popUpTo="@id/startupFragment" />
+            app:destination="@id/navigation_discover" />
         <action
             android:id="@+id/action_successFragment2_to_navigation_your_services"
-            app:destination="@id/navigation_your_services"
-            app:popUpTo="@id/startupFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/navigation_your_services" />
     </fragment>
     <fragment
         android:id="@+id/errorFragment"
@@ -187,9 +182,7 @@
         tools:layout="@layout/fragment_error" >
         <action
             android:id="@+id/action_errorFragment_to_navigation_discover"
-            app:destination="@id/navigation_discover"
-            app:popUpTo="@id/startupFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/navigation_discover" />
     </fragment>
     <fragment
         android:id="@+id/servicesDetailFragment"
@@ -219,8 +212,7 @@
             app:destination="@id/applyLeaveFragment" />
         <action
             android:id="@+id/action_employeeeFragment_to_startupFragment"
-            app:destination="@id/startupFragment"
-            app:popUpTo="@id/startupFragment" />
+            app:destination="@id/startupFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -229,8 +221,7 @@
         tools:layout="@layout/fragment_edit_profile" >
         <action
             android:id="@+id/action_editProfileFragment_to_navigation_profile"
-            app:destination="@id/navigation_profile"
-            app:popUpTo="@id/navigation_profile" />
+            app:destination="@id/navigation_profile" />
         <argument
             android:name="userData"
             app:argType="com.example.aanandam.model.entities.EditProfile"

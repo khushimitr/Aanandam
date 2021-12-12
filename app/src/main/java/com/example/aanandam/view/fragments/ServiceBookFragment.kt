@@ -70,13 +70,15 @@ class ServiceBookFragment : Fragment() {
         binding.tvTitleCardService2.text = args.serviceInfo.serviceName
         binding.tvDescCardService2.text = args.serviceInfo.description
 
+        val url = "${args.serviceInfo.images[0]}?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+
         Glide.with(requireActivity())
-            .load(args.serviceInfo.images[0])
+            .load(url)
             .fitCenter()
             .into(binding.ivCardService2)
 
 
-        if (alreadyPremiumUser && servicesAvailed <= 20) {
+        if ((alreadyPremiumUser && servicesAvailed <= 20) || (args.serviceInfo.price.regular == 0)) {
             binding.btnPayment2.text = resources.getString(R.string.book)
             binding.tvCharge2.text = "--"
             binding.tv2Charge2.text = "--"
@@ -103,7 +105,6 @@ class ServiceBookFragment : Fragment() {
             binding.ibBack.setPadding(resources.getDimension(R.dimen.margin_10).toInt())
             findNavController().navigateUp()
         }
-
 
 
         binding.btnPayment2.setOnClickListener {

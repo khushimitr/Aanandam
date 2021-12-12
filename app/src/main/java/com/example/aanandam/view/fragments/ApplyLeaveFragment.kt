@@ -22,8 +22,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import android.view.WindowManager
-
-
+import androidx.navigation.fragment.navArgs
 
 
 @AndroidEntryPoint
@@ -41,6 +40,8 @@ class ApplyLeaveFragment : Fragment() {
 
     private var checkInDateSelected: Boolean = false
     private var checkOutDateSelected: Boolean = false
+
+    private val args : ApplyLeaveFragmentArgs by navArgs()
 
     private val userViewModel: UserViewModel by activityViewModels()
 
@@ -62,6 +63,7 @@ class ApplyLeaveFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tvName.text = args.name
 
         binding.cardCheckIn.setOnClickListener {
             datePicker(binding.tvCheckInDate)

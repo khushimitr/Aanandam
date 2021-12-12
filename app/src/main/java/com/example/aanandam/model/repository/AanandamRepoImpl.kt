@@ -84,11 +84,11 @@ class AanandamRepoImpl @Inject constructor(
             }
 
             val result = aanandamAPI.employeeLogin(user)
-//            val url = randomImageUrl()
+            val url = randomImageUrl()
             if (result.success) {
 //                sessionManager.updateSession(result.accessToken, false, user.email, 0)
                 GlobalVariables.token = result.accessToken
-                GlobalVariables.url = result.employee.user.image
+                GlobalVariables.url = url
                 Response.Success(result)
             } else {
                 Response.Error<Employee>("Error in Logging In.")
@@ -97,6 +97,20 @@ class AanandamRepoImpl @Inject constructor(
             e.printStackTrace()
             Response.Error<Employee>(e.message ?: "Some Problem Occurred")
         }
+    }
+
+    private fun randomImageUrl(): String {
+        val STRING_LENGTH = kotlin.random.Random.nextInt(0, 10)
+        val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+
+        val randomString = (1..STRING_LENGTH)
+            .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+            .map(charPool::get)
+            .joinToString("");
+
+        val url = "${Constants.BASE_URL_IMAGES}$randomString.png?mouth=smile"
+
+        return url
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

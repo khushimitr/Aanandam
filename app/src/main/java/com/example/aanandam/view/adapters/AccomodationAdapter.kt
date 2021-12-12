@@ -52,13 +52,13 @@ class AccomodationAdapter(
             "Room Service" -> {
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_room_service)
             }
-            "Employee" -> {
+            "Assistant" -> {
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_user)
             }
             "Car facility" ->{
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_car)
             }
-            "No money" ->{
+            "Allowance" ->{
                 AppCompatResources.getDrawable(fragment.context!!, R.drawable.ic_money)
             }
             else -> {

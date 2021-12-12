@@ -90,7 +90,7 @@ class SignUpFragment : Fragment() {
     }
 
 
-    fun randomImageUrl(): String {
+    private fun randomImageUrl(): String {
         val STRING_LENGTH = kotlin.random.Random.nextInt(0, 10)
         val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 

@@ -139,7 +139,9 @@ class EmployeeeFragment : Fragment() {
 
 
         binding.cardApplyLeave.setOnClickListener {
-            findNavController().navigate(EmployeeeFragmentDirections.actionEmployeeeFragmentToApplyLeaveFragment())
+            findNavController().navigate(EmployeeeFragmentDirections.actionEmployeeeFragmentToApplyLeaveFragment(
+                args.employeeInfo.employee.user.username
+            ))
         }
     }
 }

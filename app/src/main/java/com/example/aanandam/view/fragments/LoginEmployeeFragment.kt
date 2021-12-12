@@ -66,7 +66,7 @@ class LoginEmployeeFragment : Fragment() {
         userViewModel.employeeLoginState.collect { response ->
             when (response) {
                 is Response.Success -> {
-                    findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToEmployeeeFragment(
+                    findNavController().navigate(LoginEmployeeFragmentDirections.actionLoginEmployeeFragmentToEmployeeeFragment2(
                         response.data!!
                     ))
                 }
