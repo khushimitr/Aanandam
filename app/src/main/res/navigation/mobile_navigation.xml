@@ -57,7 +57,7 @@
         <action
             android:id="@+id/action_loginUserFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover"
+            app:popUpTo="@id/startupFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginUserFragment_to_signUpFragment"
@@ -75,7 +75,7 @@
         <action
             android:id="@+id/action_signUpFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover"
+            app:popUpTo="@id/startupFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpFragment_to_loginUserFragment"
@@ -168,16 +168,17 @@
         <action
             android:id="@+id/action_successFragment2_to_navigation_profile"
             app:destination="@id/navigation_profile"
-            app:popUpTo="@id/navigation_profile" />
+            app:popUpTo="@id/startupFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_successFragment2_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/startupFragment" />
         <action
             android:id="@+id/action_successFragment2_to_navigation_your_services"
             app:destination="@id/navigation_your_services"
-            app:popUpTo="@id/navigation_your_services" />
+            app:popUpTo="@id/startupFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/errorFragment"
@@ -187,7 +188,7 @@
         <action
             android:id="@+id/action_errorFragment_to_navigation_discover"
             app:destination="@id/navigation_discover"
-            app:popUpTo="@id/navigation_discover"
+            app:popUpTo="@id/startupFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
