@@ -14,11 +14,6 @@ interface AanandamRepository {
 
 
     suspend fun getUser():Response<AanandamEntities.LoginUser>
-//    suspend fun getToken():Response<String>
-//    suspend fun getStatus():Response<String>
-//    suspend fun getServicesAvailed() : Response<String>
-//    suspend fun logout(): Response<String>
-
     suspend fun logout()
 
 

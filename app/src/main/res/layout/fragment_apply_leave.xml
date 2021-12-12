@@ -1,253 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
     android:background="@color/beige"
     tools:context=".view.fragments.ApplyLeaveFragment">
 
-    <FrameLayout
-        android:id="@+id/flBackground"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:background="@drawable/ic_intersection_4" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_gravity="right|bottom"
-            android:foregroundGravity="right"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/penguin_waving_hello"
-            app:lottie_url="REPLACE_JSON_URL" />
-
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/tvName"
-        style="@style/DarkGreenTextBold32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:text="David"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flBackground" />
-
-    <TextView
-        android:id="@+id/tvLeave"
-        style="@style/DarkGreenTextBold32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:text="@string/apply_for_leave"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvName" />
-
-    <TextView
-        android:id="@+id/tvFrom"
-        style="@style/DarkGreenTextBold16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_23"
-        android:text="@string/from"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvTo"
-        app:layout_constraintEnd_toEndOf="@id/cardCheckIn"
-        app:layout_constraintStart_toStartOf="@id/cardCheckIn"
-        app:layout_constraintTop_toBottomOf="@id/tvLeave" />
-
-    <TextView
-        android:id="@+id/tvTo"
-        style="@style/DarkGreenTextBold16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_23"
-        android:text="@string/to"
-        app:layout_constraintBottom_toTopOf="@id/cardCheckOut"
-        app:layout_constraintEnd_toEndOf="@id/cardCheckOut"
-        app:layout_constraintStart_toStartOf="@id/cardCheckOut"
-        app:layout_constraintTop_toBottomOf="@id/tvLeave" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardCheckIn"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:clickable="true"
-        app:cardCornerRadius="@dimen/_12sdp"
-        app:layout_constraintEnd_toStartOf="@+id/cardCheckOut"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvFrom">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/margin_19">
-
-            <ImageView
-                android:id="@+id/iconCalender"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                android:src="@drawable/ic_icon_awesome_calendar_alt"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvCheckInDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvCheckInDate"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_12"
-                android:text="24/12/2021"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iconCalender"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardCheckOut"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/margin_12"
-        android:layout_marginBottom="39dp"
-        android:clickable="true"
-        app:cardCornerRadius="@dimen/_12sdp"
-        app:layout_constraintBottom_toTopOf="@+id/tilTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardCheckIn"
-        app:layout_constraintTop_toBottomOf="@id/tvTo">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/margin_19">
-
-            <ImageView
-                android:id="@+id/iconOutCalender"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                android:src="@drawable/ic_icon_awesome_calendar_alt"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/tvCheckOutDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvCheckOutDate"
-                style="@style/MediumGreenTextRegular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_12"
-                android:text="24/12/2021"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/iconOutCalender"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_23"
-        android:hint="@string/title"
-        android:textColorHint="@color/light_brown"
-        app:boxBackgroundColor="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@id/tilDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardCheckIn">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etTitle"
-            style="@style/DarkGreenTextRegular16"
+        <FrameLayout
+            android:id="@+id/flBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_outline_phone_24"
-            android:drawablePadding="@dimen/margin_12"
-            android:drawableTint="@color/light_brown"
-            android:inputType="text"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:background="@drawable/ic_intersection_4" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_gravity="right|bottom"
+                android:foregroundGravity="right"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/penguin_waving_hello"
+                app:lottie_url="REPLACE_JSON_URL" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/DarkGreenTextBold32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="David"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/flBackground" />
+
+        <TextView
+            android:id="@+id/tvLeave"
+            style="@style/DarkGreenTextBold32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:text="@string/apply_for_leave"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <TextView
+            android:id="@+id/tvFrom"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/from"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTo"
+            app:layout_constraintEnd_toEndOf="@id/cardCheckIn"
+            app:layout_constraintStart_toStartOf="@id/cardCheckIn"
+            app:layout_constraintTop_toBottomOf="@id/tvLeave" />
+
+        <TextView
+            android:id="@+id/tvTo"
+            style="@style/DarkGreenTextBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_23"
+            android:text="@string/to"
+            app:layout_constraintBottom_toTopOf="@id/cardCheckOut"
+            app:layout_constraintEnd_toEndOf="@id/cardCheckOut"
+            app:layout_constraintStart_toStartOf="@id/cardCheckOut"
+            app:layout_constraintTop_toBottomOf="@id/tvLeave" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCheckIn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:clickable="true"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:layout_constraintEnd_toStartOf="@+id/cardCheckOut"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFrom">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_19">
+
+                <ImageView
+                    android:id="@+id/iconCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:src="@drawable/ic_icon_awesome_calendar_alt"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvCheckInDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCheckInDate"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:text="24/12/2021"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iconCalender"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_19"
-        android:hint="@string/extra_description"
-        android:textColorHint="@color/light_brown"
-        app:boxBackgroundColor="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@id/btnSubmit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilTitle">
+        </com.google.android.material.card.MaterialCardView>
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDescription"
-            style="@style/DarkGreenTextRegular16"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCheckOut"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginBottom="39dp"
+            android:clickable="true"
+            app:cardCornerRadius="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@+id/tilTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardCheckIn"
+            app:layout_constraintTop_toBottomOf="@id/tvTo">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_19">
+
+                <ImageView
+                    android:id="@+id/iconOutCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:src="@drawable/ic_icon_awesome_calendar_alt"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/tvCheckOutDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCheckOutDate"
+                    style="@style/MediumGreenTextRegular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:text="24/12/2021"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iconOutCalender"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_icon_material_description"
-            android:drawablePadding="@dimen/margin_12"
-            android:drawableTint="@color/light_brown"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:scrollbars="vertical" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_23"
+            android:hint="@string/title"
+            android:textColorHint="@color/light_brown"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/tilDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardCheckIn">
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSubmit"
-        style="@style/WhiteTextBold14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_horizontal"
-        android:layout_marginVertical="@dimen/_18sdp"
-        android:backgroundTint="@color/light_brown"
-        android:fontFamily="@font/open_sans_bold"
-        android:padding="@dimen/_10sdp"
-        android:text="@string/submit"
-        android:textAllCaps="false"
-        app:cornerRadius="@dimen/_30sdp"
-        app:elevation="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilDescription" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
+                style="@style/DarkGreenTextRegular16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_phone_24"
+                android:drawablePadding="@dimen/margin_12"
+                android:drawableTint="@color/light_brown"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginTop="@dimen/margin_19"
+            android:hint="@string/extra_description"
+            android:textColorHint="@color/light_brown"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/btnSubmit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilTitle">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                style="@style/DarkGreenTextRegular16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_icon_material_description"
+                android:drawablePadding="@dimen/margin_12"
+                android:drawableTint="@color/light_brown"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            style="@style/WhiteTextBold14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal"
+            android:layout_marginVertical="@dimen/_18sdp"
+            android:backgroundTint="@color/light_brown"
+            android:fontFamily="@font/open_sans_bold"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/_30sdp"
+            app:elevation="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

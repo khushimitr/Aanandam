@@ -4,14 +4,49 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/light_brown</item>
         <item name="colorPrimaryVariant">@color/dark_brown</item>
-        <item name="colorOnPrimary">@color/dark_green</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/beige</item>
         <item name="colorSecondaryVariant">@color/medium_green</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:datePickerDialogTheme">@style/CustomDatePickerDialog</item>
+    </style>
+
+
+    <style name="CustomDatePickerDialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <!--header background-->
+        <item name="colorAccent">@color/light_brown</item>
+        <!--header textcolor-->
+        <item name="android:textColorPrimaryInverse">@color/white</item>
+        <!--body background-->
+        <item name="android:windowBackground">@color/beige</item>
+        <!--selected day-->
+        <item name="android:colorControlActivated">@color/light_brown</item>
+        <!--days of the month-->
+        <item name="android:textColorPrimary">@color/dark_green</item>
+        <!--days of the week-->
+        <item name="android:textColorSecondary">@color/dark_green</item>
+        <!--cancel&ok-->
+        <item name="android:textColor">@color/light_brown</item>
+    </style>
+
+
+<style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+
+
+    <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@drawable/background_color_chip_state_list</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomRight">@dimen/_22sdp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_22sdp</item>
     </style>
 
 
@@ -42,10 +77,46 @@
         <item name="android:textSize">@dimen/font_16</item>
     </style>
 
+    <style name="DarkGreenTextBold14">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="DarkGreenTextBold12">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
+    <style name="DarkGreenTextRegular16">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+
+    <style name="DarkGreenTextRegular14">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="DarkGreenTextRegular12">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
     <style name="MediumGreenTextBold32">
         <item name="android:fontFamily">@font/open_sans_bold</item>
         <item name="android:textColor">@color/medium_green</item>
         <item name="android:textSize">@dimen/font_32</item>
+    </style>
+
+    <style name="MediumGreenTextBold16">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/medium_green</item>
+        <item name="android:textSize">@dimen/font_16</item>
     </style>
 
     <style name="MediumGreenTextBold14">
@@ -60,10 +131,10 @@
         <item name="android:textSize">@dimen/font_12</item>
     </style>
 
-    <style name="MediumGreenTextRegular12">
+    <style name="MediumGreenTextRegular16">
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textColor">@color/medium_green</item>
-        <item name="android:textSize">@dimen/font_12</item>
+        <item name="android:textSize">@dimen/font_16</item>
     </style>
 
     <style name="MediumGreenTextRegular14">
@@ -72,17 +143,76 @@
         <item name="android:textSize">@dimen/font_14</item>
     </style>
 
+    <style name="MediumGreenTextRegular12">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/medium_green</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
 
-    <style name="DarkGreenTextRegular16">
+    <style name="MediumGreenTextLight32">
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textColor">@color/medium_green</item>
+        <item name="android:textSize">@dimen/font_32</item>
+    </style>
+
+    <style name="DarkBrownTextBold32">
         <item name="android:fontFamily">@font/open_sans_bold</item>
-        <item name="android:textColor">@color/dark_green</item>
+        <item name="android:textColor">@color/dark_brown</item>
+        <item name="android:textSize">@dimen/font_32</item>
+    </style>
+
+    <style name="DarkBrownTextBold16">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/dark_brown</item>
         <item name="android:textSize">@dimen/font_16</item>
     </style>
 
-    <style name="LightBrownTextRegular12">
+    <style name="DarkBrownTextBold14">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/dark_brown</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="DarkBrownTextRegular16">
         <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/dark_brown</item>
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+
+    <style name="DarkBrownTextRegular14">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/dark_brown</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="DarkBrownTextRegular12">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/dark_brown</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
+    <style name="LightBrownTextBold16">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/light_brown</item>
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+
+    <style name="LightBrownTextBold14">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/light_brown</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="LightBrownTextBold12">
+        <item name="android:fontFamily">@font/open_sans_bold</item>
         <item name="android:textColor">@color/light_brown</item>
         <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
+    <style name="LightBrownTextRegular16">
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textColor">@color/light_brown</item>
+        <item name="android:textSize">@dimen/font_16</item>
     </style>
 
     <style name="LightBrownTextRegular14">
@@ -92,16 +222,16 @@
     </style>
 
 
-    <style name="LightBrownTextBold16">
-        <item name="android:fontFamily">@font/open_sans_bold</item>
+    <style name="LightBrownTextRegular12">
+        <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textColor">@color/light_brown</item>
-        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textSize">@dimen/font_12</item>
     </style>
 
-    <style name="DarkBrownTextBold32">
+    <style name="WhiteTextBold18">
         <item name="android:fontFamily">@font/open_sans_bold</item>
-        <item name="android:textColor">@color/dark_brown</item>
-        <item name="android:textSize">@dimen/font_32</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/btn_text</item>
     </style>
 
     <style name="WhiteTextBold14">
@@ -110,9 +240,10 @@
         <item name="android:textSize">@dimen/font_14</item>
     </style>
 
-    <style name="WhiteTextBold18">
-        <item name="android:fontFamily">@font/open_sans_bold</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/font_18</item>
+    <style name="Theme.Aanandam.Fullscreen" parent="Theme.Aanandam">
+        <item name="android:actionBarStyle">@style/Widget.Theme.Aanandam.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
     </style>
+
 </resources>

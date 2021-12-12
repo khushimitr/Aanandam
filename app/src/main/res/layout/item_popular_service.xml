@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/_11sdp"
     android:layout_marginEnd="@dimen/margin_12">
 
@@ -35,12 +36,13 @@
             style="@style/MediumGreenTextBold14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_10"
             android:layout_marginStart="@dimen/margin_12"
-            android:text="@string/marriage_visit"
+            android:layout_marginTop="@dimen/margin_10"
             android:layout_marginEnd="@dimen/margin_12"
+            android:text="@string/marriage_visit"
             app:layout_constraintBottom_toTopOf="@id/tvServiceDescription"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.216"
             app:layout_constraintStart_toEndOf="@+id/materialCardView3"
             app:layout_constraintTop_toTopOf="parent" />
 

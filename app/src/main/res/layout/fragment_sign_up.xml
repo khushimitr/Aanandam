@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="@dimen/margin_12"
-                android:inputType="textVisiblePassword" />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -182,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="@dimen/margin_12"
-                android:inputType="textVisiblePassword" />
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

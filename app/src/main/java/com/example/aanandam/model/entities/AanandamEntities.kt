@@ -8,7 +8,8 @@ object AanandamEntities {
     data class NewUser(
         val username: String,
         val email: String,
-        val password: String
+        val password: String,
+        val image : String
     )
 
     data class LoginUser(
@@ -41,7 +42,7 @@ object AanandamEntities {
         val accessToken: String,
         val address: String,
         val email: String,
-        val profileImgae: String,
+        val profileImage: String,
         val teleNumber: String,
         val username: String
     )

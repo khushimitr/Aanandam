@@ -36,8 +36,6 @@ import android.graphics.drawable.PictureDrawable
 import com.bumptech.glide.RequestBuilder
 
 
-
-
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
@@ -48,7 +46,6 @@ class ProfileFragment : Fragment() {
 
     private val userViewModel: UserViewModel by activityViewModels()
     private var userdata: EditProfile? = null
-    private var token: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +54,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
@@ -77,7 +74,6 @@ class ProfileFragment : Fragment() {
             .fitCenter()
             .into(binding.ivProfile)
 
-        Log.i("AVATAR", GlobalVariables.url)
 
 
         binding.ivSettings.setOnClickListener {
@@ -86,7 +82,6 @@ class ProfileFragment : Fragment() {
 
             popup.setOnMenuItemClickListener {
                 if (it.itemId == R.id.miEditProfile) {
-                    Toast.makeText(requireActivity(), "Edit Profile", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(
                         ProfileFragmentDirections.actionNavigationProfileToEditProfileFragment(
                             userdata
@@ -95,8 +90,6 @@ class ProfileFragment : Fragment() {
                 }
 
                 if (it.itemId == R.id.miLogout) {
-                    Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
-//                    subscribeToLogoutEvents()
                     userViewModel.logout()
 
                     GlobalVariables.token = ""
@@ -109,7 +102,6 @@ class ProfileFragment : Fragment() {
                     requireActivity().startActivity(intent)
                     requireActivity().finish()
 
-//                    findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToStartupFragment())
                 }
                 true
             }
@@ -118,9 +110,7 @@ class ProfileFragment : Fragment() {
 
 
         if (args.premiumUser == null) {
-            //CHECK IF PREMIUM USER OR USER
-//            subscribeToTokenEvents()
-//            userViewModel.getCurrentUserToken()
+
             if (GlobalVariables.isPremiumUser == "true") {
                 subscribeToPremiumProfile()
                 userViewModel.getPremiumUserInfo(AanandamEntities.AccessToken(GlobalVariables.token))
@@ -135,7 +125,6 @@ class ProfileFragment : Fragment() {
             inflatePremiumUserDetails(premiumUser)
         }
     }
-
 
 
     private fun subscribeToUserProfile() = lifecycleScope.launch {

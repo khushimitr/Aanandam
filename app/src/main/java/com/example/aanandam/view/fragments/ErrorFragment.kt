@@ -17,6 +17,7 @@ class ErrorFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -28,13 +29,8 @@ class ErrorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(isVisible){
-            val timer = Timer()
-            timer.schedule(timerTask {
-                findNavController().navigate(ErrorFragmentDirections.actionErrorFragmentToNavigationDiscover())
-            }, 2000)
-        }
+
+        findNavController().navigate(ErrorFragmentDirections.actionErrorFragmentToNavigationDiscover())
+
     }
-
-
 }

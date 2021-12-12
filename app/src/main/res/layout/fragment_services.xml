@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/beige"
     tools:context=".view.fragments.ServicesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +62,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpRoom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/card_size_small"
+            android:layout_height="@dimen/card_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,9 +72,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/vpRoom"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vpRoom" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView3"

@@ -79,11 +79,13 @@ class UserServiceDetailFragment : Fragment() {
 
     private fun showLoadingView() {
         binding.LoadingScreen.visibility = View.VISIBLE
+        binding.tvPlaceholder.visibility = View.GONE
         binding.Screen.visibility = View.GONE
     }
 
     private fun hideLoadingView() {
         binding.LoadingScreen.visibility = View.GONE
+        binding.tvPlaceholder.visibility = View.GONE
         binding.Screen.visibility = View.VISIBLE
     }
 
@@ -92,6 +94,12 @@ class UserServiceDetailFragment : Fragment() {
         val adapter = YourServicesAdapter(this)
         binding.rvYourServices.layoutManager = LinearLayoutManager(requireActivity())
         binding.rvYourServices.adapter = adapter
+
+        if(data.services.isEmpty())
+        {
+            binding.tvPlaceholder.visibility = View.VISIBLE
+            binding.rvYourServices.visibility = View.GONE
+        }
 
         adapter.getList(data.services)
     }

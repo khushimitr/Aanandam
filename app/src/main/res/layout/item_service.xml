@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_22sdp"
         app:strokeColor="@color/light_brown"
+        android:id="@+id/cardAllService"
         app:strokeWidth="@dimen/_1sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

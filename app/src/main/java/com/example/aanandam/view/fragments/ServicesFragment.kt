@@ -38,7 +38,7 @@ class ServicesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
         _binding = FragmentServicesBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -58,25 +58,8 @@ class ServicesFragment : Fragment() {
 
         binding.tvNumberOfServices.text = GlobalVariables.servicesAvailed
 
-//        subscribeToServicesUserEvent()
-//        userViewModel.getCurrentUserServicesAvailed()
     }
 
-//    private fun subscribeToServicesUserEvent() = lifecycleScope.launch{
-//        userViewModel.currentUserStatusState.collect{ response->
-//            when(response){
-//                is Response.Success->{
-//                    binding.tvNumberOfServices.text = response.toString()
-//                }
-//                is Response.Error->{
-//                    binding.tvNumberOfServices.text = "?"
-//                }
-//                is Response.Loading->{
-//
-//                }
-//            }
-//        }
-//    }
 
     private fun subscribeToServicesEvent() = lifecycleScope.launch {
         servicesViewModel.allServiceState.collect { response ->
@@ -93,16 +76,16 @@ class ServicesFragment : Fragment() {
                     binding.rvPopularServices.adapter = popularServiceAdapter
                     binding.rvPopularServices.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
 
-//                    val images : MutableList<String> = mutableListOf()
-//                    popularService.forEach {
-//                        images.add(it.images[0])
-//                    }
+                    val images : MutableList<String> = mutableListOf()
+                    popularService.forEach {
+                        images.add(it.images[0])
+                    }
 
-//                    val viewPagerAdapter = ViewPagerAdapter(this@ServicesFragment,images)
-//                    binding.vpRoom.adapter = viewPagerAdapter
-//
-//                    val indicator : CircleIndicator3 = binding.vpRoomIndiator
-//                    indicator.setViewPager(binding.vpRoom)
+                    val viewPagerAdapter = ViewPagerAdapter(this@ServicesFragment,images)
+                    binding.vpRoom.adapter = viewPagerAdapter
+
+                    val indicator : CircleIndicator3 = binding.vpRoomIndiator
+                    indicator.setViewPager(binding.vpRoom)
 
                 }
                 is Response.Error -> {

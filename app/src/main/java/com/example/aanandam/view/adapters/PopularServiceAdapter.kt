@@ -31,12 +31,12 @@ class PopularServiceAdapter(
         holder.title.text = service.serviceName
         holder.desc.text = service.description
 
-//        val url = "${service.images[0]}?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-//
-//        Glide.with(fragment)
-//            .load(url)
-//            .fitCenter()
-//            .into(holder.ivServiceImage)
+        val url = "${service.images[0]}?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+
+        Glide.with(fragment)
+            .load(url)
+            .fitCenter()
+            .into(holder.ivServiceImage)
 
         holder.itemView.setOnClickListener {
             if(fragment is ServicesFragment)

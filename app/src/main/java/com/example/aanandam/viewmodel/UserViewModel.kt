@@ -30,15 +30,6 @@ class UserViewModel @Inject constructor(
     private val _currentUserState = MutableSharedFlow<Response<AanandamEntities.LoginUser>>()
     val currentUserState: SharedFlow<Response<AanandamEntities.LoginUser>> = _currentUserState
 
-    private val _currentUserTokenState = MutableSharedFlow<Response<String>>()
-    val currentUserTokenState: SharedFlow<Response<String>> = _currentUserTokenState
-
-    private val _currentUserStatusState = MutableSharedFlow<Response<String>>()
-    val currentUserStatusState: SharedFlow<Response<String>> = _currentUserStatusState
-
-    private val _currentUserServicesAvailed = MutableSharedFlow<Response<String>>()
-    val currentUserServicesAvailed: SharedFlow<Response<String>> = _currentUserServicesAvailed
-
     private val _premiumUserProfileStatus = MutableSharedFlow<Response<PremiumUser>>()
     val premiumUserProfileStatus: SharedFlow<Response<PremiumUser>> = _premiumUserProfileStatus
 
@@ -51,15 +42,12 @@ class UserViewModel @Inject constructor(
     private val _applyleaveStatus = MutableSharedFlow<Response<SimpleResponse>>()
     val applyleaveStatus : SharedFlow<Response<SimpleResponse>> = _applyleaveStatus
 
-//    private val _logoutStatus = MutableSharedFlow<Response<String>>()
-//    val logoutStatus : SharedFlow<Response<String>> = _logoutStatus
-
-
     fun registerUser(
         userName: String,
         email: String,
         password: String,
         confirmPassword: String,
+        url : String
     ) = viewModelScope.launch {
         _registerState.emit(Response.Loading())
 
@@ -83,7 +71,7 @@ class UserViewModel @Inject constructor(
             return@launch
         }
 
-        val newUser = AanandamEntities.NewUser(userName, email, password)
+        val newUser = AanandamEntities.NewUser(userName, email, password,url)
         _registerState.emit(aanandamRepository.registerUser(newUser))
     }
     
@@ -148,21 +136,6 @@ class UserViewModel @Inject constructor(
         _currentUserState.emit(Response.Loading())
         _currentUserState.emit(aanandamRepository.getUser())
     }
-
-//    fun getCurrentUserToken() = viewModelScope.launch {
-//        _currentUserTokenState.emit(Response.Loading())
-//        _currentUserTokenState.emit(aanandamRepository.getToken())
-//    }
-//
-//    fun getCurrentUserStatus() = viewModelScope.launch {
-//        _currentUserStatusState.emit(Response.Loading())
-//        _currentUserStatusState.emit(aanandamRepository.getStatus())
-//    }
-//
-//    fun getCurrentUserServicesAvailed() = viewModelScope.launch {
-//        _currentUserServicesAvailed.emit(Response.Loading())
-//        _currentUserServicesAvailed.emit(aanandamRepository.getServicesAvailed())
-//    }
 
 
     fun logout() = viewModelScope.launch {

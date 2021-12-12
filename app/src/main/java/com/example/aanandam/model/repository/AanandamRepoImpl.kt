@@ -23,18 +23,17 @@ class AanandamRepoImpl @Inject constructor(
             }
 
             val result = aanandamAPI.registerUser(user)
-            val url = randomImageUrl()
 
             if (result.success) {
                 sessionManager.updateSession(result.accessToken,
                     result.user.isPremium,
                     user.email,
-                    result.user.availedServices,url)
+                    result.user.availedServices, user.image)
                 GlobalVariables.emailId = user.email
                 GlobalVariables.token = result.accessToken
                 GlobalVariables.isPremiumUser = result.user.isPremium.toString()
                 GlobalVariables.servicesAvailed = result.user.availedServices.toString()
-                GlobalVariables.url = url
+                GlobalVariables.url = user.image
                 Response.Success<UserInfo>(result)
             } else
                 Response.Error<UserInfo>("Error in Connection")
@@ -53,18 +52,19 @@ class AanandamRepoImpl @Inject constructor(
             }
 
             val result = aanandamAPI.loginUser(user)
-            val url = randomImageUrl()
+
             if (result.success) {
 //                GlobalVariables.isPremiumUser = result.user.isPremium
                 sessionManager.updateSession(result.accessToken,
                     result.user.isPremium,
                     user.email,
-                    result.user.availedServices,url)
+                    result.user.availedServices,
+                    result.user.image)
                 GlobalVariables.emailId = user.email
                 GlobalVariables.token = result.accessToken
                 GlobalVariables.isPremiumUser = result.user.isPremium.toString()
                 GlobalVariables.servicesAvailed = result.user.availedServices.toString()
-                GlobalVariables.url = url
+                GlobalVariables.url = result.user.image
 
                 Response.Success<UserInfo>(result)
             } else
@@ -84,11 +84,11 @@ class AanandamRepoImpl @Inject constructor(
             }
 
             val result = aanandamAPI.employeeLogin(user)
-            val url = randomImageUrl()
+//            val url = randomImageUrl()
             if (result.success) {
 //                sessionManager.updateSession(result.accessToken, false, user.email, 0)
                 GlobalVariables.token = result.accessToken
-                GlobalVariables.url = url
+                GlobalVariables.url = result.employee.user.image
                 Response.Success(result)
             } else {
                 Response.Error<Employee>("Error in Logging In.")
@@ -143,33 +143,6 @@ class AanandamRepoImpl @Inject constructor(
         }
     }
 
-//    override suspend fun getToken(): Response<String> {
-//        val token = sessionManager.getJWTToken()
-//        if (token != null) {
-//            return Response.Success<String>(token)
-//        } else {
-//            return Response.Error<String>("User Not logged In.")
-//        }
-//    }
-//
-//    override suspend fun getStatus(): Response<String> {
-//        val status = sessionManager.getCurrentUserType()
-//        if (status != null) {
-//            Log.i("PREMIUM_USER", status.toString())
-//            return Response.Success<String>(status)
-//        } else {
-//            return Response.Error<String>("User Not logged In.")
-//        }
-//    }
-//
-//    override suspend fun getServicesAvailed(): Response<String> {
-//        val servicesAvailed = sessionManager.getCurrentUserType()
-//        if (servicesAvailed != null) {
-//            return Response.Success<String>(servicesAvailed)
-//        } else {
-//            return Response.Error<String>("User Not logged In.")
-//        }
-//    }
 
     override suspend fun logout() {
         sessionManager.logout()
@@ -184,15 +157,12 @@ class AanandamRepoImpl @Inject constructor(
 
             val result = aanandamAPI.bookRoom(room)
 
-//            val accessToken = sessionManager.getJWTToken()
-//            val email = sessionManager.getCurrentUserEmail()
-//            val servicesAvailed = sessionManager.getAvailedServices()
 
             if (result.success) {
                 sessionManager.updateSession(GlobalVariables.token,
                     true,
                     GlobalVariables.servicesAvailed,
-                    GlobalVariables.servicesAvailed.toInt(),GlobalVariables.url)
+                    GlobalVariables.servicesAvailed.toInt(), GlobalVariables.url)
                 GlobalVariables.isPremiumUser = "true"
                 Response.Success<PremiumUser>(result)
             } else
@@ -415,7 +385,7 @@ class AanandamRepoImpl @Inject constructor(
                 sessionManager.updateSession(result.accessToken,
                     result.user.isPremium,
                     result.user.email,
-                    result.user.availedServices,GlobalVariables.url)
+                    result.user.availedServices, GlobalVariables.url)
                 if (GlobalVariables.emailId.isEmpty()) {
                     GlobalVariables.token = result.accessToken
                 } else {
@@ -435,20 +405,5 @@ class AanandamRepoImpl @Inject constructor(
             e.printStackTrace()
             Response.Error(e.message ?: "Some Problem Occurred")
         }
-    }
-
-
-    fun randomImageUrl() : String{
-        val STRING_LENGTH = kotlin.random.Random.nextInt(0,10)
-        val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-
-        val randomString = (1..STRING_LENGTH)
-            .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
-            .map(charPool::get)
-            .joinToString("");
-
-        val url = "${Constants.BASE_URL_IMAGES}$randomString.png?mouth=smile"
-
-        return url
     }
 }

@@ -68,11 +68,9 @@ class StartupFragment : Fragment() {
         userViewModel.currentUserState.collect { response ->
             when (response) {
                 is Response.Success -> {
-                    Toast.makeText(requireContext(), response.data?.email, Toast.LENGTH_SHORT)
-                        .show()
+//                    Toast.makeText(requireContext(), response.data?.email, Toast.LENGTH_SHORT)
+//                        .show()
                     userLoggedIn()
-//                    subscribeToPremiumUser()
-//                    userViewModel.getCurrentUserStatus()
                 }
                 is Response.Error -> {
                     hideProgress()
@@ -84,24 +82,6 @@ class StartupFragment : Fragment() {
             }
         }
     }
-
-//    private fun subscribeToPremiumUser() = lifecycleScope.launch {
-//        userViewModel.currentUserStatusState.collect { response->
-//            when(response){
-//                is Response.Success->{
-//                    GlobalVariables.isPremiumUser = (response.data!! == "true")
-//                    userLoggedIn()
-//                }
-//                is Response.Error ->{
-//                    hideProgress()
-//                    userNotLoggedIn()
-//                }
-//                is Response.Loading->{
-//                    showProgress()
-//                }
-//            }
-//        }
-//    }
 
     private fun userLoggedIn() {
         findNavController().navigate(StartupFragmentDirections.actionStartupFragmentToNavigationDiscover())

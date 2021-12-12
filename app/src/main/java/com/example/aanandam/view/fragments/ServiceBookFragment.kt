@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.aanandam.R
 import com.example.aanandam.databinding.FragmentServiceBookBinding
 import com.example.aanandam.model.entities.AanandamEntities
@@ -32,6 +33,7 @@ class ServiceBookFragment : Fragment() {
 
     private val args: ServiceBookFragmentArgs by navArgs()
 
+
     private var checkInDateSelected: Boolean = false
     private var checkOutDateSelected: Boolean = false
     private var alreadyPremiumUser: Boolean = GlobalVariables.isPremiumUser == "true"
@@ -43,6 +45,8 @@ class ServiceBookFragment : Fragment() {
     private var dayOut: Int = 0
     private var yearOut: Int = 0
     private var monthOut: Int = 0
+
+    private var isDateCorrect : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,25 +66,22 @@ class ServiceBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        Toast.makeText(requireActivity(), "screen pe aa gye", Toast.LENGTH_SHORT).show()
-
 
         binding.tvTitleCardService2.text = args.serviceInfo.serviceName
         binding.tvDescCardService2.text = args.serviceInfo.description
 
+        Glide.with(requireActivity())
+            .load(args.serviceInfo.images[0])
+            .fitCenter()
+            .into(binding.ivCardService2)
 
-
-//        if (alreadyPremiumUser) {
-//
-//        }
 
         if (alreadyPremiumUser && servicesAvailed <= 20) {
             binding.btnPayment2.text = resources.getString(R.string.book)
             binding.tvCharge2.text = "--"
             binding.tv2Charge2.text = "--"
             binding.tvTotalCharge2.text = "--"
-        }
-        else{
+        } else {
             binding.tvCharge2.text = "Rs.${args.serviceInfo.price.regular}"
 
             val charge1 = binding.tvCharge2.text.toString().drop(3).toInt()
@@ -104,10 +105,30 @@ class ServiceBookFragment : Fragment() {
         }
 
 
+
         binding.btnPayment2.setOnClickListener {
 
-//            subscribeToUserEvents()
-//            userViewModel.getCurrentUserStatus()
+            if(checkInDateSelected && checkOutDateSelected)
+            {
+                if(yearOut > yearIn)
+                {
+                    isDateCorrect = true
+                }
+                else if(yearOut == yearIn)
+                {
+                    if(monthOut > monthIn)
+                    {
+                        isDateCorrect = true
+                    }
+                    else if(monthOut == monthIn)
+                    {
+                        if(dayOut >= dayIn)
+                        {
+                            isDateCorrect = true
+                        }
+                    }
+                }
+            }
 
             val teleNumber = binding.etPhoneNumber2.text.toString()
             val pickUpAddress = binding.etPickUpAddress2.text.toString()
@@ -115,138 +136,65 @@ class ServiceBookFragment : Fragment() {
             val extraDescription = binding.etDescription2.text.toString()
 
 
-            if (teleNumber.isNullOrBlank() || pickUpAddress.isNullOrBlank() || destinationAddress.isNullOrBlank() || !checkInDateSelected || !checkOutDateSelected) {
+            if (teleNumber.isEmpty() || pickUpAddress.isEmpty() || destinationAddress.isEmpty() || !checkInDateSelected || !checkOutDateSelected) {
                 Toast.makeText(requireActivity(), "Some fields are empty.", Toast.LENGTH_SHORT)
                     .show()
-            }
-            else {
-            GlobalVariables.serviceData = AanandamEntities.ServiceBook(
-                GlobalVariables.token,
-                binding.etDescription2.text.toString(),
-                binding.etDestinationAddress2.text.toString(),
-                binding.etPickUpAddress2.text.toString(),
-                "$yearOut-$monthOut-$dayOut",
-                "$yearIn-$monthIn-$dayIn",
-                args.serviceInfo.serviceName,
-                binding.etPhoneNumber2.text.toString().trim().toLong()
-            )
-//                subscribeToTokenEvents()
-//                userViewModel.getCurrentUserToken()
+            }else if(!isDateCorrect){
+                Toast.makeText(requireActivity(), "Dates are wrong", Toast.LENGTH_SHORT)
+                    .show()
+            }else {
+                GlobalVariables.serviceData = AanandamEntities.ServiceBook(
+                    GlobalVariables.token,
+                    binding.etDescription2.text.toString(),
+                    binding.etDestinationAddress2.text.toString(),
+                    binding.etPickUpAddress2.text.toString(),
+                    "$yearOut-$monthOut-$dayOut",
+                    "$yearIn-$monthIn-$dayIn",
+                    args.serviceInfo.serviceName,
+                    binding.etPhoneNumber2.text.toString().trim().toLong()
+                )
 
-            if (alreadyPremiumUser && servicesAvailed <= 20) {
-                GlobalVariables.serviceBooked = true
-                GlobalVariables.roomBooked = false
-//                Toast.makeText(requireActivity(), "Booked Service", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(ServiceBookFragmentDirections.actionServiceBookFragmentToSuccessFragment2())
-            } else {
-                Checkout.preload(requireActivity().applicationContext)
-                val co = Checkout()
-                co.setKeyID("rzp_test_2ceXK9Gs4u9Pj9")
+                if (alreadyPremiumUser && servicesAvailed <= 20) {
+                    GlobalVariables.serviceBooked = true
+                    GlobalVariables.roomBooked = false
+                    findNavController().navigate(ServiceBookFragmentDirections.actionServiceBookFragmentToSuccessFragment2())
+                } else {
+                    Checkout.preload(requireActivity().applicationContext)
+                    val co = Checkout()
+                    co.setKeyID("rzp_test_2ceXK9Gs4u9Pj9")
 
-                var amount = binding.tvTotalCharge2.text.toString().drop(3).toInt()
+                    var amount = binding.tvTotalCharge2.text.toString().drop(3).toInt()
 
-                try {
-                    val options = JSONObject()
-                    options.put("name", "Aanandam")
-                    options.put("description", "Total Charges")
-                    //You can omit the image option to fetch the image from dashboard
-                    options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-                    options.put("theme.color", "#709694");
-                    options.put("currency", "INR");
-                    options.put("amount", amount * 100)//pass amount in currency subunits
+                    try {
+                        val options = JSONObject()
+                        options.put("name", "Aanandam")
+                        options.put("description", "Total Charges")
+                        //You can omit the image option to fetch the image from dashboard
+                        options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+                        options.put("theme.color", "#709694");
+                        options.put("currency", "INR");
+                        options.put("amount", amount * 100)//pass amount in currency subunits
 
-                    val prefill = JSONObject()
-                    prefill.put("email", "")
-                    prefill.put("contact", teleNumber)
+                        val prefill = JSONObject()
+                        prefill.put("email", "")
+                        prefill.put("contact", teleNumber)
 
-                    options.put("prefill", prefill)
-                    co.open(requireActivity(), options)
-                } catch (e: Exception) {
-                    Toast.makeText(
-                        requireActivity(),
-                        "Error in payment: " + e.message,
-                        Toast.LENGTH_LONG
-                    ).show()
-                    e.printStackTrace()
+                        options.put("prefill", prefill)
+                        co.open(requireActivity(), options)
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            requireActivity(),
+                            "Error in payment: " + e.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                        e.printStackTrace()
+                    }
                 }
+
             }
-
         }
-        }
-
-//    private fun subscribeToUserEvents() = lifecycleScope.launch {
-//        repeatOnLifecycle(Lifecycle.State.STARTED) {
-//
-//            userViewModel.currentUserStatusState.collect { response ->
-//                when (response) {
-//                    is NetworkResult.Success -> {
-//                        if (response.data!! == "true") {
-//                            Log.i("PREMIUM_USER", "profile premium h")
-//
-//                        } else {
-//                            Log.i("PREMIUM_USER", "profile premium nhi h")
-//                        }
-//                    }
-//                    is NetworkResult.Error -> {
-//                        Toast.makeText(requireActivity(), "User Not Logged In", Toast.LENGTH_SHORT)
-//                            .show()
-//                        findNavController().popBackStack()
-//                    }
-//                    is NetworkResult.Loading -> {
-//                        Log.i("PREMIUM_USER", "loading")
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-//    private fun subscribeToTokenEvents() = lifecycleScope.launch {
-//        userViewModel.currentUserTokenState.collect { response ->
-//            when (response) {
-//                is NetworkResult.Success -> {
-//                    GlobalVariables.serviceData = AanandamEntities.ServiceBook(
-//                        response.data!!.toString(),
-//                        binding.etDescription2.text.toString(),
-//                        binding.etDestinationAddress2.text.toString(),
-//                        binding.etPickUpAddress2.text.toString(),
-//                        "$yearOut-$monthOut-$dayOut",
-//                        "$yearIn-$monthIn-$dayIn",
-//                        args.serviceInfo.serviceName,
-//                        binding.etPhoneNumber2.text.toString().trim().toLong()
-//                    )
-//                }
-//                is NetworkResult.Error -> {
-//                    Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//                is NetworkResult.Loading -> {
-//
-//                }
-//            }
-//        }
-//    }
-
-
-//    private fun subscribeToUserServices() = lifecycleScope.launch {
-//        userViewModel.currentUserServicesAvailed.collect { response ->
-//            when (response) {
-//                is NetworkResult.Success -> {
-//                    servicesAvailed = response.data!!.toInt()
-//                    Log.i("PREMIUM_USER", "services aayi")
-//                }
-//                is NetworkResult.Error -> {
-//                    Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//                is NetworkResult.Loading -> {
-//
-//                }
-//            }
-//        }
-//    }
 
     }
-
 
     private fun datePicker(view: View) {
 

@@ -50,10 +50,8 @@ class RoomBookFragment : Fragment() {
     private var monthOut: Int = 0
 
 
-    private var currentSelectedDate: Long? = null
     private var checkInDateSelected: Boolean = false
     private var checkOutDateSelected: Boolean = false
-    private var alreadyPremiumUser: Boolean = false
     private var isDateCorrect: Boolean = false
     val args: RoomBookFragmentArgs by navArgs()
 
@@ -77,11 +75,6 @@ class RoomBookFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        subscribeToTokenEvents()
-//        subscribeToUserEvents()
-//        userViewModel.getCurrentUserStatus()
-
 
         binding.cardCheckIn.setOnClickListener {
             datePicker(binding.tvCheckInDate)
@@ -128,6 +121,7 @@ class RoomBookFragment : Fragment() {
                     binding.cardCheckOut.isClickable = true
                     isDateCorrect = false
                     checkOutDateSelected = false
+                    binding.cardCheckOut.setCardBackgroundColor(resources.getColor(R.color.white))
                 }
                 resources.getString(R.string.book) -> {
                     binding.tvCharge.text = "Rs.${args.roomInfo.cost[1]}"
@@ -135,6 +129,7 @@ class RoomBookFragment : Fragment() {
                     binding.tvTotalCharge.text = "Rs.${totalBook}"
 
                     binding.cardCheckOut.isClickable = false
+                    binding.cardCheckOut.setCardBackgroundColor(resources.getColor(R.color.gray))
                     isDateCorrect = true
                     checkOutDateSelected = true
                 }
@@ -147,6 +142,30 @@ class RoomBookFragment : Fragment() {
         }
 
         binding.btnPayment.setOnClickListener {
+
+            if(checkInDateSelected && checkOutDateSelected && binding.chipSubscribe.isChecked)
+            {
+                if(yearOut > yearIn)
+                {
+                    isDateCorrect = true
+                }
+                else if(yearOut == yearIn)
+                {
+                    if(monthOut > monthIn)
+                    {
+                        isDateCorrect = true
+                    }
+                    else if(monthOut == monthIn)
+                    {
+                        if(dayOut > dayIn)
+                        {
+                            isDateCorrect = true
+                        }
+                    }
+                }
+            }
+
+
             val teleNumber = binding.etPhoneNumber.text.toString()
             val address = binding.etPickUpAddress.text.toString()
 
@@ -159,6 +178,9 @@ class RoomBookFragment : Fragment() {
                     "Some Room is already associated with this Id.",
                     Toast.LENGTH_SHORT
                 ).show()
+            }else if(!isDateCorrect){
+                Toast.makeText(requireActivity(), "Dates are wrong", Toast.LENGTH_SHORT)
+                    .show()
             } else {
 
                 var isRental = false
@@ -176,12 +198,9 @@ class RoomBookFragment : Fragment() {
                     teleNumber.toLong()
                 )
 
-
                 Checkout.preload(requireActivity().applicationContext)
                 val co = Checkout()
                 co.setKeyID("rzp_test_2ceXK9Gs4u9Pj9")
-
-//                    userViewModel.getCurrentUserToken()
 
 
                 var amount = binding.tvTotalCharge.text.toString().drop(3).toInt()
@@ -214,92 +233,6 @@ class RoomBookFragment : Fragment() {
         }
     }
 
-//    private fun subscribeToUserEvents() = lifecycleScope.launch {
-//        userViewModel.currentUserStatusState.collect { response ->
-//            when (response) {
-//                is Response.Success -> {
-//                    alreadyPremiumUser = response.data!! == "true"
-//                }
-//                is Response.Error -> {
-//                    Toast.makeText(requireActivity(), "User Not Logged In", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//                is Response.Loading -> {
-//
-//                }
-//            }
-//        }
-//    }
-
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun datePicker(view: View) {
-//        var today = MaterialDatePicker.thisMonthInUtcMilliseconds()
-//
-//
-//        val constraintsBuilder = CalendarConstraints.Builder()
-//            .setOpenAt(today)
-//            .setValidator(DateValidatorPointForward.now())
-//
-//        val datePicker = MaterialDatePicker.Builder.datePicker()
-//            .setTitleText("Select Appointment Date")
-//            .setCalendarConstraints(constraintsBuilder.build())
-//            .build()
-//
-//        datePicker.addOnPositiveButtonClickListener { dateInMillis ->
-//            onDateSelected(dateInMillis, view)
-//            when (view) {
-//                binding.tvCheckInDate -> {
-//                    checkInDateSelected = true
-//                }
-//                binding.tvCheckOutDate -> {
-//                    checkOutDateSelected = true
-//                }
-//            }
-//        }
-//
-//        val fragmentManager = (requireParentFragment().parentFragmentManager)
-//
-//        datePicker.show(fragmentManager, "DATE_PICKER_DIALOG")
-//    }
-
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun onDateSelected(dateInMillis: Long?, view: View) {
-//        currentSelectedDate = dateInMillis
-//        val dateTime: LocalDateTime = LocalDateTime.ofInstant(currentSelectedDate?.let {
-//            Instant.ofEpochMilli(
-//                it
-//            )
-//        }, ZoneId.systemDefault())
-//
-//        val dateAsFormattedText = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-//        Toast.makeText(requireActivity(), dateAsFormattedText, Toast.LENGTH_SHORT).show()
-//
-//        when (view) {
-//            binding.tvCheckInDate -> {
-//                binding.tvCheckInDate.text = dateAsFormattedText
-//                binding.tvCheckInDate.typeface = resources.getFont(R.font.open_sans_bold)
-//            }
-//            binding.tvCheckOutDate -> {
-//                binding.tvCheckOutDate.text = dateAsFormattedText
-//                binding.tvCheckOutDate.typeface = resources.getFont(R.font.open_sans_bold)
-//            }
-//        }
-//
-//        val checkInDate = binding.tvCheckInDate.text.toString()
-//        val checkOutDate = binding.tvCheckOutDate.text.toString()
-//
-//        val yearIn = checkInDate.subSequence(0, 3).toString().toInt()
-//        val monthIn = checkInDate.subSequence(5, 6).toString().toInt()
-//
-//        val yearOut = checkOutDate.subSequence(0, 3).toString().toInt()
-//        val monthOut = checkOutDate.subSequence(5, 6).toString().toInt()
-//
-//        if (monthOut - monthIn >= 1 || yearOut - yearIn >= 1) {
-//            isDateCorrect = true
-//        }
-//
-//        //yyyy-MM-dd
-//    }
 
     private fun datePicker(view: View) {
         val cal = Calendar.getInstance()
@@ -343,39 +276,8 @@ class RoomBookFragment : Fragment() {
         dialog.show()
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
-
-
-//    private fun subscribeToTokenEvents() = lifecycleScope.launch {
-//        userViewModel.currentUserTokenState.collect { response ->
-//            when (response) {
-//                is Response.Success -> {
-//
-//                    var isRental = false
-//                    if (binding.chipSubscribe.isChecked) {
-//                        isRental = true
-//                    }
-//
-//                    GlobalVariables.roomData = AanandamEntities.BookRoom(
-//                        response.data.toString(),
-//                        binding.etPickUpAddress.text.toString().trim(),
-//                        binding.tvCheckInDate.text.toString(),
-//                        binding.tvCheckOutDate.text.toString(),
-//                        isRental,
-//                        args.roomInfo.roomId,
-//                        binding.etPhoneNumber.text.toString().trim().toLong()
-//                    )
-//                }
-//                is Response.Error -> {
-//                    Toast.makeText(requireActivity(), response.errorMsg, Toast.LENGTH_SHORT).show()
-//                }
-//                is Response.Loading -> {
-//                }
-//            }
-//        }
-//    }
 }

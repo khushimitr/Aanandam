@@ -72,14 +72,11 @@ class EmployeeeFragment : Fragment() {
 
         var ans = 0
         val yeardiff = year - yearJoined.toString().toInt()
-        if(yeardiff > 1){
+        if (yeardiff > 1) {
             binding.tvDate.text = "$yeardiff years Ago"
-        }
-        else
-        {
+        } else {
             ans = month - monthJoined.toString().toInt()
-            if(ans == 0)
-            {
+            if (ans == 0) {
                 ans = 1
             }
 
@@ -87,9 +84,15 @@ class EmployeeeFragment : Fragment() {
         }
         binding.tvSalary.text = args.employeeInfo.employee.salary.toString()
 
+
         val adapter = EmployeeServicesAdapter(this, args.employeeInfo.services)
         binding.rvServices.adapter = adapter
         binding.rvServices.layoutManager = LinearLayoutManager(requireActivity())
+
+        if (args.employeeInfo.services.isEmpty()) {
+            binding.tvPlaceholder.visibility = View.VISIBLE
+            binding.rvServices.visibility = View.GONE
+        }
 
         val userdata = EditProfile(
             args.employeeInfo.employee.user.username,
@@ -106,7 +109,7 @@ class EmployeeeFragment : Fragment() {
 
             popup.setOnMenuItemClickListener {
                 if (it.itemId == R.id.miEditProfile) {
-                    Toast.makeText(requireActivity(), "Edit Profile", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireActivity(), "Edit Profile", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(
                         EmployeeeFragmentDirections.actionEmployeeeFragmentToEditProfileFragment(
                             userdata
@@ -115,7 +118,7 @@ class EmployeeeFragment : Fragment() {
                 }
 
                 if (it.itemId == R.id.miLogout) {
-                    Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireActivity(), "Logout", Toast.LENGTH_SHORT).show()
 //                    subscribeToLogoutEvents()
                     userViewModel.logout()
 

@@ -85,13 +85,12 @@ class ServicesDetailFragment : Fragment() {
                     binding.tvShortDescription.text = serviceInfo.description
                     binding.tvDetails.text = serviceInfo.details
 
-//                    val viewpagerAdapter = ViewPagerAdapter(this@ServicesDetailFragment,serviceInfo.images)
-//                    binding.vpRoom.adapter = viewpagerAdapter
-//                    val indicator : CircleIndicator3 = binding.vpRoomIndiator
-//                    indicator.setViewPager(binding.vpRoom)
+                    val viewpagerAdapter = ViewPagerAdapter(this@ServicesDetailFragment,serviceInfo.images)
+                    binding.vpRoom.adapter = viewpagerAdapter
+                    val indicator : CircleIndicator3 = binding.vpRoomIndiator
+                    indicator.setViewPager(binding.vpRoom)
 
                     binding.btnBookRoom.setOnClickListener {
-//                        Toast.makeText(requireActivity(), "Button Clicked", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(ServicesDetailFragmentDirections.actionServicesDetailFragmentToServiceBookFragment(
                             serviceInfo
                         ))

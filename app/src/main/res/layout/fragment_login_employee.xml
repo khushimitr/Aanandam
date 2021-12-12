@@ -136,7 +136,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textVisiblePassword"
+                android:inputType="textPassword"
                 android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="@dimen/margin_12" />
         </com.google.android.material.textfield.TextInputLayout>

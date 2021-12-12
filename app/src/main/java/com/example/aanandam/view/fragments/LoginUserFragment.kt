@@ -54,7 +54,6 @@ class LoginUserFragment : Fragment() {
         }
         
         binding.tvForgot.setOnClickListener {
-//            Toast.makeText(requireActivity(), "Set a new Password", Toast.LENGTH_SHORT).show()
             findNavController().navigate(LoginUserFragmentDirections.actionLoginUserFragmentToForgotPasswordFragment())
         }
     }
@@ -69,7 +68,7 @@ class LoginUserFragment : Fragment() {
             when(response){
                 is Response.Success->{
 //                    hideProgress()
-                    Toast.makeText(requireActivity(), "User Logged In Successfully", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireActivity(), "User Logged In Successfully", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(LoginUserFragmentDirections.actionLoginUserFragmentToNavigationDiscover())
                 }
                 is Response.Error ->{
