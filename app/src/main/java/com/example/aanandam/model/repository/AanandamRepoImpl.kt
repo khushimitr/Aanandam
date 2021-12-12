@@ -176,16 +176,16 @@ class AanandamRepoImpl @Inject constructor(
 
             val result = aanandamAPI.bookRoom(room)
 
-            val accessToken = sessionManager.getJWTToken()
-            val email = sessionManager.getCurrentUserEmail()
-            val servicesAvailed = sessionManager.getAvailedServices()
+//            val accessToken = sessionManager.getJWTToken()
+//            val email = sessionManager.getCurrentUserEmail()
+//            val servicesAvailed = sessionManager.getAvailedServices()
 
             if (result.success) {
-                sessionManager.updateSession(accessToken!!,
+                sessionManager.updateSession(GlobalVariables.token,
                     true,
-                    email!!,
-                    servicesAvailed!!.toInt())
-                GlobalVariables.isPremiumUser = true.toString()
+                    GlobalVariables.servicesAvailed,
+                    GlobalVariables.servicesAvailed.toInt())
+                GlobalVariables.isPremiumUser = "true"
                 Response.Success<PremiumUser>(result)
             } else
                 Response.Error<PremiumUser>("Error in Connection")
@@ -312,9 +312,14 @@ class AanandamRepoImpl @Inject constructor(
             val result = aanandamAPI.bookService(service)
 
             if (result.success) {
-                //OK
+
                 val service_availed = GlobalVariables.servicesAvailed.toInt()
                 GlobalVariables.servicesAvailed = (service_availed + 1).toString()
+                sessionManager.updateSession(GlobalVariables.token,
+                    GlobalVariables.isPremiumUser.toBooleanStrict(),
+                    GlobalVariables.emailId,
+                    GlobalVariables.servicesAvailed.toInt()
+                )
                 Response.Success<YourBookedServices>(result)
             } else
                 Response.Error<YourBookedServices>("Error in Connection")

@@ -147,10 +147,10 @@ class RoomBookFragment : Fragment() {
         }
 
         binding.btnPayment.setOnClickListener {
-            val teleNumber = binding.etPhoneNumber.text
-            val address = binding.etPickUpAddress.text
+            val teleNumber = binding.etPhoneNumber.text.toString()
+            val address = binding.etPickUpAddress.text.toString()
 
-            if (teleNumber.isNullOrBlank() || address.isNullOrBlank() || !checkInDateSelected || !checkOutDateSelected) {
+            if (teleNumber.isEmpty() || address.isEmpty() || !checkInDateSelected || !checkOutDateSelected) {
                 Toast.makeText(requireActivity(), "Some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             } else if (GlobalVariables.isPremiumUser == "true") {
@@ -160,58 +160,55 @@ class RoomBookFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                if (!isDateCorrect) {
-                    Toast.makeText(
-                        requireActivity(),
-                        "Gap of atleast a month in date is required",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Checkout.preload(requireActivity().applicationContext)
-                    val co = Checkout()
-                    co.setKeyID("rzp_test_2ceXK9Gs4u9Pj9")
+
+                var isRental = false
+                if (binding.chipSubscribe.isChecked) {
+                    isRental = true
+                }
+
+                GlobalVariables.roomData = AanandamEntities.BookRoom(
+                    GlobalVariables.token.toString(),
+                    address.trim(),
+                    "$yearIn-$monthIn-$dayIn",
+                    "$yearOut-$monthOut-$dayOut",
+                    isRental,
+                    args.roomInfo.roomId,
+                    teleNumber.toLong()
+                )
+
+
+                Checkout.preload(requireActivity().applicationContext)
+                val co = Checkout()
+                co.setKeyID("rzp_test_2ceXK9Gs4u9Pj9")
 
 //                    userViewModel.getCurrentUserToken()
-                    var isRental = false
-                    if (binding.chipSubscribe.isChecked) {
-                        isRental = true
-                    }
 
-                    GlobalVariables.roomData = AanandamEntities.BookRoom(
-                        GlobalVariables.token.toString(),
-                        binding.etPickUpAddress.text.toString().trim(),
-                        binding.tvCheckInDate.text.toString(),
-                        binding.tvCheckOutDate.text.toString(),
-                        isRental,
-                        args.roomInfo.roomId,
-                        binding.etPhoneNumber.text.toString().trim().toLong()
-                    )
-                    var amount = binding.tvTotalCharge.text.toString().drop(3).toInt()
 
-                    try {
-                        val options = JSONObject()
-                        options.put("name", "Aanandam")
-                        options.put("description", "Total Charges")
-                        //You can omit the image option to fetch the image from dashboard
-                        options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-                        options.put("theme.color", "#709694");
-                        options.put("currency", "INR");
-                        options.put("amount", amount * 100)//pass amount in currency subunits
+                var amount = binding.tvTotalCharge.text.toString().drop(3).toInt()
 
-                        val prefill = JSONObject()
-                        prefill.put("email", "")
-                        prefill.put("contact", teleNumber)
+                try {
+                    val options = JSONObject()
+                    options.put("name", "Aanandam")
+                    options.put("description", "Total Charges")
+                    //You can omit the image option to fetch the image from dashboard
+                    options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+                    options.put("theme.color", "#709694");
+                    options.put("currency", "INR");
+                    options.put("amount", amount * 100)//pass amount in currency subunits
 
-                        options.put("prefill", prefill)
-                        co.open(requireActivity(), options)
-                    } catch (e: Exception) {
-                        Toast.makeText(
-                            requireActivity(),
-                            "Error in payment: " + e.message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                        e.printStackTrace()
-                    }
+                    val prefill = JSONObject()
+                    prefill.put("email", "")
+                    prefill.put("contact", teleNumber)
+
+                    options.put("prefill", prefill)
+                    co.open(requireActivity(), options)
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "Error in payment: " + e.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    e.printStackTrace()
                 }
             }
         }
@@ -336,12 +333,9 @@ class RoomBookFragment : Fragment() {
         val yearDiff = yearOut - yearIn
         val monthDiff = monthOut - monthIn
 
-        if(yearDiff >1)
-        {
+        if (yearDiff > 1) {
             isDateCorrect = true
-        }
-        else if(monthDiff > 1)
-        {
+        } else if (monthDiff > 1) {
             isDateCorrect = true
         }
 

@@ -189,7 +189,6 @@ class ProfileFragment : Fragment() {
 //    }
 
 
-
     private fun subscribeToUserProfile() = lifecycleScope.launch {
         userViewModel.userProfileStatus.collect { response ->
             when (response) {
@@ -253,15 +252,12 @@ class ProfileFragment : Fragment() {
 
         var ans = 0
         val yeardiff = year - yearJoined.toString().toInt()
-        if(yeardiff > 1){
+        if (yeardiff > 1) {
             binding.tvDate.text = "$yeardiff years Ago"
-        }
-        else
-        {
+        } else {
             ans = month - monthJoined.toString().toInt()
 
-            if(ans == 0)
-            {
+            if (ans == 0) {
                 ans = 1
             }
 
@@ -284,27 +280,30 @@ class ProfileFragment : Fragment() {
         binding.tvName.text = premiumUser.user.username.uppercase()
 
 
-        val dateJoined = premiumUser.user.dateJoined.dropLast(12)
+        val dateJoined = premiumUser.user.dateJoined.dropLast(14)
         val dateCheckIn = premiumUser.dateInfo.checkIn.dropLast(14)
 
-        val yearJoined = dateJoined.subSequence(0, 3)
-        val monthJoined = dateJoined.subSequence(5, 6)
+        val yearJoined = dateJoined.subSequence(0, 4)
+        val monthJoined = dateJoined.subSequence(5, 7)
 
         val cal = Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
         val month = cal.get(Calendar.MONTH) + 1
 
-
-        var period = month - monthJoined.toString().toInt()
-        if (period > 11) {
-            period = year - yearJoined.toString().toInt()
-            binding.tvDate.text = "$period years Ago"
+        var ans = 0
+        val yeardiff = year - yearJoined.toString().toInt()
+        if (yeardiff > 1) {
+            binding.tvDate.text = "$yeardiff years Ago"
         } else {
-            binding.tvDate.text = "$period months Ago"
+            ans = month - monthJoined.toString().toInt()
+
+            if (ans == 0) {
+                ans = 1
+            }
+
+            binding.tvDate.text = "$ans months Ago"
         }
 
-        Log.i("MONTHS", month.toString())
-        Log.i("MONTHS", year.toString())
 
         val uri = "${premiumUser.room.images[0]}?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
 
