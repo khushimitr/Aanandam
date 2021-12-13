@@ -143,22 +143,14 @@ class RoomBookFragment : Fragment() {
 
         binding.btnPayment.setOnClickListener {
 
-            if(checkInDateSelected && checkOutDateSelected && binding.chipSubscribe.isChecked)
-            {
-                if(yearOut > yearIn)
-                {
+            if (checkInDateSelected && checkOutDateSelected && binding.chipSubscribe.isChecked) {
+                if (yearOut > yearIn) {
                     isDateCorrect = true
-                }
-                else if(yearOut == yearIn)
-                {
-                    if(monthOut > monthIn)
-                    {
+                } else if (yearOut == yearIn) {
+                    if (monthOut > monthIn) {
                         isDateCorrect = true
-                    }
-                    else if(monthOut == monthIn)
-                    {
-                        if(dayOut > dayIn)
-                        {
+                    } else if (monthOut == monthIn) {
+                        if (dayOut > dayIn) {
                             isDateCorrect = true
                         }
                     }
@@ -178,7 +170,7 @@ class RoomBookFragment : Fragment() {
                     "Some Room is already associated with this Id.",
                     Toast.LENGTH_SHORT
                 ).show()
-            }else if(!isDateCorrect){
+            } else if (!isDateCorrect) {
                 Toast.makeText(requireActivity(), "Dates are wrong", Toast.LENGTH_SHORT)
                     .show()
             } else {
@@ -186,6 +178,17 @@ class RoomBookFragment : Fragment() {
                 var isRental = false
                 if (binding.chipSubscribe.isChecked) {
                     isRental = true
+                }
+
+                if (!isRental) {
+                    val cal = Calendar.getInstance()
+                    val month = cal.get(Calendar.MONTH) + 1
+                    val year = cal.get(Calendar.YEAR)
+                    val day = cal.get(Calendar.DAY_OF_MONTH)
+
+                    yearOut = year + 100
+                    monthOut = month
+                    dayOut = day
                 }
 
                 GlobalVariables.roomData = AanandamEntities.BookRoom(

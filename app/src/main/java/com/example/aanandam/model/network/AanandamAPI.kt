@@ -29,7 +29,7 @@ interface AanandamAPI {
 
     @POST(Constants.BOOK_ROOM)
     suspend fun bookRoom(
-        @Body user : AanandamEntities.BookRoom
+        @Body room : AanandamEntities.BookRoom
     ) : PremiumUser
 
     @GET(Constants.ALL_ROOMS)

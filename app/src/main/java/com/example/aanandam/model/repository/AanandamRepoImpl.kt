@@ -89,6 +89,7 @@ class AanandamRepoImpl @Inject constructor(
 //                sessionManager.updateSession(result.accessToken, false, user.email, 0)
                 GlobalVariables.token = result.accessToken
                 GlobalVariables.url = url
+                GlobalVariables.emailId = ""
                 Response.Success(result)
             } else {
                 Response.Error<Employee>("Error in Logging In.")
@@ -171,13 +172,11 @@ class AanandamRepoImpl @Inject constructor(
 
             val result = aanandamAPI.bookRoom(room)
 
-
             if (result.success) {
                 sessionManager.updateSession(GlobalVariables.token,
-                    true,
-                    GlobalVariables.servicesAvailed,
+                    GlobalVariables.isPremiumUser.toBoolean(),
+                    GlobalVariables.emailId,
                     GlobalVariables.servicesAvailed.toInt(), GlobalVariables.url)
-                GlobalVariables.isPremiumUser = "true"
                 Response.Success<PremiumUser>(result)
             } else
                 Response.Error<PremiumUser>("Error in Connection")
@@ -305,8 +304,6 @@ class AanandamRepoImpl @Inject constructor(
 
             if (result.success) {
 
-                val service_availed = GlobalVariables.servicesAvailed.toInt()
-                GlobalVariables.servicesAvailed = (service_availed + 1).toString()
                 sessionManager.updateSession(GlobalVariables.token,
                     GlobalVariables.isPremiumUser.toBooleanStrict(),
                     GlobalVariables.emailId,

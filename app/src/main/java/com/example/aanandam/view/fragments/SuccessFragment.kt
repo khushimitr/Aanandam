@@ -1,6 +1,7 @@
 package com.example.aanandam.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.aanandam.R
+import com.example.aanandam.model.entities.PremiumUserX
 import com.example.aanandam.utils.GlobalVariables
 import com.example.aanandam.utils.Response
 import com.example.aanandam.viewmodel.RoomViewModel
@@ -41,24 +43,23 @@ class SuccessFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        if(GlobalVariables.roomBooked)
-        {
+        if (GlobalVariables.roomBooked) {
             GlobalVariables.isPremiumUser = "true"
             subscribeToPremiumUserEvents()
             roomViewModel.postRoomDetails(GlobalVariables.roomData!!)
         }
 
-        if(GlobalVariables.serviceBooked)
-        {
+        if (GlobalVariables.serviceBooked) {
+            val service_availed = GlobalVariables.servicesAvailed.toInt()
+            GlobalVariables.servicesAvailed = (service_availed + 1).toString()
             subscribeToServiceUserEvents()
             serviceViewModel.bookServices(GlobalVariables.serviceData!!)
         }
     }
 
     private fun subscribeToServiceUserEvents() = lifecycleScope.launch {
-        serviceViewModel.serviceBookState.collect{response->
-            when(response){
+        serviceViewModel.serviceBookState.collect { response ->
+            when (response) {
                 is Response.Success -> {
                     findNavController().navigate(SuccessFragmentDirections.actionSuccessFragment2ToNavigationYourServices())
                 }

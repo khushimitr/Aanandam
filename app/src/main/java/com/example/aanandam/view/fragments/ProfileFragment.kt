@@ -121,7 +121,6 @@ class ProfileFragment : Fragment() {
             popup.show()
         }
 
-
         if (args.premiumUser == null) {
 
             if (GlobalVariables.isPremiumUser == "true") {
