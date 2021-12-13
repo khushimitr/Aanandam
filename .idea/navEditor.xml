@@ -133,6 +133,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_loginEmployeeFragment_to_employeeeFragment2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_loginEmployeeFragment_to_forgotPasswordFragment">
                               <value>
                                 <LayoutPositions />
@@ -370,8 +375,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-15" />
-                            <option name="y" value="1670" />
+                            <option name="x" value="-322" />
+                            <option name="y" value="949" />
                           </Point>
                         </option>
                         <option name="myPositions">
