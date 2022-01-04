@@ -73,6 +73,6 @@ Now, if a consumer merely wants service and doesn't want to own or rent a room, 
   </tr>
 </table>
  
-<h2> Link to the landing page: https://young-ravine-63777.herokuapp.com/ </h2>
+<h3>Link to the landing page: https://young-ravine-63777.herokuapp.com/</h3>
 One can register on the landing page and further will have to install the app.
-<h2> Link to the API Documentation: https://documenter.getpostman.com/view/18321901/UVJkCZEy </h2>
+<h3>Link to the API Documentation: https://documenter.getpostman.com/view/18321901/UVJkCZEy</h3>
