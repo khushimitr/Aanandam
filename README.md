@@ -1,3 +1,5 @@
 # Aanandam
-
+Our product will provide homecare services to anyone above the age of a particular threshold. Our product is designed to provide comfort and assistance. The product provides clients with a living space at a lower cost and in a more comfortable environment. It also provides a clubbing system for senior people who live near to their homes and want to socialize with others.
+The user can browse our services here, but they must first sign up to use any of them. The consumer will now have the option of acquiring a full apartment, living in it, or renting it out for a price, thereby becoming a premium user with access to all of the product's features. Our services include hospital visits, bank visits, personal function visits, and any other type of visit that requires support. All people will now be able to use these services for free. As a result, the purchaser is just required to pay for the room.
+Now, if a consumer merely wants service and doesn't want to own or rent a room, our product can help. In that instance, the consumer has the option of signing up for a one-day, monthly, or yearly subscription. Except for medical visits, the consumer can only get a restricted number of visits with this service.
 
