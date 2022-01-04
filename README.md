@@ -16,7 +16,7 @@ Now, if a consumer merely wants service and doesn't want to own or rent a room, 
 <ul>
   <li>Landing page has been created using HTML, CSS, SASS, JavaScript.</li> 
   <li>The complete SRS documention of the project has been done.</li>
-  <li></li>
+  <li><a href="https://github.com/khushimitr/Aanandam/tree/main/SRS%20Documentation">SRS Document</a></li>
   
 </ul>
 
