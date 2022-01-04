@@ -16,8 +16,7 @@ Now, if a consumer merely wants service and doesn't want to own or rent a room, 
 <ul>
   <li>Landing page has been created using HTML, CSS, SASS, JavaScript.</li> 
   <li>The complete SRS documention of the project has been done.</li>
-  <li><a href="https://github.com/khushimitr/Aanandam/tree/main/SRS%20Documentation">SRS Document</a></li>
-  
+  <li><a href="https://github.com/khushimitr/Aanandam/tree/main/SRS%20Documentation">SRS Document</a></li> 
 </ul>
 
 # Screenshots of the App
@@ -74,6 +73,6 @@ Now, if a consumer merely wants service and doesn't want to own or rent a room, 
   </tr>
 </table>
  
-# Link to the landing page: https://young-ravine-63777.herokuapp.com/ 
+<h2> Link to the landing page: https://young-ravine-63777.herokuapp.com/ </h2>
 One can register on the landing page and further will have to install the app.
-# Link to the API Documentation: https://documenter.getpostman.com/view/18321901/UVJkCZEy
+<h2> Link to the API Documentation: https://documenter.getpostman.com/view/18321901/UVJkCZEy </h2>
