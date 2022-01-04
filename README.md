@@ -12,6 +12,13 @@ Now, if a consumer merely wants service and doesn't want to own or rent a room, 
   <li>API has been hosted on herouku platform.</li>
   <li>Website is also hosted on heroku platform.</li>
 </ul>
+<h2>Shreya - Landing Page and Documentation</h2>
+<ul>
+  <li>Landing page has been created using HTML, CSS, SASS, JavaScript.</li> 
+  <li>The complete SRS documention of the project has been done.</li>
+  <li></li>
+  
+</ul>
 
 # Screenshots of the App
 <table>
